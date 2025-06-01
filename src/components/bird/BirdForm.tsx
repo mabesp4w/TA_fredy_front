@@ -177,6 +177,7 @@ export const BirdForm: React.FC<BirdFormProps> = ({
             {...register("scientific_nm", {
               required: "Nama ilmiah harus diisi",
             })}
+            readOnly
           />
         </div>
 

@@ -100,3 +100,7 @@ export interface UpdateSoundData {
   location?: string;
   description?: string;
 }
+
+export interface PredictData {
+  audio_file: File;
+}

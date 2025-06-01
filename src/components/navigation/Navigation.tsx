@@ -73,7 +73,7 @@ const navItems: NavItem[] = [
   },
   {
     name: "Deteksi",
-    href: "/admin/deteksi",
+    href: "/admin/predict",
     icon: Mic,
     description: "Deteksi suara",
   },
@@ -88,7 +88,7 @@ const userNavItems: NavItem[] = [
   },
   {
     name: "Deteksi",
-    href: "/deteksi",
+    href: "/predict",
     icon: Mic,
     description: "Deteksi suara",
   },
