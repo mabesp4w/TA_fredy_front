@@ -47,6 +47,8 @@ export const GlobalSearch: React.FC = () => {
   const { images, fetchImages, loading: imagesLoading } = useImageStore();
   const { sounds, fetchSounds, loading: soundsLoading } = useSoundStore();
 
+  console.log({ images });
+
   useEffect(() => {
     if (initialQuery) {
       performSearch(initialQuery);
@@ -131,7 +133,6 @@ export const GlobalSearch: React.FC = () => {
               type: "sound",
               id: sound.id,
               title: `Recording from ${sound.location}`,
-              subtitle: sound.recording_date,
               description: sound.description,
               data: sound,
             });
@@ -240,8 +241,8 @@ export const GlobalSearch: React.FC = () => {
             No results found
           </h3>
           <p className="text-gray-600 mb-4">
-            No matches found for "{query}". Try different keywords or search all
-            types.
+            No matches found for &quot;{query}&quot;. Try different keywords or
+            search all types.
           </p>
           <Button variant="outline" onClick={() => setSearchType("all")}>
             Search All Types
@@ -254,7 +255,7 @@ export const GlobalSearch: React.FC = () => {
             <div className="flex flex-wrap gap-4 text-sm">
               <span className="font-medium">
                 Found {results.length} result{results.length !== 1 ? "s" : ""}{" "}
-                for "{query}"
+                for &quot;{query}&quot;
               </span>
               <div className="flex gap-4 text-gray-600">
                 {getResultsByType("family").length > 0 && (

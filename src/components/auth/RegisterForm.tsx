@@ -29,7 +29,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
   onLoginClick,
   className = "",
 }) => {
-  const { register: registerUser, loading, error, clearError } = useAuthStore();
+  const { loading, error, clearError } = useAuthStore();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -56,9 +56,9 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
 
   const password = watch("password");
 
-  const onSubmit = async (data: RegisterData) => {
+  const onSubmit = async () => {
     clearError();
-    const success = await registerUser(data);
+    const success = false;
     if (success) {
       reset();
       onSuccess?.();

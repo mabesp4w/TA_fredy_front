@@ -199,10 +199,8 @@ export const soundApi = {
     const formData = new FormData();
     formData.append("bird", data.bird);
     formData.append("sound_file", data.sound_file);
-    formData.append("recording_date", data.recording_date);
     formData.append("location", data.location);
     formData.append("description", data.description);
-    formData.append("preprocessing", data.preprocessing?.toString() || "false");
 
     const response: AxiosResponse<Sound> = await crud.post(
       "/sounds/",
@@ -221,17 +219,11 @@ export const soundApi = {
     if (data.sound_file) {
       formData.append("sound_file", data.sound_file);
     }
-    if (data.recording_date) {
-      formData.append("recording_date", data.recording_date);
-    }
     if (data.location) {
       formData.append("location", data.location);
     }
     if (data.description) {
       formData.append("description", data.description);
-    }
-    if (data.preprocessing !== undefined) {
-      formData.append("preprocessing", data.preprocessing.toString());
     }
 
     const response: AxiosResponse<Sound> = await crud.patch(

@@ -4,8 +4,6 @@ import React, { useEffect } from "react";
 import moment from "moment";
 import {
   MapPin,
-  Calendar,
-  Zap,
   Bird as BirdIcon,
   Clock,
   FileAudio,
@@ -108,43 +106,12 @@ export const SoundDetail: React.FC<SoundDetailProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-3">
               <div className="flex items-center">
-                <Calendar className="w-5 h-5 mr-3 text-primary" />
-                <div>
-                  <label className="text-sm font-medium text-gray-600">
-                    Recording Date
-                  </label>
-                  <p className="text-gray-900">
-                    {moment(sound.recording_date).format("MMMM DD, YYYY")}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-center">
                 <MapPin className="w-5 h-5 mr-3 text-primary" />
                 <div>
                   <label className="text-sm font-medium text-gray-600">
                     Location
                   </label>
                   <p className="text-gray-900">{sound.location}</p>
-                </div>
-              </div>
-
-              <div className="flex items-center">
-                <Zap className="w-5 h-5 mr-3 text-primary" />
-                <div>
-                  <label className="text-sm font-medium text-gray-600">
-                    Processing Status
-                  </label>
-                  <div className="flex items-center mt-1">
-                    {sound.preprocessing ? (
-                      <div className="badge badge-success">
-                        <Zap className="w-3 h-3 mr-1" />
-                        Preprocessed
-                      </div>
-                    ) : (
-                      <div className="badge badge-outline">Raw Recording</div>
-                    )}
-                  </div>
                 </div>
               </div>
             </div>
@@ -241,36 +208,6 @@ export const SoundDetail: React.FC<SoundDetailProps> = ({
               </p>
             </div>
           </div>
-        </div>
-
-        {/* Processing Information */}
-        <div className="bg-base-200 rounded-lg p-4">
-          <h3 className="font-semibold text-lg mb-3">Processing Information</h3>
-          {sound.preprocessing ? (
-            <div className="space-y-2">
-              <div className="flex items-center text-success">
-                <Zap className="w-4 h-4 mr-2" />
-                <span className="font-medium">
-                  This recording has been preprocessed
-                </span>
-              </div>
-              <p className="text-sm text-gray-600">
-                The audio file has undergone processing such as noise reduction,
-                normalization, or enhancement to improve quality for analysis.
-              </p>
-            </div>
-          ) : (
-            <div className="space-y-2">
-              <div className="flex items-center text-gray-600">
-                <FileAudio className="w-4 h-4 mr-2" />
-                <span className="font-medium">Raw recording</span>
-              </div>
-              <p className="text-sm text-gray-600">
-                This is the original, unprocessed audio recording as captured in
-                the field.
-              </p>
-            </div>
-          )}
         </div>
       </div>
     </Modal>
