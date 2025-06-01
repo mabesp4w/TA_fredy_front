@@ -41,27 +41,28 @@ export const useAuthStore = create<AuthStore>()(
           const response = await auth.post("/login/", data);
 
           // Store token in cookies
-          Cookies.set("auth-token", response.data.token, {
+          Cookies.set("auth-token", response.data.access_token, {
             expires: data.rememberMe ? 30 : 1, // 30 days or 1 day
             secure: process.env.NODE_ENV === "production",
             sameSite: "strict",
           });
 
-          Cookies.set("refresh-token", response.data.refreshToken, {
+          Cookies.set("refresh-token", response.data.refresh_token, {
             expires: 30,
             secure: process.env.NODE_ENV === "production",
             sameSite: "strict",
           });
+          console.log({ response });
 
           set({
             user: response.data.user,
-            token: response.data.token,
+            token: response.data.access_token,
             isAuthenticated: true,
             loading: false,
             error: null,
           });
 
-          toast.success(`Welcome back, ${response.data.user.firstName}!`);
+          toast.success(`Welcome back, ${response.data.user.username}!`);
           return true;
         } catch (error: any) {
           console.log({ error });
@@ -79,7 +80,7 @@ export const useAuthStore = create<AuthStore>()(
 
           set({
             user: response.data.user,
-            token: response.data.token,
+            token: response.data.access_token,
             isAuthenticated: true,
             loading: false,
             error: null,

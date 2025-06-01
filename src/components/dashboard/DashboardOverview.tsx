@@ -10,6 +10,7 @@ import { ActivityItem } from "./ActivityItem";
 import { QuickActions } from "./QuickActions";
 import { DashboardCharts } from "./DashboardCharts";
 import { useRouter } from "next/navigation";
+import { useAuthStore } from "@/stores/auth/authStore";
 
 export const DashboardOverview: React.FC = () => {
   const router = useRouter();
@@ -29,6 +30,9 @@ export const DashboardOverview: React.FC = () => {
   const [showAllActivities, setShowAllActivities] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
 
+  // store
+  const { isAuthenticated } = useAuthStore();
+
   useEffect(() => {
     fetchDashboardData();
   }, [fetchDashboardData]);
@@ -40,9 +44,15 @@ export const DashboardOverview: React.FC = () => {
       try {
         const results = await searchData(searchQuery);
         // Navigate to search results page with results
-        router.push(
-          `/search?q=${searchQuery}&results=${JSON.stringify(results)}`
-        );
+        if (isAuthenticated) {
+          router.push(
+            `/admin/search?q=${searchQuery}&results=${JSON.stringify(results)}`
+          );
+        } else {
+          router.push(
+            `/search?q=${searchQuery}&results=${JSON.stringify(results)}`
+          );
+        }
       } catch (error) {
         console.error("Search error:", error);
       } finally {
@@ -159,9 +169,11 @@ export const DashboardOverview: React.FC = () => {
       {/* Main Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Quick Actions */}
-        <div className="lg:col-span-1">
-          <QuickActions />
-        </div>
+        {isAuthenticated && (
+          <div className="lg:col-span-1">
+            <QuickActions />
+          </div>
+        )}
 
         {/* Recent Activities */}
         <div className="lg:col-span-2">

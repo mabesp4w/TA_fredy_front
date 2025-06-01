@@ -1,5 +1,5 @@
 /** @format */
-
+"use client";
 import React from "react";
 import Link from "next/link";
 import {
@@ -12,6 +12,7 @@ import {
   Globe,
   Heart,
 } from "lucide-react";
+import { useAuthStore } from "@/stores/auth/authStore";
 
 interface FooterLink {
   label: string;
@@ -24,22 +25,49 @@ interface FooterSection {
 }
 
 export const Footer: React.FC = () => {
+  const { isAuthenticated } = useAuthStore();
+
   const footerSections: FooterSection[] = [
     {
       title: "Quick Links",
       links: [
-        { label: "Browse Families", href: "/admin/families" },
-        { label: "Browse Birds", href: "/admin/birds" },
-        { label: "Image Gallery", href: "/admin/images" },
-        { label: "Sound Library", href: "/admin/sounds" },
-        { label: "Advanced Search", href: "/admin/search" },
+        {
+          label: "Browse Families",
+          href: isAuthenticated ? "/admin/families" : "/families",
+        },
+        {
+          label: "Browse Birds",
+          href: isAuthenticated ? "/admin/birds" : "/birds",
+        },
+        {
+          label: "Image Gallery",
+          href: isAuthenticated ? "/admin/images" : "/images",
+        },
+        {
+          label: "Sound Library",
+          href: isAuthenticated ? "/admin/sounds" : "/sounds",
+        },
+        {
+          label: "Advanced Search",
+          href: isAuthenticated ? "/admin/search" : "/search",
+        },
       ],
     },
     {
       title: "Tools",
       links: [
-        { label: "Upload Images", href: "/admin/images?action=upload" },
-        { label: "Upload Sounds", href: "/admin/sounds?action=upload" },
+        {
+          label: "Images",
+          href: isAuthenticated
+            ? "/admin/images?action=upload"
+            : "/images?action=upload",
+        },
+        {
+          label: "Sounds",
+          href: isAuthenticated
+            ? "/admin/sounds?action=upload"
+            : "/sounds?action=upload",
+        },
         // { label: "Bulk Operations", href: "/bulk" },
         // { label: "Data Export", href: "/export" },
         // { label: "API Documentation", href: "/docs/api" },
@@ -49,11 +77,26 @@ export const Footer: React.FC = () => {
     {
       title: "Support",
       links: [
-        { label: "Help Center", href: "/admin/help" },
-        { label: "Contact Us", href: "/admin/contact" },
-        { label: "Report Issues", href: "/admin/issues" },
-        { label: "Feature Requests", href: "/admin/features" },
-        { label: "Community", href: "/admin/community" },
+        {
+          label: "Help Center",
+          href: isAuthenticated ? "/admin/help" : "/help",
+        },
+        {
+          label: "Contact Us",
+          href: isAuthenticated ? "/admin/contact" : "/contact",
+        },
+        {
+          label: "Report Issues",
+          href: isAuthenticated ? "/admin/issues" : "/issues",
+        },
+        {
+          label: "Feature Requests",
+          href: isAuthenticated ? "/admin/features" : "/features",
+        },
+        {
+          label: "Community",
+          href: isAuthenticated ? "/admin/community" : "/community",
+        },
       ],
     },
   ];

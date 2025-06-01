@@ -14,12 +14,12 @@ export default function LoginPage() {
   useEffect(() => {
     // Redirect if already authenticated
     if (isAuthenticated) {
-      router.push("/");
+      router.push("/admin/dashboard");
     }
   }, [isAuthenticated, router]);
 
   const handleSuccess = () => {
-    router.push("/");
+    router.push("/admin/dashboard");
   };
 
   return (

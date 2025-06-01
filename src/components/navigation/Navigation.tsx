@@ -2,9 +2,9 @@
 
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   Bird,
   TreePine,
@@ -23,6 +23,7 @@ import {
   Mic,
 } from "lucide-react";
 import { Button } from "../ui/Button";
+import { useAuthStore } from "@/stores/auth/authStore";
 
 interface NavItem {
   name: string;
@@ -47,7 +48,7 @@ const navItems: NavItem[] = [
     description: "Overview & Analisis",
   },
   {
-    name: "Families",
+    name: "Keluarga",
     href: "/admin/families",
     icon: TreePine,
     description: "Keluarga burung",
@@ -78,11 +79,67 @@ const navItems: NavItem[] = [
   },
 ];
 
+const userNavItems: NavItem[] = [
+  {
+    name: "Dashboard",
+    href: "/",
+    icon: Home,
+    description: "Overview & Analisis",
+  },
+  {
+    name: "Deteksi",
+    href: "/deteksi",
+    icon: Mic,
+    description: "Deteksi suara",
+  },
+  {
+    name: "Keluarga",
+    href: "/families",
+    icon: TreePine,
+    description: "Keluarga burung",
+  },
+  {
+    name: "Burung",
+    href: "/birds",
+    icon: Bird,
+    description: "Spesies burung",
+  },
+  {
+    name: "Gambar",
+    href: "/images",
+    icon: Camera,
+    description: "Galeri gambar",
+  },
+  {
+    name: "Suara",
+    href: "/sounds",
+    icon: Volume2,
+    description: "Audio library",
+  },
+];
+
 export const Navigation: React.FC = () => {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [menuNav, setMenuNav] = useState<NavItem[]>(userNavItems);
+  // router
+  const router = useRouter();
+
+  // cek auth
+  const { isAuthenticated } = useAuthStore();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      if (!pathname.startsWith("/admin")) {
+        router.push("/admin/dashboard");
+      }
+      setMenuNav(navItems);
+    } else {
+      setMenuNav(userNavItems);
+    }
+  }, [isAuthenticated, pathname, router]);
 
   const isActive = (href: string) => {
     if (href === "/") {
@@ -128,7 +185,7 @@ export const Navigation: React.FC = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-1">
-              {navItems.map((item) => {
+              {menuNav.map((item) => {
                 const IconComponent = item.icon;
                 const active = isActive(item.href);
 
@@ -205,80 +262,101 @@ export const Navigation: React.FC = () => {
             {/* Right Side Actions */}
             <div className="flex items-center space-x-3">
               {/* Search Button */}
-              <Link href="/admin/search" className="hidden md:block">
-                <Button variant="ghost" size="sm">
-                  <Search className="w-4 h-4" />
-                </Button>
-              </Link>
+              {isAuthenticated && (
+                <Link href="/admin/search" className="hidden md:block">
+                  <Button variant="ghost" size="sm">
+                    <Search className="w-4 h-4" />
+                  </Button>
+                </Link>
+              )}
 
               {/* Quick Add */}
-              <div className="dropdown dropdown-end hidden md:block">
-                <Button tabIndex={0} variant="primary" size="sm">
-                  <Plus className="w-4 h-4 mr-1" />
-                  Tambah
-                </Button>
-                <ul className="dropdown-content z-[1] menu p-2 shadow-lg bg-base-100 rounded-box w-52 border">
-                  <li>
-                    <Link href="/admin/families?action=create">
-                      Tambah Keluarga
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/admin/birds?action=create">Tambah Burung</Link>
-                  </li>
-                  <li>
-                    <Link href="/admin/images?action=upload">
-                      Upload Gambar
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/admin/sounds?action=upload">Upload Suara</Link>
-                  </li>
-                </ul>
-              </div>
+              {isAuthenticated && (
+                <div className="dropdown dropdown-end hidden md:block">
+                  <Button tabIndex={0} variant="primary" size="sm">
+                    <Plus className="w-4 h-4 mr-1" />
+                    Tambah
+                  </Button>
+                  <ul className="dropdown-content z-[1] menu p-2 shadow-lg bg-base-100 rounded-box w-52 border">
+                    <li>
+                      <Link href="/admin/families?action=create">
+                        Tambah Keluarga
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/admin/birds?action=create">
+                        Tambah Burung
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/admin/images?action=upload">
+                        Upload Gambar
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/admin/sounds?action=upload">
+                        Upload Suara
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              )}
 
               {/* User Menu */}
-              <div className="dropdown dropdown-end">
-                <button
-                  tabIndex={0}
-                  className="btn btn-ghost btn-circle avatar"
-                  onClick={() => setShowUserMenu(!showUserMenu)}
-                >
-                  <div className="w-8 h-8 rounded-full bg-primary text-primary-content flex items-center justify-center">
-                    <User className="w-4 h-4" />
-                  </div>
-                </button>
-                <ul className="dropdown-content z-[1] menu p-2 shadow-lg bg-base-100 rounded-box w-52 border">
-                  <li className="menu-title">
-                    <span>Profil</span>
-                  </li>
-                  <li>
-                    <a>
+              {isAuthenticated && (
+                <div className="dropdown dropdown-end">
+                  <button
+                    tabIndex={0}
+                    className="btn btn-ghost btn-circle avatar"
+                    onClick={() => setShowUserMenu(!showUserMenu)}
+                  >
+                    <div className="w-8 h-8 rounded-full bg-primary text-primary-content flex items-center justify-center">
                       <User className="w-4 h-4" />
-                      Profile
-                    </a>
-                  </li>
-                  <li>
-                    <a>
-                      <Settings className="w-4 h-4" />
-                      Settings
-                    </a>
-                  </li>
-                  <li>
-                    <a>
-                      <HelpCircle className="w-4 h-4" />
-                      Help & Support
-                    </a>
-                  </li>
-                  <div className="divider my-1"></div>
-                  <li>
-                    <a className="text-error">
-                      <LogOut className="w-4 h-4" />
-                      Sign Out
-                    </a>
-                  </li>
-                </ul>
-              </div>
+                    </div>
+                  </button>
+                  <ul className="dropdown-content z-[1] menu p-2 shadow-lg bg-base-100 rounded-box w-52 border">
+                    <li className="menu-title">
+                      <span>Profil</span>
+                    </li>
+                    <li>
+                      <a>
+                        <User className="w-4 h-4" />
+                        Profile
+                      </a>
+                    </li>
+                    <li>
+                      <a>
+                        <Settings className="w-4 h-4" />
+                        Settings
+                      </a>
+                    </li>
+                    <li>
+                      <a>
+                        <HelpCircle className="w-4 h-4" />
+                        Help & Support
+                      </a>
+                    </li>
+                    <div className="divider my-1"></div>
+                    <li>
+                      <button
+                        onClick={() => useAuthStore.getState().logout()}
+                        className="text-error"
+                      >
+                        <LogOut className="w-4 h-4" />
+                        Sign Out
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              )}
+
+              {!isAuthenticated && (
+                <Link href="/auth/login">
+                  <Button variant="primary" size="sm">
+                    Login
+                  </Button>
+                </Link>
+              )}
 
               {/* Mobile Menu Button */}
               <button
@@ -316,7 +394,7 @@ export const Navigation: React.FC = () => {
               </div>
 
               {/* Main Navigation Items */}
-              {navItems.map((item) => {
+              {menuNav.map((item) => {
                 const IconComponent = item.icon;
                 const active = isActive(item.href);
 
@@ -389,37 +467,45 @@ export const Navigation: React.FC = () => {
               })}
 
               {/* Mobile Quick Actions */}
-              <div className="pt-3 border-t mt-3">
-                <div className="grid grid-cols-2 gap-2">
-                  <Link
-                    href="/families?action=create"
-                    onClick={closeMobileMenu}
-                  >
-                    <Button variant="outline" size="sm" fullWidth>
-                      <Plus className="w-3 h-3 mr-1" />
-                      Add Family
-                    </Button>
-                  </Link>
-                  <Link href="/birds?action=create" onClick={closeMobileMenu}>
-                    <Button variant="outline" size="sm" fullWidth>
-                      <Plus className="w-3 h-3 mr-1" />
-                      Add Bird
-                    </Button>
-                  </Link>
-                  <Link href="/images?action=upload" onClick={closeMobileMenu}>
-                    <Button variant="outline" size="sm" fullWidth>
-                      <Camera className="w-3 h-3 mr-1" />
-                      Upload
-                    </Button>
-                  </Link>
-                  <Link href="/sounds?action=upload" onClick={closeMobileMenu}>
-                    <Button variant="outline" size="sm" fullWidth>
-                      <Volume2 className="w-3 h-3 mr-1" />
-                      Record
-                    </Button>
-                  </Link>
+              {isAuthenticated && (
+                <div className="pt-3 border-t mt-3">
+                  <div className="grid grid-cols-2 gap-2">
+                    <Link
+                      href="/families?action=create"
+                      onClick={closeMobileMenu}
+                    >
+                      <Button variant="outline" size="sm" fullWidth>
+                        <Plus className="w-3 h-3 mr-1" />
+                        Add Family
+                      </Button>
+                    </Link>
+                    <Link href="/birds?action=create" onClick={closeMobileMenu}>
+                      <Button variant="outline" size="sm" fullWidth>
+                        <Plus className="w-3 h-3 mr-1" />
+                        Add Bird
+                      </Button>
+                    </Link>
+                    <Link
+                      href="/images?action=upload"
+                      onClick={closeMobileMenu}
+                    >
+                      <Button variant="outline" size="sm" fullWidth>
+                        <Camera className="w-3 h-3 mr-1" />
+                        Upload
+                      </Button>
+                    </Link>
+                    <Link
+                      href="/sounds?action=upload"
+                      onClick={closeMobileMenu}
+                    >
+                      <Button variant="outline" size="sm" fullWidth>
+                        <Volume2 className="w-3 h-3 mr-1" />
+                        Record
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         )}
