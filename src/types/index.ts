@@ -50,10 +50,8 @@ export interface Sound {
   id: string;
   bird: string;
   sound_file: string;
-  recording_date: string;
   location: string;
   description: string;
-  preprocessing: boolean;
   created_at: string;
   updated_at: string;
 }
@@ -93,16 +91,12 @@ export interface CreateImageData {
 export interface CreateSoundData {
   bird: string;
   sound_file: File;
-  recording_date: string;
   location: string;
   description: string;
-  preprocessing?: boolean;
 }
 
 export interface UpdateSoundData {
   sound_file?: File;
-  recording_date?: string;
   location?: string;
   description?: string;
-  preprocessing?: boolean;
 }

@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useState } from "react";
-import { Bird, ArrowLeft } from "lucide-react";
+import { Bird, ArrowLeft, Heart } from "lucide-react";
 import { LoginForm } from "./LoginForm";
 import { RegisterForm } from "./RegisterForm";
 import { ForgotPasswordForm } from "./ForgotPasswordForm";
@@ -76,34 +76,14 @@ export const AuthPage: React.FC<AuthPageProps> = ({
               <div className="flex items-center space-x-2">
                 <Bird className="w-8 h-8 text-primary" />
                 <div>
-                  <h1 className="text-xl font-bold text-gray-900">BirdDB</h1>
-                  <p className="text-xs text-gray-500">Database System</p>
+                  <h1 className="text-xl font-bold text-gray-900">
+                    Kicauan Burung
+                  </h1>
+                  <p className="text-xs text-gray-500">
+                    Klasifikasi Burung berdasarkan kicauan
+                  </p>
                 </div>
               </div>
-            </div>
-
-            {/* Mode Toggle */}
-            <div className="hidden sm:flex items-center space-x-2">
-              <button
-                onClick={() => setMode("login")}
-                className={`px-3 py-1 text-sm rounded-md transition-colors ${
-                  mode === "login"
-                    ? "bg-primary text-primary-content"
-                    : "text-gray-600 hover:text-gray-900"
-                }`}
-              >
-                Sign In
-              </button>
-              <button
-                onClick={() => setMode("register")}
-                className={`px-3 py-1 text-sm rounded-md transition-colors ${
-                  mode === "register"
-                    ? "bg-primary text-primary-content"
-                    : "text-gray-600 hover:text-gray-900"
-                }`}
-              >
-                Register
-              </button>
             </div>
           </div>
         </div>
@@ -120,8 +100,10 @@ export const AuthPage: React.FC<AuthPageProps> = ({
       <footer className="relative z-10 bg-base-100 border-t mt-auto">
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
-            <div className="text-sm text-gray-600">
-              © 2024 Bird Database System. All rights reserved.
+            <div className="text-sm text-gray-600 flex items-center space-x-2">
+              <span>© 2024 WWF. Made with</span>
+              <Heart className="w-4 h-4 text-red-500" />
+              <span>Fredy Ramandey</span>
             </div>
 
             <div className="flex items-center space-x-6 text-sm">
@@ -138,22 +120,6 @@ export const AuthPage: React.FC<AuthPageProps> = ({
           </div>
         </div>
       </footer>
-
-      {/* Features Showcase */}
-      {mode === "login" && (
-        <div className="fixed bottom-4 left-4 right-4 sm:left-auto sm:w-80 bg-base-100 rounded-lg shadow-lg p-4 border">
-          <h4 className="font-semibold text-gray-900 mb-2">
-            Why Choose BirdDB?
-          </h4>
-          <ul className="text-sm text-gray-600 space-y-1">
-            <li>• Comprehensive bird species database</li>
-            <li>• High-quality images and sound recordings</li>
-            <li>• Scientific research tools</li>
-            <li>• Community-driven content</li>
-            <li>• Advanced search and filtering</li>
-          </ul>
-        </div>
-      )}
     </div>
   );
 };

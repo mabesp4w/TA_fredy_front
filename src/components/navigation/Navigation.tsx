@@ -20,6 +20,7 @@ import {
   HelpCircle,
   LogOut,
   Plus,
+  Mic,
 } from "lucide-react";
 import { Button } from "../ui/Button";
 
@@ -68,6 +69,12 @@ const navItems: NavItem[] = [
     href: "/admin/sounds",
     icon: Volume2,
     description: "Audio library",
+  },
+  {
+    name: "Deteksi",
+    href: "/admin/deteksi",
+    icon: Mic,
+    description: "Deteksi suara",
   },
 ];
 

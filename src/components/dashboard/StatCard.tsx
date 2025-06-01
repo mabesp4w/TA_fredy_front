@@ -55,7 +55,7 @@ export const StatCard: React.FC<StatCardProps> = ({
   return (
     <div
       className={`stat bg-base-100 shadow-md rounded-lg transition-all duration-200 ${
-        onClick ? "cursor-pointer hover:shadow-lg hover:scale-105" : ""
+        onClick ? "cursor-pointer hover:shadow-lg hover:scale-95" : ""
       }`}
       onClick={onClick}
     >

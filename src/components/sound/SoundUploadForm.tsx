@@ -7,7 +7,6 @@ import { Modal } from "../ui/Modal";
 import { Button } from "../ui/Button";
 import { Input } from "../ui/Input";
 import { Textarea } from "../ui/Textarea";
-import { DateInput } from "../ui/DateInput";
 import { Select } from "../ui/Select";
 import { useBirdStore } from "@/stores/crud/birdStore";
 import { CreateSoundData } from "@/types";
@@ -59,10 +58,8 @@ export const SoundUploadForm: React.FC<SoundUploadFormProps> = ({
     mode: "onChange",
     defaultValues: {
       bird: "",
-      recording_date: "",
       location: "",
       description: "",
-      preprocessing: false,
     },
   });
 
@@ -87,10 +84,8 @@ export const SoundUploadForm: React.FC<SoundUploadFormProps> = ({
     if (isOpen) {
       reset({
         bird: selectedBirdId || "",
-        recording_date: new Date().toISOString().split("T")[0], // Today's date
         location: "",
         description: "",
-        preprocessing: false,
       });
       setSelectedFile(null);
       setAudioInfo(null);
@@ -202,10 +197,8 @@ export const SoundUploadForm: React.FC<SoundUploadFormProps> = ({
       const submitData: CreateSoundData = {
         bird: data.bird,
         sound_file: selectedFile,
-        recording_date: data.recording_date,
         location: data.location,
         description: data.description,
-        preprocessing: data.preprocessing,
       };
 
       await onSubmit(submitData);
@@ -239,8 +232,7 @@ export const SoundUploadForm: React.FC<SoundUploadFormProps> = ({
     label: `${bird.bird_nm} (${bird.scientific_nm})`,
   }));
 
-  const canSubmit =
-    selectedFile && watchedBird && isValid && !loading && !isProcessingFile;
+  const canSubmit = selectedFile && watchedBird && isValid && !loading;
 
   return (
     <Modal
@@ -338,26 +330,15 @@ export const SoundUploadForm: React.FC<SoundUploadFormProps> = ({
 
         {/* Metadata Fields */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="md:col-span-2">
-            <Select
-              label="Bird"
-              placeholder="Select a bird for this sound"
-              options={birdOptions}
-              fullWidth
-              error={errors.bird?.message}
-              disabled={!!selectedBirdId || loading}
-              {...register("bird", {
-                required: "Bird selection is required",
-              })}
-            />
-          </div>
-
-          <DateInput
-            label="Recording Date"
+          <Select
+            label="Bird"
+            placeholder="Select a bird for this sound"
+            options={birdOptions}
             fullWidth
-            error={errors.recording_date?.message}
-            {...register("recording_date", {
-              required: "Recording date is required",
+            error={errors.bird?.message}
+            disabled={!!selectedBirdId || loading}
+            {...register("bird", {
+              required: "Bird selection is required",
             })}
           />
 
@@ -367,15 +348,7 @@ export const SoundUploadForm: React.FC<SoundUploadFormProps> = ({
             fullWidth
             error={errors.location?.message}
             {...register("location", {
-              required: "Location is required",
-              minLength: {
-                value: 2,
-                message: "Location must be at least 2 characters",
-              },
-              maxLength: {
-                value: 200,
-                message: "Location must not exceed 200 characters",
-              },
+              required: false,
             })}
           />
         </div>
@@ -394,25 +367,6 @@ export const SoundUploadForm: React.FC<SoundUploadFormProps> = ({
             },
           })}
         />
-
-        {/* Preprocessing Toggle */}
-        <div className="form-control">
-          <label className="label cursor-pointer justify-start space-x-3">
-            <input
-              type="checkbox"
-              className="checkbox checkbox-primary"
-              {...register("preprocessing")}
-            />
-            <div>
-              <span className="label-text font-medium">
-                Mark as Preprocessed
-              </span>
-              <div className="text-sm text-gray-600">
-                Check this if the audio has been processed/enhanced
-              </div>
-            </div>
-          </label>
-        </div>
 
         {/* Upload Summary */}
         {watchedBird && selectedFile && (
@@ -442,7 +396,7 @@ export const SoundUploadForm: React.FC<SoundUploadFormProps> = ({
             type="button"
             variant="ghost"
             onClick={handleModalClose}
-            disabled={loading || isProcessingFile}
+            disabled={loading}
           >
             Cancel
           </Button>

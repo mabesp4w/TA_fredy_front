@@ -1,10 +1,8 @@
 /** @format */
 
-import { redirect } from "next/navigation";
-
 const page = () => {
   // redirect
-  redirect("/auth/login");
+  // redirect("/auth/login");
   return <div>page</div>;
 };
 

@@ -1,5 +1,5 @@
 /** @format */
-
+"use client";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Shield, AlertTriangle } from "lucide-react";
@@ -23,7 +23,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   requiredRoles = [],
   requireAuth = true,
   fallback,
-  redirectTo = "/auth",
+  redirectTo = "/auth/login",
 }) => {
   const router = useRouter();
   const { user, isAuthenticated, loading, checkAuth, hasPermission, hasRole } =

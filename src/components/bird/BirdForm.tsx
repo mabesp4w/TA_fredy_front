@@ -9,6 +9,7 @@ import { Button } from "../ui/Button";
 import { Modal } from "../ui/Modal";
 import { useFamilyStore } from "@/stores/crud/familyStore";
 import { Bird, CreateBirdData, UpdateBirdData } from "@/types";
+import { useJenisBurungStore } from "@/stores/api/jenisBurungStore";
 
 interface BirdFormProps {
   isOpen: boolean;
@@ -36,13 +37,16 @@ export const BirdForm: React.FC<BirdFormProps> = ({
   selectedFamilyId,
 }) => {
   const isEditing = !!bird;
+  // store
   const { families, fetchFamilies } = useFamilyStore();
+  const { jenisBurung, fetchJenisBurung } = useJenisBurungStore();
 
   const {
     register,
     handleSubmit,
     reset,
     setValue,
+    watch,
     formState: { errors, isValid },
   } = useForm<FormData>({
     mode: "onChange",
@@ -55,12 +59,23 @@ export const BirdForm: React.FC<BirdFormProps> = ({
     },
   });
 
-  // Fetch families on component mount
+  // Watch bird_nm to update the other fields when changed
+  const selectedBirdId = watch("bird_nm");
+
   useEffect(() => {
     if (isOpen && families.length === 0) {
       fetchFamilies();
     }
-  }, [isOpen, families.length, fetchFamilies]);
+    if (isOpen && jenisBurung.length === 0) {
+      fetchJenisBurung();
+    }
+  }, [
+    isOpen,
+    families.length,
+    fetchFamilies,
+    jenisBurung.length,
+    fetchJenisBurung,
+  ]);
 
   // Reset form when modal opens/closes or bird changes
   useEffect(() => {
@@ -90,13 +105,26 @@ export const BirdForm: React.FC<BirdFormProps> = ({
     }
   }, [selectedFamilyId, bird, setValue]);
 
+  // Fetch data based on bird selection
+  useEffect(() => {
+    if (selectedBirdId) {
+      const selectedBirdData = jenisBurung.find(
+        (bird) => bird.bird_nm === selectedBirdId
+      );
+      if (selectedBirdData) {
+        setValue("scientific_nm", selectedBirdData.scientific_nm || "");
+        setValue("description", selectedBirdData.description || "");
+        setValue("habitat", selectedBirdData.habitat || "");
+      }
+    }
+  }, [selectedBirdId, jenisBurung, setValue]);
+
   const handleFormSubmit = async (data: FormData) => {
     try {
       await onSubmit(data);
       onClose();
       reset();
     } catch (error) {
-      // Error handling is done in the store
       console.error("Form submission error:", error);
     }
   };
@@ -113,6 +141,13 @@ export const BirdForm: React.FC<BirdFormProps> = ({
     label: family.family_nm,
   }));
 
+  const jenisBurungOptions = jenisBurung
+    .sort((a, b) => a.bird_nm.localeCompare(b.bird_nm))
+    .map((jenisBurung) => ({
+      value: jenisBurung.bird_nm,
+      label: jenisBurung.bird_nm,
+    }));
+
   return (
     <Modal
       isOpen={isOpen}
@@ -123,39 +158,24 @@ export const BirdForm: React.FC<BirdFormProps> = ({
     >
       <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Input
-            label="Bird Name"
-            placeholder="Enter bird name"
+          <Select
+            label="Nama Burung"
+            placeholder="Select a jenis burung"
+            options={jenisBurungOptions}
             fullWidth
             error={errors.bird_nm?.message}
             {...register("bird_nm", {
-              required: "Bird name is required",
-              minLength: {
-                value: 2,
-                message: "Bird name must be at least 2 characters",
-              },
-              maxLength: {
-                value: 100,
-                message: "Bird name must not exceed 100 characters",
-              },
+              required: "Nama burung harus diisi",
             })}
           />
 
           <Input
-            label="Scientific Name"
+            label="Nama Ilmiah"
             placeholder="Enter scientific name"
             fullWidth
             error={errors.scientific_nm?.message}
             {...register("scientific_nm", {
-              required: "Scientific name is required",
-              minLength: {
-                value: 2,
-                message: "Scientific name must be at least 2 characters",
-              },
-              maxLength: {
-                value: 100,
-                message: "Scientific name must not exceed 100 characters",
-              },
+              required: "Nama ilmiah harus diisi",
             })}
           />
         </div>

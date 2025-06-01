@@ -137,7 +137,7 @@ export const DashboardOverview: React.FC = () => {
           ))}
         </div>
       ) : (
-        <div className="stats stats-vertical sm:stats-horizontal shadow-md bg-base-100">
+        <div className="stats stats-vertical sm:stats-horizontal shadow-md bg-base-100  w-full overflow-hidden ">
           {quickStats.map((stat, index) => {
             const statType = ["families", "birds", "images", "sounds"][index];
             return (

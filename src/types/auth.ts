@@ -35,6 +35,7 @@ export interface Permission {
 
 export interface LoginData {
   email: string;
+  username: string;
   password: string;
   rememberMe?: boolean;
 }
