@@ -12,8 +12,10 @@ import { FamilyCard } from "./FamilyCard";
 import { FamilyForm } from "./FamilyForm";
 import { FamilyDetail } from "./FamilyDetail";
 import { ConfirmDialog } from "../ui/ConfirmDialog";
+import { useAuthStore } from "@/stores/auth/authStore";
 
 export const FamilyList: React.FC = () => {
+  // store
   const {
     families,
     meta,
@@ -25,6 +27,8 @@ export const FamilyList: React.FC = () => {
     deleteFamily,
     clearError,
   } = useFamilyStore();
+
+  const { isAuthenticated } = useAuthStore();
 
   // Local state
   const [currentPage, setCurrentPage] = useState(1);
@@ -149,14 +153,16 @@ export const FamilyList: React.FC = () => {
           <h1 className="text-2xl font-bold text-gray-900">Keluarga</h1>
           <p className="text-gray-600">Kelola keluarga burung</p>
         </div>
-        <Button
-          variant="primary"
-          onClick={handleCreate}
-          className="flex items-center"
-        >
-          <Plus className="w-4 h-4 mr-2" />
-          Tambah Keluarga
-        </Button>
+        {isAuthenticated && (
+          <Button
+            variant="primary"
+            onClick={handleCreate}
+            className="flex items-center"
+          >
+            <Plus className="w-4 h-4 mr-2" />
+            Tambah Keluarga
+          </Button>
+        )}
       </div>
 
       {/* Search and filters */}
@@ -208,7 +214,7 @@ export const FamilyList: React.FC = () => {
               ? "No families match your search criteria."
               : "Get started by creating your first family."}
           </p>
-          {!searchTerm && (
+          {!searchTerm && isAuthenticated && (
             <Button variant="primary" onClick={handleCreate}>
               <Plus className="w-4 h-4 mr-2" />
               Tambah Keluarga Pertama

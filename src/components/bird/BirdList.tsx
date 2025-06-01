@@ -14,6 +14,7 @@ import { BirdCard } from "./BirdCard";
 import { BirdForm } from "./BirdForm";
 import { BirdDetail } from "./BirdDetail";
 import { ConfirmDialog } from "../ui/ConfirmDialog";
+import { useAuthStore } from "@/stores/auth/authStore";
 
 interface BirdListProps {
   familyId?: string; // For filtering by specific family
@@ -37,6 +38,8 @@ export const BirdList: React.FC<BirdListProps> = ({
   } = useBirdStore();
 
   const { families, fetchFamilies } = useFamilyStore();
+
+  const { isAuthenticated } = useAuthStore();
 
   // Local state
   const [currentPage, setCurrentPage] = useState(1);
@@ -200,20 +203,22 @@ export const BirdList: React.FC<BirdListProps> = ({
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">
-            {familyId ? "Family Birds" : "Birds"}
+            {familyId ? "Family Birds" : "Burung"}
           </h1>
           <p className="text-gray-600">
-            {familyId ? "Birds in this family" : "Manage bird species"}
+            {familyId ? "Burung in this family" : "Manage burung species"}
           </p>
         </div>
-        <Button
-          variant="primary"
-          onClick={handleCreate}
-          className="flex items-center"
-        >
-          <Plus className="w-4 h-4 mr-2" />
-          Add Bird
-        </Button>
+        {isAuthenticated && (
+          <Button
+            variant="primary"
+            onClick={handleCreate}
+            className="flex items-center"
+          >
+            <Plus className="w-4 h-4 mr-2" />
+            Add Bird
+          </Button>
+        )}
       </div>
 
       {/* Search and filters */}
@@ -277,7 +282,7 @@ export const BirdList: React.FC<BirdListProps> = ({
               ? "No birds match your search criteria."
               : "Get started by creating your first bird."}
           </p>
-          {!searchTerm && !selectedFamily && (
+          {!searchTerm && !selectedFamily && isAuthenticated && (
             <Button variant="primary" onClick={handleCreate}>
               <Plus className="w-4 h-4 mr-2" />
               Create First Bird

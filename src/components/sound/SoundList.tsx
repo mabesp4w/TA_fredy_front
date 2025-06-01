@@ -8,13 +8,13 @@ import { Sound } from "@/types";
 import { Button } from "../ui/Button";
 import { Input } from "../ui/Input";
 import { Select } from "../ui/Select";
-import { DateInput } from "../ui/DateInput";
 import { Loading } from "../ui/Loading";
 import { Pagination } from "../ui/Pagination";
 import { SoundCard } from "./SoundCard";
 import { SoundDetail } from "./SoundDetail";
 import { SoundUploadForm } from "./SoundUploadForm";
 import { ConfirmDialog } from "../ui/ConfirmDialog";
+import { useAuthStore } from "@/stores/auth/authStore";
 
 interface SoundListProps {
   birdId?: string; // For filtering by specific bird
@@ -39,14 +39,14 @@ export const SoundList: React.FC<SoundListProps> = ({
 
   const { birds, fetchBirds } = useBirdStore();
 
+  const { isAuthenticated } = useAuthStore();
+
   // Local state
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchInput, setSearchInput] = useState("");
   const [ordering, setOrdering] = useState("-created_at");
   const [selectedBird, setSelectedBird] = useState(birdId || "");
-  const [preprocessingFilter, setPreprocessingFilter] = useState<string>("");
-  const [recordingDateFilter, setRecordingDateFilter] = useState("");
   const [showFilters, setShowFilters] = useState(false);
 
   // Modal states
@@ -69,23 +69,10 @@ export const SoundList: React.FC<SoundListProps> = ({
       search: searchTerm,
       ordering,
       bird: birdId || selectedBird || undefined,
-      preprocessing: preprocessingFilter
-        ? preprocessingFilter === "true"
-        : undefined,
-      recording_date: recordingDateFilter || undefined,
     };
 
     fetchSounds(params);
-  }, [
-    currentPage,
-    searchTerm,
-    ordering,
-    selectedBird,
-    preprocessingFilter,
-    recordingDateFilter,
-    birdId,
-    fetchSounds,
-  ]);
+  }, [currentPage, searchTerm, ordering, selectedBird, birdId, fetchSounds]);
 
   // Update selected bird when birdId prop changes
   useEffect(() => {
@@ -112,17 +99,10 @@ export const SoundList: React.FC<SoundListProps> = ({
     setCurrentPage(1);
   };
 
-  const handleDateFilter = (date: string) => {
-    setRecordingDateFilter(date);
-    setCurrentPage(1);
-  };
-
   const clearFilters = () => {
     setSearchInput("");
     setSearchTerm("");
     setSelectedBird(birdId || "");
-    setPreprocessingFilter("");
-    setRecordingDateFilter("");
     setCurrentPage(1);
   };
 
@@ -138,10 +118,6 @@ export const SoundList: React.FC<SoundListProps> = ({
       search: searchTerm,
       ordering,
       bird: birdId || selectedBird || undefined,
-      preprocessing: preprocessingFilter
-        ? preprocessingFilter === "true"
-        : undefined,
-      recording_date: recordingDateFilter || undefined,
     };
 
     fetchSounds(params);
@@ -224,15 +200,17 @@ export const SoundList: React.FC<SoundListProps> = ({
               : "Kelola suara burung"}
           </p>
         </div>
-        <Button
-          variant="primary"
-          onClick={handleUpload}
-          className="flex items-center"
-          loading={uploading}
-        >
-          <Plus className="w-4 h-4 mr-2" />
-          Unggah Suara
-        </Button>
+        {isAuthenticated && (
+          <Button
+            variant="primary"
+            onClick={handleUpload}
+            className="flex items-center"
+            loading={uploading}
+          >
+            <Plus className="w-4 h-4 mr-2" />
+            Unggah Suara
+          </Button>
+        )}
       </div>
 
       {/* Quick Stats */}
@@ -304,12 +282,6 @@ export const SoundList: React.FC<SoundListProps> = ({
               />
             )}
 
-            <DateInput
-              placeholder="Tanggal Rekaman"
-              value={recordingDateFilter}
-              onChange={(e) => handleDateFilter(e.target.value)}
-            />
-
             <Select
               value={ordering}
               onChange={(e) => setOrdering(e.target.value)}
@@ -344,22 +316,16 @@ export const SoundList: React.FC<SoundListProps> = ({
             No sounds found
           </h3>
           <p className="text-gray-600 mb-4">
-            {searchTerm ||
-            selectedBird ||
-            preprocessingFilter ||
-            recordingDateFilter
+            {searchTerm || selectedBird
               ? "No sounds match your search criteria."
               : "Get started by uploading your first bird sound recording."}
           </p>
-          {!searchTerm &&
-            !selectedBird &&
-            !preprocessingFilter &&
-            !recordingDateFilter && (
-              <Button variant="primary" onClick={handleUpload}>
-                <Plus className="w-4 h-4 mr-2" />
-                Unggah Suara Pertama
-              </Button>
-            )}
+          {!searchTerm && !selectedBird && isAuthenticated && (
+            <Button variant="primary" onClick={handleUpload}>
+              <Plus className="w-4 h-4 mr-2" />
+              Unggah Suara Pertama
+            </Button>
+          )}
         </div>
       ) : (
         <>

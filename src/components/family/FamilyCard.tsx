@@ -5,6 +5,7 @@ import moment from "moment";
 import { Edit, Trash2, Eye, Bird } from "lucide-react";
 import { Button } from "../ui/Button";
 import { Family } from "@/types";
+import { useAuthStore } from "@/stores/auth/authStore";
 
 interface FamilyCardProps {
   family: Family;
@@ -21,6 +22,9 @@ export const FamilyCard: React.FC<FamilyCardProps> = ({
   onDelete,
   onViewBirds,
 }) => {
+  // store
+  const { isAuthenticated } = useAuthStore();
+
   return (
     <div className="card bg-base-100 shadow-md hover:shadow-lg transition-shadow duration-200">
       <div className="card-body">
@@ -69,25 +73,29 @@ export const FamilyCard: React.FC<FamilyCardProps> = ({
             <Eye className="w-4 h-4" />
           </Button>
 
-          <Button
-            size="sm"
-            variant="ghost"
-            onClick={() => onEdit(family)}
-            className="tooltip"
-            data-tip="Edit Family"
-          >
-            <Edit className="w-4 h-4" />
-          </Button>
+          {isAuthenticated && (
+            <>
+              <Button
+                size="sm"
+                variant="ghost"
+                onClick={() => onEdit(family)}
+                className="tooltip"
+                data-tip="Edit Family"
+              >
+                <Edit className="w-4 h-4" />
+              </Button>
 
-          <Button
-            size="sm"
-            variant="ghost"
-            onClick={() => onDelete(family)}
-            className="tooltip text-error hover:bg-error hover:text-white"
-            data-tip="Delete Family"
-          >
-            <Trash2 className="w-4 h-4" />
-          </Button>
+              <Button
+                size="sm"
+                variant="ghost"
+                onClick={() => onDelete(family)}
+                className="tooltip text-error hover:bg-error hover:text-white"
+                data-tip="Delete Family"
+              >
+                <Trash2 className="w-4 h-4" />
+              </Button>
+            </>
+          )}
         </div>
       </div>
     </div>

@@ -6,6 +6,7 @@ import { Eye, Trash2, Download, Bird } from "lucide-react";
 import { Button } from "../ui/Button";
 import { Image as ImageType } from "@/types";
 import Image from "next/image";
+import { useAuthStore } from "@/stores/auth/authStore";
 
 interface ImageCardProps {
   image: ImageType;
@@ -24,6 +25,8 @@ export const ImageCard: React.FC<ImageCardProps> = ({
 }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
+
+  const { isAuthenticated } = useAuthStore();
 
   const handleImageLoad = () => {
     setIsLoading(false);
@@ -170,15 +173,17 @@ export const ImageCard: React.FC<ImageCardProps> = ({
             </Button>
           )}
 
-          <Button
-            size="xs"
-            variant="ghost"
-            onClick={() => onDelete(image)}
-            className="tooltip text-error hover:bg-error hover:text-white"
-            data-tip="Delete"
-          >
-            <Trash2 className="w-3 h-3" />
-          </Button>
+          {isAuthenticated && (
+            <Button
+              size="xs"
+              variant="ghost"
+              onClick={() => onDelete(image)}
+              className="tooltip text-error hover:bg-error hover:text-white"
+              data-tip="Delete"
+            >
+              <Trash2 className="w-3 h-3" />
+            </Button>
+          )}
         </div>
       </div>
     </div>

@@ -5,6 +5,7 @@ import moment from "moment";
 import { Edit, Trash2, Eye, Camera, Volume2, TreePine } from "lucide-react";
 import { Button } from "../ui/Button";
 import { Bird } from "@/types";
+import { useAuthStore } from "@/stores/auth/authStore";
 
 interface BirdCardProps {
   bird: Bird;
@@ -25,6 +26,8 @@ export const BirdCard: React.FC<BirdCardProps> = ({
   onViewSounds,
   familyName,
 }) => {
+  const { isAuthenticated } = useAuthStore();
+
   return (
     <div className="card bg-base-100 shadow-md hover:shadow-lg transition-shadow duration-200">
       <div className="card-body">
@@ -103,25 +106,29 @@ export const BirdCard: React.FC<BirdCardProps> = ({
               <Eye className="w-4 h-4" />
             </Button>
 
-            <Button
-              size="sm"
-              variant="ghost"
-              onClick={() => onEdit(bird)}
-              className="tooltip"
-              data-tip="Edit Bird"
-            >
-              <Edit className="w-4 h-4" />
-            </Button>
+            {isAuthenticated && (
+              <>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={() => onEdit(bird)}
+                  className="tooltip"
+                  data-tip="Edit Bird"
+                >
+                  <Edit className="w-4 h-4" />
+                </Button>
 
-            <Button
-              size="sm"
-              variant="ghost"
-              onClick={() => onDelete(bird)}
-              className="tooltip text-error hover:bg-error hover:text-white"
-              data-tip="Delete Bird"
-            >
-              <Trash2 className="w-4 h-4" />
-            </Button>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={() => onDelete(bird)}
+                  className="tooltip text-error hover:bg-error hover:text-white"
+                  data-tip="Delete Bird"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </Button>
+              </>
+            )}
           </div>
         </div>
       </div>

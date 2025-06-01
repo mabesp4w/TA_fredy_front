@@ -13,6 +13,7 @@ import { ImageCard } from "./ImageCard";
 import { ImageLightbox } from "./ImageLightbox";
 import { ImageUploadForm } from "./ImageUploadForm";
 import { ConfirmDialog } from "../ui/ConfirmDialog";
+import { useAuthStore } from "@/stores/auth/authStore";
 
 interface ImageListProps {
   birdId?: string; // For filtering by specific bird
@@ -36,6 +37,8 @@ export const ImageList: React.FC<ImageListProps> = ({
   } = useImageStore();
 
   const { birds, fetchBirds } = useBirdStore();
+
+  const { isAuthenticated } = useAuthStore();
 
   // Local state
   const [currentPage, setCurrentPage] = useState(1);
@@ -166,15 +169,17 @@ export const ImageList: React.FC<ImageListProps> = ({
             {birdId ? "Gambar untuk burung ini" : "Kelola gambar burung"}
           </p>
         </div>
-        <Button
-          variant="primary"
-          onClick={handleUpload}
-          className="flex items-center"
-          loading={uploading}
-        >
-          <Plus className="w-4 h-4 mr-2" />
-          Upload Images
-        </Button>
+        {isAuthenticated && (
+          <Button
+            variant="primary"
+            onClick={handleUpload}
+            className="flex items-center"
+            loading={uploading}
+          >
+            <Plus className="w-4 h-4 mr-2" />
+            Upload Images
+          </Button>
+        )}
       </div>
 
       {/* Filters and View Controls */}
@@ -252,10 +257,12 @@ export const ImageList: React.FC<ImageListProps> = ({
               ? "Tidak ada gambar ditemukan untuk burung yang dipilih."
               : "Mulai dengan mengunggah gambar burung pertama."}
           </p>
-          <Button variant="primary" onClick={handleUpload}>
-            <Plus className="w-4 h-4 mr-2" />
-            Unggah Gambar Pertama
-          </Button>
+          {isAuthenticated && (
+            <Button variant="primary" onClick={handleUpload}>
+              <Plus className="w-4 h-4 mr-2" />
+              Unggah Gambar Pertama
+            </Button>
+          )}
         </div>
       ) : (
         <>

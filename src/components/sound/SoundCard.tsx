@@ -7,14 +7,13 @@ import {
   Trash2,
   Download,
   MapPin,
-  Calendar,
-  Zap,
   Clock,
   Bird as BirdIcon,
 } from "lucide-react";
 import { Button } from "../ui/Button";
 import { AudioPlayer } from "../ui/AudioPlayer";
 import { Sound } from "@/types";
+import { useAuthStore } from "@/stores/auth/authStore";
 
 interface SoundCardProps {
   sound: Sound;
@@ -33,6 +32,9 @@ export const SoundCard: React.FC<SoundCardProps> = ({
   showBirdInfo = true,
   compact = false,
 }) => {
+  // store
+  const { isAuthenticated } = useAuthStore();
+
   const handleDownload = async () => {
     try {
       const response = await fetch(sound.sound_file);
@@ -57,11 +59,6 @@ export const SoundCard: React.FC<SoundCardProps> = ({
     return filename.split(".").pop()?.toLowerCase() || "mp3";
   };
 
-  const formatFileSize = (url: string): string => {
-    // This would typically come from metadata, for now we'll show a placeholder
-    return "Audio file";
-  };
-
   return (
     <div className="card bg-base-100 shadow-md hover:shadow-lg transition-shadow duration-200">
       <div className="card-body p-4">
@@ -79,13 +76,6 @@ export const SoundCard: React.FC<SoundCardProps> = ({
             {/* Recording Info */}
             <div className="space-y-1">
               <div className="flex items-center text-sm text-gray-600">
-                <Calendar className="w-4 h-4 mr-2" />
-                <span>
-                  {moment(sound.recording_date).format("MMM DD, YYYY")}
-                </span>
-              </div>
-
-              <div className="flex items-center text-sm text-gray-600">
                 <MapPin className="w-4 h-4 mr-2" />
                 <span className="truncate">{sound.location}</span>
               </div>
@@ -95,16 +85,6 @@ export const SoundCard: React.FC<SoundCardProps> = ({
                 <span>Uploaded {moment(sound.created_at).fromNow()}</span>
               </div>
             </div>
-
-            {/* Preprocessing Badge */}
-            {sound.preprocessing && (
-              <div className="flex items-center mt-2">
-                <div className="badge badge-success badge-sm">
-                  <Zap className="w-3 h-3 mr-1" />
-                  Preprocessed
-                </div>
-              </div>
-            )}
           </div>
 
           {/* Action Buttons */}
@@ -128,16 +108,17 @@ export const SoundCard: React.FC<SoundCardProps> = ({
             >
               <Download className="w-3 h-3" />
             </Button>
-
-            <Button
-              size="xs"
-              variant="ghost"
-              onClick={() => onDelete(sound)}
-              className="tooltip text-error hover:bg-error hover:text-white"
-              data-tip="Delete"
-            >
-              <Trash2 className="w-3 h-3" />
-            </Button>
+            {isAuthenticated && (
+              <Button
+                size="xs"
+                variant="ghost"
+                onClick={() => onDelete(sound)}
+                className="tooltip text-error hover:bg-error hover:text-white"
+                data-tip="Delete"
+              >
+                <Trash2 className="w-3 h-3" />
+              </Button>
+            )}
           </div>
         </div>
 
