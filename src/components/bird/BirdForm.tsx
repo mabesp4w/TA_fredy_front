@@ -182,13 +182,13 @@ export const BirdForm: React.FC<BirdFormProps> = ({
         </div>
 
         <Select
-          label="Family"
-          placeholder="Select a family"
+          label="Spesies"
+          placeholder="Select a spesies"
           options={familyOptions}
           fullWidth
           error={errors.family?.message}
           {...register("family", {
-            required: "Family selection is required",
+            required: "Spesies selection is required",
           })}
         />
 

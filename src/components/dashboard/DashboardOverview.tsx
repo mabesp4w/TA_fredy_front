@@ -252,9 +252,9 @@ export const DashboardOverview: React.FC = () => {
               Selamat datang di Bird Database! 🦅
             </h3>
             <p className="text-gray-700 mb-4">
-              Mulailah dengan menambahkan keluarga burung pertama atau
-              mengunggah beberapa data burung. Gunakan aksi cepat di atas untuk
-              memulai membangun database Anda.
+              Mulailah dengan menambahkan Spesies burung pertama atau mengunggah
+              beberapa data burung. Gunakan aksi cepat di atas untuk memulai
+              membangun database Anda.
             </p>
             <div className="flex flex-wrap gap-2">
               <Button
@@ -262,7 +262,7 @@ export const DashboardOverview: React.FC = () => {
                 size="sm"
                 onClick={() => router.push("/admin/families")}
               >
-                Tambah Keluarga
+                Tambah Spesies
               </Button>
               <Button
                 variant="outline"

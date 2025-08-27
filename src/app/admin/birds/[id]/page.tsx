@@ -162,7 +162,7 @@ export default function BirdDetailPage() {
             </p>
             <div className="flex items-center space-x-4 text-sm text-gray-500">
               <span>ID: {currentBird.id.slice(0, 8)}...</span>
-              <span>Family: {currentBird.family}</span>
+              <span>Spesies: {currentBird.family}</span>
             </div>
           </div>
 

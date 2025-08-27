@@ -48,10 +48,10 @@ const navItems: NavItem[] = [
     description: "Overview & Analisis",
   },
   {
-    name: "Keluarga",
+    name: "Spesies",
     href: "/admin/families",
     icon: TreePine,
-    description: "Keluarga burung",
+    description: "Spesies burung",
   },
   {
     name: "Burung",
@@ -93,10 +93,10 @@ const userNavItems: NavItem[] = [
     description: "Deteksi suara",
   },
   {
-    name: "Keluarga",
+    name: "Spesies",
     href: "/families",
     icon: TreePine,
-    description: "Keluarga burung",
+    description: "Spesies burung",
   },
   {
     name: "Burung",
@@ -178,7 +178,7 @@ export const Navigation: React.FC = () => {
                   Kicauan Burung
                 </span>
                 <div className="text-xs text-gray-500 -mt-1">
-                  Klasifikasi Burung berdasarkan kicauan
+                  Klasifikasi Burung berdasarkan kicauan di kampung Sawesuma
                 </div>
               </div>
             </Link>
@@ -280,7 +280,7 @@ export const Navigation: React.FC = () => {
                   <ul className="dropdown-content z-[1] menu p-2 shadow-lg bg-base-100 rounded-box w-52 border">
                     <li>
                       <Link href="/admin/families?action=create">
-                        Tambah Keluarga
+                        Tambah Spesies
                       </Link>
                     </li>
                     <li>

@@ -33,7 +33,7 @@ export const useJenisBurungStore = create<JenisBurungState>((set) => ({
   fetchJenisBurung: async () => {
     set({ loading: true, error: null });
     try {
-      const response = await axios.get(`${BASE_URL}/static/jenis_burung.json`);
+      const response = await axios.get(`${BASE_URL}/api/jenis_burung`);
       set({
         jenisBurung: response.data,
         loading: false,

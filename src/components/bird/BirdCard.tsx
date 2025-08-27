@@ -14,7 +14,7 @@ interface BirdCardProps {
   onDelete: (bird: Bird) => void;
   onViewImages: (bird: Bird) => void;
   onViewSounds: (bird: Bird) => void;
-  familyName?: string; // For displaying family name when available
+  familyName?: string; // For displaying Spesies name when available
 }
 
 export const BirdCard: React.FC<BirdCardProps> = ({

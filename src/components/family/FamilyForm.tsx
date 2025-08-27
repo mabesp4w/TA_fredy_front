@@ -80,7 +80,7 @@ export const FamilyForm: React.FC<FamilyFormProps> = ({
     <Modal
       isOpen={isOpen}
       onClose={handleModalClose}
-      title={isEditing ? "Ubah Keluarga" : "Tambah Keluarga Baru"}
+      title={isEditing ? "Ubah Spesies" : "Tambah Spesies Baru"}
       size="md"
       closeOnBackdrop={!loading}
     >
@@ -133,7 +133,7 @@ export const FamilyForm: React.FC<FamilyFormProps> = ({
             loading={loading}
             disabled={!isValid}
           >
-            {isEditing ? "Ubah Keluarga" : "Tambah Keluarga"}
+            {isEditing ? "Ubah Spesies" : "Tambah Spesies"}
           </Button>
         </div>
       </form>

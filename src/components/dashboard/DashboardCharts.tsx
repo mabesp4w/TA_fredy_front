@@ -49,7 +49,7 @@ export const DashboardCharts: React.FC<DashboardChartsProps> = ({ stats }) => {
 
   // Data for content distribution pie chart
   const contentData = [
-    { name: "Keluarga", value: stats.totalFamilies, color: "#10B981" },
+    { name: "Spesies", value: stats.totalFamilies, color: "#10B981" },
     { name: "Burung", value: stats.totalBirds, color: "#3B82F6" },
     { name: "Gambar", value: stats.totalImages, color: "#8B5CF6" },
     { name: "Suara", value: stats.totalSounds, color: "#F59E0B" },

@@ -85,7 +85,7 @@ export const BirdDetail: React.FC<BirdDetailProps> = ({
             </div>
             <div>
               <label className="text-sm font-medium text-gray-600">
-                Family
+                Spesies
               </label>
               <p className="text-gray-900 font-medium">
                 {family ? family.family_nm : "Loading..."}
@@ -125,7 +125,7 @@ export const BirdDetail: React.FC<BirdDetailProps> = ({
             </div>
             <div>
               <label className="text-sm font-medium text-gray-600">
-                Family ID
+                Spesies ID
               </label>
               <p className="text-gray-900 font-mono text-sm">{bird.family}</p>
             </div>

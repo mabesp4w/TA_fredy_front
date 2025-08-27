@@ -150,8 +150,8 @@ export const FamilyList: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Keluarga</h1>
-          <p className="text-gray-600">Kelola keluarga burung</p>
+          <h1 className="text-2xl font-bold text-gray-900">Spesies</h1>
+          <p className="text-gray-600">Kelola Spesies burung</p>
         </div>
         {isAuthenticated && (
           <Button
@@ -160,7 +160,7 @@ export const FamilyList: React.FC = () => {
             className="flex items-center"
           >
             <Plus className="w-4 h-4 mr-2" />
-            Tambah Keluarga
+            Tambah Spesies
           </Button>
         )}
       </div>
@@ -217,7 +217,7 @@ export const FamilyList: React.FC = () => {
           {!searchTerm && isAuthenticated && (
             <Button variant="primary" onClick={handleCreate}>
               <Plus className="w-4 h-4 mr-2" />
-              Tambah Keluarga Pertama
+              Tambah Spesies Pertama
             </Button>
           )}
         </div>
@@ -267,7 +267,7 @@ export const FamilyList: React.FC = () => {
         isOpen={isDeleteConfirmOpen}
         onClose={() => setIsDeleteConfirmOpen(false)}
         onConfirm={handleDeleteConfirm}
-        title="Hapus Keluarga"
+        title="Hapus Spesies"
         message={`Apakah Anda yakin ingin menghapus "${selectedFamily?.family_nm}"? Tindakan ini tidak dapat diurangi.`}
         confirmText="Hapus"
         variant="error"

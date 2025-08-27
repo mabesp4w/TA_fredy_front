@@ -27,7 +27,7 @@ export const FamilyDetail: React.FC<FamilyDetailProps> = ({
           <div className="space-y-3">
             <div>
               <label className="text-sm font-medium text-gray-600">
-                Nama Keluarga
+                Nama Spesies
               </label>
               <p className="text-gray-900 font-medium">{family.family_nm}</p>
             </div>
@@ -48,7 +48,7 @@ export const FamilyDetail: React.FC<FamilyDetailProps> = ({
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="text-sm font-medium text-gray-600">
-                ID Keluarga
+                ID Spesies
               </label>
               <p className="text-gray-900 font-mono text-sm">{family.id}</p>
             </div>

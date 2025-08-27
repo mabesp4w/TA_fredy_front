@@ -27,7 +27,7 @@ export default function FamilyBirdsPage() {
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="flex justify-center">
-          <Loading size="lg" text="Loading family information..." />
+          <Loading size="lg" text="Loading spesies information..." />
         </div>
       </div>
     );
@@ -38,13 +38,13 @@ export default function FamilyBirdsPage() {
       <div className="container mx-auto px-4 py-8">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-900 mb-4">
-            Keluarga Tidak Ditemukan
+            Spesies Tidak Ditemukan
           </h1>
           <p className="text-gray-600 mb-4">
-            Keluarga yang diminta tidak ditemukan.
+            Spesies yang diminta tidak ditemukan.
           </p>
           <Button variant="primary" onClick={() => router.push("/families")}>
-            Kembali ke Keluarga
+            Kembali ke Spesies
           </Button>
         </div>
       </div>
@@ -62,10 +62,10 @@ export default function FamilyBirdsPage() {
           className="mr-4"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
-          Kembali ke Keluarga
+          Kembali ke Spesies
         </Button>
         <div className="text-sm text-gray-500">
-          <span>Keluarga</span>
+          <span>Spesies</span>
           <span className="mx-2">/</span>
           <span className="font-medium text-gray-900">
             {currentFamily.family_nm}

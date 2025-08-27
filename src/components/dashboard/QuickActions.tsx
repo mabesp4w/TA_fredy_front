@@ -28,8 +28,8 @@ export const QuickActions: React.FC<QuickActionsProps> = ({ onAction }) => {
   const actions: QuickAction[] = [
     {
       id: "add-family",
-      label: "Tambah Keluarga",
-      description: "Tambahkan keluarga burung baru",
+      label: "Tambah Spesies",
+      description: "Tambahkan Spesies burung baru",
       icon: Plus,
       color: "bg-green-500 hover:bg-green-600",
       href: "/admin/families/create",

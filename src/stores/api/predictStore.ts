@@ -15,7 +15,7 @@ interface PredictState {
   meta: PaginationMeta | null;
   loading: boolean;
   error: string | null;
-
+  uploadProgress: number;
   // Actions
   predict: (audio_file: File) => Promise<void>;
   clearPredictData: () => void;
@@ -32,25 +32,34 @@ export const usePredictStore = create<PredictState>((set) => ({
   meta: null,
   loading: false,
   error: null,
-
+  uploadProgress: 0,
   predict: async (audio_file: File) => {
-    set({ loading: true, error: null });
+    set({ loading: true, error: null, uploadProgress: 0 });
     try {
       const formData = new FormData();
       formData.append("audio_file", audio_file);
-      const response = await api.post("prediction/", formData);
+      const response = await api.post("prediction/", formData, {
+        onUploadProgress: (progressEvent) => {
+          if (progressEvent.total) {
+            const percentCompleted = Math.round(
+              (progressEvent.loaded * 100) / progressEvent.total
+            );
+            set({ uploadProgress: percentCompleted });
+          }
+        },
+      });
       console.log(response);
       set({
         predictData: response.data,
         loading: false,
+        uploadProgress: 0, // Reset progress setelah selesai
       });
     } catch (error: any) {
       const errorMessage = error.response?.data?.message || "Failed to predict";
-      set({ error: errorMessage, loading: false });
+      set({ error: errorMessage, loading: false, uploadProgress: 0 });
       toast.error(errorMessage);
     }
   },
-
   clearPredictData: () => {
     set({
       predictData: {
@@ -59,9 +68,9 @@ export const usePredictStore = create<PredictState>((set) => ({
         confidence: undefined,
         scientific_nm: undefined,
       },
+      uploadProgress: 0,
     });
   },
-
   clearError: () => {
     set({ error: null });
   },
