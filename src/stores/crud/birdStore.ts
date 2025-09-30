@@ -27,6 +27,7 @@ interface BirdState {
     search?: string;
     ordering?: string;
     family?: string;
+    per_page?: number;
   }) => Promise<void>;
   fetchBirdById: (id: string) => Promise<void>;
   createBird: (data: CreateBirdData) => Promise<Bird | null>;

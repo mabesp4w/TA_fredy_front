@@ -67,10 +67,12 @@ export const SoundUploadForm: React.FC<SoundUploadFormProps> = ({
 
   // Fetch birds for dropdown
   useEffect(() => {
-    if (isOpen && birds.length === 0) {
-      fetchBirds();
+    if (isOpen) {
+      fetchBirds({
+        per_page: 100,
+      });
     }
-  }, [isOpen, birds.length, fetchBirds]);
+  }, [isOpen, fetchBirds]);
 
   // Set selected bird when selectedBirdId changes
   useEffect(() => {
@@ -227,11 +229,12 @@ export const SoundUploadForm: React.FC<SoundUploadFormProps> = ({
     return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
   };
 
-  const birdOptions = birds.map((bird) => ({
-    value: bird.id,
-    label: `${bird.bird_nm} (${bird.scientific_nm})`,
-  }));
-
+  const birdOptions = birds
+    .sort((a, b) => a.bird_nm.localeCompare(b.bird_nm))
+    .map((bird) => ({
+      value: bird.id,
+      label: `${bird.bird_nm} (${bird.scientific_nm})`,
+    }));
   const canSubmit = selectedFile && watchedBird && isValid && !loading;
 
   return (
