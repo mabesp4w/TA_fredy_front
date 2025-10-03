@@ -213,15 +213,15 @@ export const GlobalSearch: React.FC = () => {
           {showFilters && (
             <div className="border-t pt-4">
               <Select
-                label="Search Type"
+                label="Tipe Pencarian"
                 value={searchType}
                 onChange={(e) => setSearchType(e.target.value as any)}
                 options={[
-                  { value: "all", label: "All Types" },
-                  { value: "family", label: "Families Only" },
-                  { value: "bird", label: "Birds Only" },
-                  { value: "image", label: "Images Only" },
-                  { value: "sound", label: "Sounds Only" },
+                  { value: "all", label: "Semua Tipe" },
+                  { value: "family", label: "Hanya Keluarga" },
+                  { value: "bird", label: "Hanya Burung" },
+                  { value: "image", label: "Hanya Gambar" },
+                  { value: "sound", label: "Hanya Suara" },
                 ]}
               />
             </div>
@@ -232,20 +232,20 @@ export const GlobalSearch: React.FC = () => {
       {/* Search Results */}
       {isLoading ? (
         <div className="flex justify-center py-12">
-          <Loading size="lg" text="Searching..." />
+          <Loading size="lg" text="Mencari..." />
         </div>
       ) : query && results.length === 0 ? (
         <div className="text-center py-12">
           <div className="text-6xl mb-4">🔍</div>
           <h3 className="text-lg font-semibold text-gray-900 mb-2">
-            No results found
+            Tidak ada hasil ditemukan
           </h3>
           <p className="text-gray-600 mb-4">
-            No matches found for &quot;{query}&quot;. Try different keywords or
-            search all types.
+            Tidak ada yang cocok untuk &quot;{query}&quot;. Coba kata kunci lain atau
+            cari di semua tipe.
           </p>
           <Button variant="outline" onClick={() => setSearchType("all")}>
-            Search All Types
+            Cari Semua Tipe
           </Button>
         </div>
       ) : results.length > 0 ? (
@@ -254,21 +254,20 @@ export const GlobalSearch: React.FC = () => {
           <div className="bg-base-100 rounded-lg shadow-md p-4">
             <div className="flex flex-wrap gap-4 text-sm">
               <span className="font-medium">
-                Found {results.length} result{results.length !== 1 ? "s" : ""}{" "}
-                for &quot;{query}&quot;
+                Ditemukan {results.length} hasil untuk &quot;{query}&quot;
               </span>
               <div className="flex gap-4 text-gray-600">
                 {getResultsByType("family").length > 0 && (
-                  <span>{getResultsByType("family").length} Families</span>
+                  <span>{getResultsByType("family").length} Keluarga</span>
                 )}
                 {getResultsByType("bird").length > 0 && (
-                  <span>{getResultsByType("bird").length} Birds</span>
+                  <span>{getResultsByType("bird").length} Burung</span>
                 )}
                 {getResultsByType("image").length > 0 && (
-                  <span>{getResultsByType("image").length} Images</span>
+                  <span>{getResultsByType("image").length} Gambar</span>
                 )}
                 {getResultsByType("sound").length > 0 && (
-                  <span>{getResultsByType("sound").length} Sounds</span>
+                  <span>{getResultsByType("sound").length} Suara</span>
                 )}
               </div>
             </div>
@@ -278,7 +277,7 @@ export const GlobalSearch: React.FC = () => {
           {getResultsByType("family").length > 0 && (
             <div>
               <h2 className="text-xl font-semibold text-gray-900 mb-4">
-                Families ({getResultsByType("family").length})
+                Keluarga ({getResultsByType("family").length})
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {getResultsByType("family").map((result) => (
@@ -299,7 +298,7 @@ export const GlobalSearch: React.FC = () => {
           {getResultsByType("bird").length > 0 && (
             <div>
               <h2 className="text-xl font-semibold text-gray-900 mb-4">
-                Birds ({getResultsByType("bird").length})
+                Burung ({getResultsByType("bird").length})
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {getResultsByType("bird").map((result) => (
@@ -321,7 +320,7 @@ export const GlobalSearch: React.FC = () => {
           {getResultsByType("image").length > 0 && (
             <div>
               <h2 className="text-xl font-semibold text-gray-900 mb-4">
-                Images ({getResultsByType("image").length})
+                Gambar ({getResultsByType("image").length})
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                 {getResultsByType("image").map((result) => (
@@ -340,7 +339,7 @@ export const GlobalSearch: React.FC = () => {
           {getResultsByType("sound").length > 0 && (
             <div>
               <h2 className="text-xl font-semibold text-gray-900 mb-4">
-                Sounds ({getResultsByType("sound").length})
+                Suara ({getResultsByType("sound").length})
               </h2>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {getResultsByType("sound").map((result) => (

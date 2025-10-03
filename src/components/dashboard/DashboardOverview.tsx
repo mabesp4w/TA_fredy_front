@@ -87,7 +87,7 @@ export const DashboardOverview: React.FC = () => {
       <div className="alert alert-error">
         <span>{error}</span>
         <Button variant="ghost" size="sm" onClick={clearError}>
-          Dismiss
+          Tutup
         </Button>
       </div>
     );
@@ -98,9 +98,9 @@ export const DashboardOverview: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-          <p className="text-gray-600">
-            Klasifikasi Burung berdasarkan kicauan
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Dashboard</h1>
+          <p className="text-gray-600 dark:text-gray-400">
+            Identifikasi Burung berdasarkan kicauan
           </p>
         </div>
 
@@ -113,7 +113,7 @@ export const DashboardOverview: React.FC = () => {
             className="flex items-center"
           >
             <RefreshCw className="w-4 h-4 mr-2" />
-            Refresh
+            Segarkan
           </Button>
         </div>
       </div>
@@ -122,14 +122,14 @@ export const DashboardOverview: React.FC = () => {
       <div className="bg-base-100 rounded-lg shadow-md p-6">
         <form onSubmit={handleSearch} className="flex gap-3">
           <Input
-            placeholder="Search families, birds, images, or sounds..."
+            placeholder="Cari keluarga, burung, gambar, atau suara..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="flex-1"
           />
           <Button type="submit" variant="primary" loading={isSearching}>
             <Search className="w-4 h-4 mr-2" />
-            Search
+            Cari
           </Button>
         </form>
       </div>
@@ -179,7 +179,7 @@ export const DashboardOverview: React.FC = () => {
         <div className="lg:col-span-2">
           <div className="bg-base-100 rounded-lg shadow-md p-6">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-gray-900 flex items-center">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 flex items-center">
                 <Activity className="w-5 h-5 mr-2" />
                 Aktivitas Terbaru
               </h3>
@@ -188,7 +188,7 @@ export const DashboardOverview: React.FC = () => {
                 size="sm"
                 onClick={() => setShowAllActivities(!showAllActivities)}
               >
-                {showAllActivities ? "Show Less" : "Show All"}
+                {showAllActivities ? "Tampilkan Lebih Sedikit" : "Tampilkan Semua"}
               </Button>
             </div>
 
@@ -207,7 +207,7 @@ export const DashboardOverview: React.FC = () => {
             ) : recentActivities.length === 0 ? (
               <div className="text-center py-8">
                 <Activity className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-                <p className="text-gray-600">Tidak ada aktivitas terbaru</p>
+                <p className="text-gray-600 dark:text-gray-400">Tidak ada aktivitas terbaru</p>
               </div>
             ) : (
               <div className="space-y-1">
@@ -231,7 +231,7 @@ export const DashboardOverview: React.FC = () => {
       {/* Charts Section */}
       <div>
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-gray-900 flex items-center">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 flex items-center">
             <TrendingUp className="w-6 h-6 mr-2" />
             Analisis
           </h2>
@@ -249,10 +249,10 @@ export const DashboardOverview: React.FC = () => {
           0 && (
           <div className="bg-primary/5 border border-primary/20 rounded-lg p-6">
             <h3 className="text-lg font-semibold text-primary mb-2">
-              Selamat datang di Bird Database! 🦅
+              Selamat datang di Database Burung! 🦅
             </h3>
-            <p className="text-gray-700 mb-4">
-              Mulailah dengan menambahkan Spesies burung pertama atau mengunggah
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
+              Mulailah dengan menambahkan keluarga burung pertama atau mengunggah
               beberapa data burung. Gunakan aksi cepat di atas untuk memulai
               membangun database Anda.
             </p>
@@ -262,7 +262,7 @@ export const DashboardOverview: React.FC = () => {
                 size="sm"
                 onClick={() => router.push("/admin/families")}
               >
-                Tambah Spesies
+                Tambah Keluarga
               </Button>
               <Button
                 variant="outline"

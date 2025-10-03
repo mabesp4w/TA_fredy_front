@@ -55,7 +55,7 @@ export const usePredictStore = create<PredictState>((set) => ({
         uploadProgress: 0, // Reset progress setelah selesai
       });
     } catch (error: any) {
-      const errorMessage = error.response?.data?.message || "Failed to predict";
+      const errorMessage = error.response?.data?.message || "Gagal melakukan prediksi";
       set({ error: errorMessage, loading: false, uploadProgress: 0 });
       toast.error(errorMessage);
     }

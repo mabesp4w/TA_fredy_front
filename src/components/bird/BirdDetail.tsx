@@ -2,9 +2,8 @@
 
 import React, { useEffect } from "react";
 import moment from "moment";
-import { TreePine, Camera, Volume2 } from "lucide-react";
+import { TreePine } from "lucide-react";
 import { Modal } from "../ui/Modal";
-import { Button } from "../ui/Button";
 import { useFamilyStore } from "@/stores/crud/familyStore";
 import { Bird } from "@/types";
 
@@ -33,51 +32,29 @@ export const BirdDetail: React.FC<BirdDetailProps> = ({
   const family = families.find((f) => f.id === bird.family);
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Bird Details" size="lg">
+    <Modal isOpen={isOpen} onClose={onClose} title="Detail Burung" size="lg">
       <div className="space-y-6">
-        {/* Header with actions */}
+        {/* Header */}
         <div className="flex justify-between items-start">
           <div>
             <h2 className="text-2xl font-bold text-primary">{bird.bird_nm}</h2>
             <p className="text-lg italic text-gray-600">{bird.scientific_nm}</p>
           </div>
-          <div className="flex gap-2">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() =>
-                (window.location.href = `/birds/${bird.id}/images`)
-              }
-            >
-              <Camera className="w-4 h-4 mr-2" />
-              Images
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() =>
-                (window.location.href = `/birds/${bird.id}/sounds`)
-              }
-            >
-              <Volume2 className="w-4 h-4 mr-2" />
-              Sounds
-            </Button>
-          </div>
         </div>
 
         {/* Basic Information */}
         <div className="bg-base-200 rounded-lg p-4">
-          <h3 className="font-semibold text-lg mb-3">Basic Information</h3>
+          <h3 className="font-semibold text-lg mb-3">Informasi Dasar</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="text-sm font-medium text-gray-600">
-                Common Name
+                Nama Umum
               </label>
               <p className="text-gray-900 font-medium">{bird.bird_nm}</p>
             </div>
             <div>
               <label className="text-sm font-medium text-gray-600">
-                Scientific Name
+                Nama Ilmiah
               </label>
               <p className="text-gray-900 font-medium italic">
                 {bird.scientific_nm}
@@ -85,10 +62,10 @@ export const BirdDetail: React.FC<BirdDetailProps> = ({
             </div>
             <div>
               <label className="text-sm font-medium text-gray-600">
-                Spesies
+                Keluarga
               </label>
               <p className="text-gray-900 font-medium">
-                {family ? family.family_nm : "Loading..."}
+                {family ? family.family_nm : "Memuat..."}
               </p>
             </div>
           </div>
@@ -97,7 +74,7 @@ export const BirdDetail: React.FC<BirdDetailProps> = ({
         {/* Description */}
         {bird.description && (
           <div className="bg-base-200 rounded-lg p-4">
-            <h3 className="font-semibold text-lg mb-3">Description</h3>
+            <h3 className="font-semibold text-lg mb-3">Deskripsi</h3>
             <p className="text-gray-900 whitespace-pre-wrap">
               {bird.description}
             </p>
@@ -119,35 +96,35 @@ export const BirdDetail: React.FC<BirdDetailProps> = ({
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="text-sm font-medium text-gray-600">
-                Bird ID
+                ID Burung
               </label>
               <p className="text-gray-900 font-mono text-sm">{bird.id}</p>
             </div>
             <div>
               <label className="text-sm font-medium text-gray-600">
-                Spesies ID
+                ID Keluarga
               </label>
               <p className="text-gray-900 font-mono text-sm">{bird.family}</p>
             </div>
             <div>
               <label className="text-sm font-medium text-gray-600">
-                Created At
+                Dibuat Pada
               </label>
               <p className="text-gray-900">
-                {moment(bird.created_at).format("MMMM DD, YYYY [at] HH:mm")}
+                {moment(bird.created_at).format("DD MMMM YYYY [pukul] HH:mm")}
               </p>
             </div>
             <div>
               <label className="text-sm font-medium text-gray-600">
-                Updated At
+                Diperbarui Pada
               </label>
               <p className="text-gray-900">
-                {moment(bird.updated_at).format("MMMM DD, YYYY [at] HH:mm")}
+                {moment(bird.updated_at).format("DD MMMM YYYY [pukul] HH:mm")}
               </p>
             </div>
             <div>
               <label className="text-sm font-medium text-gray-600">
-                Last Modified
+                Terakhir Diubah
               </label>
               <p className="text-gray-900">
                 {moment(bird.updated_at).fromNow()}
@@ -158,19 +135,19 @@ export const BirdDetail: React.FC<BirdDetailProps> = ({
 
         {/* Stats placeholder */}
         <div className="bg-base-200 rounded-lg p-4">
-          <h3 className="font-semibold text-lg mb-3">Media Statistics</h3>
+          <h3 className="font-semibold text-lg mb-3">Statistik Media</h3>
           <div className="grid grid-cols-2 gap-4 text-center">
             <div className="bg-primary/10 rounded-lg p-3">
               <div className="text-2xl font-bold text-primary">-</div>
-              <div className="text-sm text-gray-600">Total Images</div>
+              <div className="text-sm text-gray-600">Total Gambar</div>
             </div>
             <div className="bg-secondary/10 rounded-lg p-3">
               <div className="text-2xl font-bold text-secondary">-</div>
-              <div className="text-sm text-gray-600">Total Sounds</div>
+              <div className="text-sm text-gray-600">Total Suara</div>
             </div>
           </div>
           <p className="text-xs text-gray-500 mt-2 text-center">
-            Statistics will be available when media data is loaded
+            Statistik akan tersedia ketika data media dimuat
           </p>
         </div>
       </div>

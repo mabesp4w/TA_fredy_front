@@ -72,7 +72,7 @@ export const AuthPage: React.FC<AuthPageProps> = ({
                     Kicauan Burung
                   </h1>
                   <p className="text-xs text-gray-500">
-                    Klasifikasi Burung berdasarkan kicauan
+                    Identifikasi Burung berdasarkan kicauan
                   </p>
                 </div>
               </div>

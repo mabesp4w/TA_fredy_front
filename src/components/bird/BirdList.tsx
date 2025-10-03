@@ -4,15 +4,21 @@ import React, { useEffect, useState } from "react";
 import { Plus, Search, RefreshCw } from "lucide-react";
 import { useBirdStore } from "@/stores/crud/birdStore";
 import { useFamilyStore } from "@/stores/crud/familyStore";
-import { Bird } from "@/types";
+import { useImageStore } from "@/stores/crud/imageStore";
+import { useSoundStore } from "@/stores/crud/soundStore";
+import { Bird, Sound } from "@/types";
 import { Button } from "../ui/Button";
 import { Input } from "../ui/Input";
 import { Select } from "../ui/Select";
 import { Loading } from "../ui/Loading";
 import { Pagination } from "../ui/Pagination";
+import { Modal } from "../ui/Modal";
 import { BirdCard } from "./BirdCard";
 import { BirdForm } from "./BirdForm";
 import { BirdDetail } from "./BirdDetail";
+import { ImageLightbox } from "../image/ImageLightbox";
+import { SoundCard } from "../sound/SoundCard";
+import { SoundDetail } from "../sound/SoundDetail";
 import { ConfirmDialog } from "../ui/ConfirmDialog";
 import { useAuthStore } from "@/stores/auth/authStore";
 
@@ -53,6 +59,32 @@ export const BirdList: React.FC<BirdListProps> = ({
   const [isDetailOpen, setIsDetailOpen] = useState(false);
   const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false);
   const [selectedBird, setSelectedBird] = useState<Bird | null>(null);
+  
+  // Images lightbox states
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [shouldOpenLightbox, setShouldOpenLightbox] = useState(false);
+  
+  // Sounds modal states
+  const [isSoundsModalOpen, setIsSoundsModalOpen] = useState(false);
+  const [selectedSound, setSelectedSound] = useState<Sound | null>(null);
+  const [isSoundDetailOpen, setIsSoundDetailOpen] = useState(false);
+  const [isDeleteSoundConfirmOpen, setIsDeleteSoundConfirmOpen] = useState(false);
+
+  // Image and Sound stores
+  const {
+    images,
+    loading: imagesLoading,
+    fetchImages,
+    deleteImage,
+  } = useImageStore();
+
+  const {
+    sounds,
+    loading: soundsLoading,
+    fetchSounds,
+    deleteSound,
+  } = useSoundStore();
 
   // Fetch families for dropdown
   useEffect(() => {
@@ -135,16 +167,72 @@ export const BirdList: React.FC<BirdListProps> = ({
     setIsDeleteConfirmOpen(true);
   };
 
-  // Handle view images - now handled directly in BirdCard
-  const handleViewImages = (bird: Bird) => {
-    // Navigation handled in BirdCard component
-    console.log("View images for bird:", bird);
+  // Handle view images - fetch and open lightbox directly
+  const handleViewImages = async (bird: Bird) => {
+    setSelectedBird(bird);
+    setShouldOpenLightbox(true);
+    // Fetch images for this bird
+    await fetchImages({ bird: bird.id });
   };
 
-  // Handle view sounds - now handled directly in BirdCard
-  const handleViewSounds = (bird: Bird) => {
-    // Navigation handled in BirdCard component
-    console.log("View sounds for bird:", bird);
+  // Auto-open lightbox when images are loaded
+  useEffect(() => {
+    if (shouldOpenLightbox && !imagesLoading && images.length > 0) {
+      setLightboxIndex(0);
+      setIsLightboxOpen(true);
+      setShouldOpenLightbox(false);
+    } else if (shouldOpenLightbox && !imagesLoading && images.length === 0) {
+      // No images found, reset flag
+      setShouldOpenLightbox(false);
+      // Optionally show a message
+      alert("Tidak ada gambar untuk burung ini");
+    }
+  }, [images, imagesLoading, shouldOpenLightbox]);
+
+  // Handle view sounds - open modal with sounds
+  const handleViewSounds = async (bird: Bird) => {
+    setSelectedBird(bird);
+    setIsSoundsModalOpen(true);
+    // Fetch sounds for this bird
+    await fetchSounds({ bird: bird.id });
+  };
+
+  // Handle navigate to different image in lightbox
+  const handleNavigateImage = (newIndex: number) => {
+    setLightboxIndex(newIndex);
+  };
+
+  // Handle close lightbox
+  const handleCloseLightbox = () => {
+    setIsLightboxOpen(false);
+    setSelectedBird(null);
+  };
+
+  // Handle view sound detail
+  const handleViewSoundDetail = (sound: Sound) => {
+    setSelectedSound(sound);
+    setIsSoundDetailOpen(true);
+  };
+
+  // Handle delete sound
+  const handleDeleteSound = (sound: Sound) => {
+    setSelectedSound(sound);
+    setIsDeleteSoundConfirmOpen(true);
+  };
+
+  // Handle delete sound confirm
+  const handleDeleteSoundConfirm = async () => {
+    if (selectedSound) {
+      const success = await deleteSound(selectedSound.id);
+      if (success) {
+        setIsDeleteSoundConfirmOpen(false);
+        setSelectedSound(null);
+        // Refresh sounds
+        if (selectedBird) {
+          await fetchSounds({ bird: selectedBird.id });
+        }
+      }
+    }
   };
 
   // Form submission
@@ -191,7 +279,7 @@ export const BirdList: React.FC<BirdListProps> = ({
       <div className="alert alert-error">
         <span>{error}</span>
         <Button variant="ghost" size="sm" onClick={() => clearError()}>
-          Dismiss
+          Tutup
         </Button>
       </div>
     );
@@ -203,10 +291,10 @@ export const BirdList: React.FC<BirdListProps> = ({
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">
-            {familyId ? "Family Birds" : "Burung"}
+            {familyId ? "Burung Keluarga" : "Burung"}
           </h1>
           <p className="text-gray-600">
-            {familyId ? "Burung in this family" : "Manage burung species"}
+            {familyId ? "Burung dalam keluarga ini" : "Kelola data burung"}
           </p>
         </div>
         {isAuthenticated && (
@@ -216,7 +304,7 @@ export const BirdList: React.FC<BirdListProps> = ({
             className="flex items-center"
           >
             <Plus className="w-4 h-4 mr-2" />
-            Add Bird
+            Tambah Burung
           </Button>
         )}
       </div>
@@ -225,7 +313,7 @@ export const BirdList: React.FC<BirdListProps> = ({
       <div className="flex flex-col lg:flex-row gap-4">
         <div className="flex-1 flex gap-2">
           <Input
-            placeholder="Search birds..."
+            placeholder="Cari burung..."
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
             onKeyPress={handleSearchKeyPress}
@@ -239,8 +327,8 @@ export const BirdList: React.FC<BirdListProps> = ({
         <div className="flex flex-wrap gap-2">
           {showFamilyFilter && !familyId && (
             <Select
-              placeholder="All Families"
-              options={[{ value: "", label: "All Families" }, ...familyOptions]}
+              placeholder="Semua Keluarga"
+              options={[{ value: "", label: "Semua Keluarga" }, ...familyOptions]}
               value={selectedFamily}
               onChange={(e) => handleFamilyFilter(e.target.value)}
               className="min-w-[150px]"
@@ -252,12 +340,12 @@ export const BirdList: React.FC<BirdListProps> = ({
             value={ordering}
             onChange={(e) => setOrdering(e.target.value)}
           >
-            <option value="-created_at">Newest First</option>
-            <option value="created_at">Oldest First</option>
-            <option value="bird_nm">Name A-Z</option>
-            <option value="-bird_nm">Name Z-A</option>
-            <option value="scientific_nm">Scientific A-Z</option>
-            <option value="-scientific_nm">Scientific Z-A</option>
+            <option value="-created_at">Terbaru</option>
+            <option value="created_at">Terlama</option>
+            <option value="bird_nm">Nama A-Z</option>
+            <option value="-bird_nm">Nama Z-A</option>
+            <option value="scientific_nm">Ilmiah A-Z</option>
+            <option value="-scientific_nm">Ilmiah Z-A</option>
           </select>
 
           <Button variant="ghost" onClick={handleRefresh} loading={loading}>
@@ -269,23 +357,23 @@ export const BirdList: React.FC<BirdListProps> = ({
       {/* Content */}
       {loading && birds.length === 0 ? (
         <div className="flex justify-center py-12">
-          <Loading size="lg" text="Loading birds..." />
+          <Loading size="lg" text="Memuat data burung..." />
         </div>
       ) : birds.length === 0 ? (
         <div className="text-center py-12">
           <div className="text-6xl mb-4">🐦</div>
           <h3 className="text-lg font-semibold text-gray-900 mb-2">
-            No birds found
+            Tidak ada burung ditemukan
           </h3>
           <p className="text-gray-600 mb-4">
             {searchTerm || selectedFamily
-              ? "No birds match your search criteria."
-              : "Get started by creating your first bird."}
+              ? "Tidak ada burung yang sesuai dengan pencarian Anda."
+              : "Mulai dengan menambahkan burung pertama."}
           </p>
           {!searchTerm && !selectedFamily && isAuthenticated && (
             <Button variant="primary" onClick={handleCreate}>
               <Plus className="w-4 h-4 mr-2" />
-              Create First Bird
+              Tambah Burung Pertama
             </Button>
           )}
         </div>
@@ -338,11 +426,77 @@ export const BirdList: React.FC<BirdListProps> = ({
         isOpen={isDeleteConfirmOpen}
         onClose={() => setIsDeleteConfirmOpen(false)}
         onConfirm={handleDeleteConfirm}
-        title="Delete Bird"
-        message={`Are you sure you want to delete "${selectedBird?.bird_nm}"? This action cannot be undone and will also delete all associated images and sounds.`}
-        confirmText="Delete"
+        title="Hapus Burung"
+        message={`Apakah Anda yakin ingin menghapus "${selectedBird?.bird_nm}"? Tindakan ini tidak dapat dibatalkan dan akan menghapus semua gambar dan suara terkait.`}
+        confirmText="Hapus"
         variant="error"
         loading={loading}
+      />
+
+      {/* Image Lightbox - Direct view */}
+      <ImageLightbox
+        isOpen={isLightboxOpen}
+        onClose={handleCloseLightbox}
+        images={images}
+        currentIndex={lightboxIndex}
+        onIndexChange={handleNavigateImage}
+        birdName={selectedBird?.bird_nm}
+      />
+
+      {/* Sounds Modal */}
+      <Modal
+        isOpen={isSoundsModalOpen}
+        onClose={() => {
+          setIsSoundsModalOpen(false);
+          setSelectedBird(null);
+        }}
+        title={`Suara - ${selectedBird?.bird_nm || ""}`}
+        size="xl"
+      >
+        <div className="space-y-4">
+          {soundsLoading ? (
+            <div className="flex justify-center py-8">
+              <Loading size="lg" text="Memuat suara..." />
+            </div>
+          ) : sounds.length === 0 ? (
+            <div className="text-center py-8">
+              <div className="text-4xl mb-2">🎵</div>
+              <p className="text-gray-600">Tidak ada suara untuk burung ini</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 gap-4 max-h-[60vh] overflow-y-auto p-2">
+              {sounds.map((sound) => (
+                <SoundCard
+                  key={sound.id}
+                  sound={sound}
+                  onView={handleViewSoundDetail}
+                  onDelete={handleDeleteSound}
+                  showBirdInfo={false}
+                  compact={true}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      </Modal>
+
+      {/* Sound Detail Modal */}
+      <SoundDetail
+        isOpen={isSoundDetailOpen}
+        onClose={() => setIsSoundDetailOpen(false)}
+        sound={selectedSound}
+      />
+
+      {/* Delete Sound Confirmation */}
+      <ConfirmDialog
+        isOpen={isDeleteSoundConfirmOpen}
+        onClose={() => setIsDeleteSoundConfirmOpen(false)}
+        onConfirm={handleDeleteSoundConfirm}
+        title="Hapus Suara"
+        message="Apakah Anda yakin ingin menghapus suara ini? Tindakan ini tidak dapat dibatalkan."
+        confirmText="Hapus"
+        variant="error"
+        loading={soundsLoading}
       />
     </div>
   );

@@ -19,7 +19,7 @@ export const FamilyDetail: React.FC<FamilyDetailProps> = ({
   if (!family) return null;
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Family Details" size="md">
+    <Modal isOpen={isOpen} onClose={onClose} title="Detail Keluarga" size="md">
       <div className="space-y-6">
         {/* Basic Information */}
         <div className="bg-base-200 rounded-lg p-4">
@@ -27,7 +27,7 @@ export const FamilyDetail: React.FC<FamilyDetailProps> = ({
           <div className="space-y-3">
             <div>
               <label className="text-sm font-medium text-gray-600">
-                Nama Spesies
+                Nama Keluarga
               </label>
               <p className="text-gray-900 font-medium">{family.family_nm}</p>
             </div>
@@ -48,7 +48,7 @@ export const FamilyDetail: React.FC<FamilyDetailProps> = ({
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="text-sm font-medium text-gray-600">
-                ID Spesies
+                ID Keluarga
               </label>
               <p className="text-gray-900 font-mono text-sm">{family.id}</p>
             </div>
@@ -57,7 +57,7 @@ export const FamilyDetail: React.FC<FamilyDetailProps> = ({
                 Dibuat Pada
               </label>
               <p className="text-gray-900">
-                {moment(family.created_at).format("MMMM DD, YYYY [at] HH:mm")}
+                {moment(family.created_at).format("DD MMMM YYYY [pukul] HH:mm")}
               </p>
             </div>
             <div>
@@ -65,7 +65,7 @@ export const FamilyDetail: React.FC<FamilyDetailProps> = ({
                 Diperbarui Pada
               </label>
               <p className="text-gray-900">
-                {moment(family.updated_at).format("MMMM DD, YYYY [at] HH:mm")}
+                {moment(family.updated_at).format("DD MMMM YYYY [pukul] HH:mm")}
               </p>
             </div>
             <div>

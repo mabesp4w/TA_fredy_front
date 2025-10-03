@@ -28,8 +28,8 @@ export const QuickActions: React.FC<QuickActionsProps> = ({ onAction }) => {
   const actions: QuickAction[] = [
     {
       id: "add-family",
-      label: "Tambah Spesies",
-      description: "Tambahkan Spesies burung baru",
+      label: "Tambah Keluarga",
+      description: "Tambahkan keluarga burung baru",
       icon: Plus,
       color: "bg-green-500 hover:bg-green-600",
       href: "/admin/families/create",
@@ -44,7 +44,7 @@ export const QuickActions: React.FC<QuickActionsProps> = ({ onAction }) => {
     },
     {
       id: "upload-images",
-      label: "Upload Gambar",
+      label: "Unggah Gambar",
       description: "Tambahkan gambar burung",
       icon: Upload,
       color: "bg-purple-500 hover:bg-purple-600",
@@ -52,7 +52,7 @@ export const QuickActions: React.FC<QuickActionsProps> = ({ onAction }) => {
     },
     {
       id: "upload-sounds",
-      label: "Upload Suara",
+      label: "Unggah Suara",
       description: "Tambahkan suara burung",
       icon: Upload,
       color: "bg-orange-500 hover:bg-orange-600",
@@ -68,8 +68,8 @@ export const QuickActions: React.FC<QuickActionsProps> = ({ onAction }) => {
     },
     {
       id: "reports",
-      label: "Deteksi",
-      description: "Deteksi burung",
+      label: "Identifikasi",
+      description: "Identifikasi burung",
       icon: BarChart3,
       color: "bg-indigo-500 hover:bg-indigo-600",
       href: "/admin/reports",
@@ -89,7 +89,7 @@ export const QuickActions: React.FC<QuickActionsProps> = ({ onAction }) => {
   return (
     <div className="bg-base-100 rounded-lg shadow-md p-6">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-semibold text-gray-900">Aksi Cepat</h3>
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Aksi Cepat</h3>
         <Button variant="ghost" size="sm">
           <Settings className="w-4 h-4" />
         </Button>
@@ -111,11 +111,11 @@ export const QuickActions: React.FC<QuickActionsProps> = ({ onAction }) => {
                 <IconComponent className="w-6 h-6 text-white" />
               </div>
 
-              <h4 className="font-medium text-gray-900 text-sm mb-1 text-center">
+              <h4 className="font-medium text-gray-900 dark:text-gray-100 text-sm mb-1 text-center">
                 {action.label}
               </h4>
 
-              <p className="text-xs text-gray-600 text-center leading-tight">
+              <p className="text-xs text-gray-600 dark:text-gray-400 text-center leading-tight">
                 {action.description}
               </p>
             </button>

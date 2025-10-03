@@ -62,12 +62,12 @@ export const BirdCard: React.FC<BirdCardProps> = ({
         <div className="mt-4">
           <div className="text-xs text-gray-500 space-y-1">
             <div>
-              <span className="font-medium">Created:</span>{" "}
-              {moment(bird.created_at).format("MMM DD, YYYY")}
+              <span className="font-medium">Dibuat:</span>{" "}
+              {moment(bird.created_at).format("DD MMM YYYY")}
             </div>
             <div>
-              <span className="font-medium">Updated:</span>{" "}
-              {moment(bird.updated_at).format("MMM DD, YYYY")}
+              <span className="font-medium">Diperbarui:</span>{" "}
+              {moment(bird.updated_at).format("DD MMM YYYY")}
             </div>
           </div>
         </div>
@@ -80,7 +80,7 @@ export const BirdCard: React.FC<BirdCardProps> = ({
               variant="ghost"
               onClick={() => onViewImages(bird)}
               className="tooltip"
-              data-tip="View Images"
+              data-tip="Lihat Gambar"
             >
               <Camera className="w-4 h-4" />
             </Button>
@@ -90,7 +90,7 @@ export const BirdCard: React.FC<BirdCardProps> = ({
               variant="ghost"
               onClick={() => onViewSounds(bird)}
               className="tooltip"
-              data-tip="View Sounds"
+              data-tip="Lihat Suara"
             >
               <Volume2 className="w-4 h-4" />
             </Button>
@@ -101,7 +101,7 @@ export const BirdCard: React.FC<BirdCardProps> = ({
               variant="ghost"
               onClick={() => onView(bird)}
               className="tooltip"
-              data-tip="View Details"
+              data-tip="Lihat Detail"
             >
               <Eye className="w-4 h-4" />
             </Button>
@@ -113,7 +113,7 @@ export const BirdCard: React.FC<BirdCardProps> = ({
                   variant="ghost"
                   onClick={() => onEdit(bird)}
                   className="tooltip"
-                  data-tip="Edit Bird"
+                  data-tip="Edit Burung"
                 >
                   <Edit className="w-4 h-4" />
                 </Button>
@@ -123,7 +123,7 @@ export const BirdCard: React.FC<BirdCardProps> = ({
                   variant="ghost"
                   onClick={() => onDelete(bird)}
                   className="tooltip text-error hover:bg-error hover:text-white"
-                  data-tip="Delete Bird"
+                  data-tip="Hapus Burung"
                 >
                   <Trash2 className="w-4 h-4" />
                 </Button>

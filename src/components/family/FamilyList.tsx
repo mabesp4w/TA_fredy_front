@@ -139,7 +139,7 @@ export const FamilyList: React.FC = () => {
       <div className="alert alert-error">
         <span>{error}</span>
         <Button variant="ghost" size="sm" onClick={() => clearError()}>
-          Dismiss
+          Tutup
         </Button>
       </div>
     );
@@ -150,8 +150,8 @@ export const FamilyList: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Spesies</h1>
-          <p className="text-gray-600">Kelola Spesies burung</p>
+          <h1 className="text-2xl font-bold text-gray-900">Keluarga</h1>
+          <p className="text-gray-600">Kelola keluarga burung</p>
         </div>
         {isAuthenticated && (
           <Button
@@ -160,7 +160,7 @@ export const FamilyList: React.FC = () => {
             className="flex items-center"
           >
             <Plus className="w-4 h-4 mr-2" />
-            Tambah Spesies
+            Tambah Keluarga
           </Button>
         )}
       </div>
@@ -169,7 +169,7 @@ export const FamilyList: React.FC = () => {
       <div className="flex flex-col sm:flex-row gap-4">
         <div className="flex-1 flex gap-2">
           <Input
-            placeholder="Search families..."
+            placeholder="Cari keluarga..."
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
             onKeyPress={handleSearchKeyPress}
@@ -186,10 +186,10 @@ export const FamilyList: React.FC = () => {
             value={ordering}
             onChange={(e) => setOrdering(e.target.value)}
           >
-            <option value="-created_at">Newest First</option>
-            <option value="created_at">Oldest First</option>
-            <option value="family_nm">Name A-Z</option>
-            <option value="-family_nm">Name Z-A</option>
+            <option value="-created_at">Terbaru</option>
+            <option value="created_at">Terlama</option>
+            <option value="family_nm">Nama A-Z</option>
+            <option value="-family_nm">Nama Z-A</option>
           </select>
 
           <Button variant="ghost" onClick={handleRefresh} loading={loading}>
@@ -201,23 +201,23 @@ export const FamilyList: React.FC = () => {
       {/* Content */}
       {loading && families.length === 0 ? (
         <div className="flex justify-center py-12">
-          <Loading size="lg" text="Loading families..." />
+          <Loading size="lg" text="Memuat data keluarga..." />
         </div>
       ) : families.length === 0 ? (
         <div className="text-center py-12">
           <div className="text-6xl mb-4">🦅</div>
           <h3 className="text-lg font-semibold text-gray-900 mb-2">
-            No families found
+            Tidak ada keluarga ditemukan
           </h3>
           <p className="text-gray-600 mb-4">
             {searchTerm
-              ? "No families match your search criteria."
-              : "Get started by creating your first family."}
+              ? "Tidak ada keluarga yang sesuai dengan pencarian Anda."
+              : "Mulai dengan menambahkan keluarga pertama."}
           </p>
           {!searchTerm && isAuthenticated && (
             <Button variant="primary" onClick={handleCreate}>
               <Plus className="w-4 h-4 mr-2" />
-              Tambah Spesies Pertama
+              Tambah Keluarga Pertama
             </Button>
           )}
         </div>
@@ -267,8 +267,8 @@ export const FamilyList: React.FC = () => {
         isOpen={isDeleteConfirmOpen}
         onClose={() => setIsDeleteConfirmOpen(false)}
         onConfirm={handleDeleteConfirm}
-        title="Hapus Spesies"
-        message={`Apakah Anda yakin ingin menghapus "${selectedFamily?.family_nm}"? Tindakan ini tidak dapat diurangi.`}
+        title="Hapus Keluarga"
+        message={`Apakah Anda yakin ingin menghapus "${selectedFamily?.family_nm}"? Tindakan ini tidak dapat dibatalkan.`}
         confirmText="Hapus"
         variant="error"
         loading={loading}

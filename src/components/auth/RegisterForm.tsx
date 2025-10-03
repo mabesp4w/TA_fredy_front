@@ -66,12 +66,12 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
   };
 
   const passwordRequirements = [
-    { label: "At least 8 characters", met: password?.length >= 8 },
-    { label: "Contains uppercase letter", met: /[A-Z]/.test(password || "") },
-    { label: "Contains lowercase letter", met: /[a-z]/.test(password || "") },
-    { label: "Contains number", met: /\d/.test(password || "") },
+    { label: "Minimal 8 karakter", met: password?.length >= 8 },
+    { label: "Mengandung huruf besar", met: /[A-Z]/.test(password || "") },
+    { label: "Mengandung huruf kecil", met: /[a-z]/.test(password || "") },
+    { label: "Mengandung angka", met: /\d/.test(password || "") },
     {
-      label: "Contains special character",
+      label: "Mengandung karakter khusus",
       met: /[!@#$%^&*]/.test(password || ""),
     },
   ];
@@ -88,7 +88,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
             Join Bird Database
           </h2>
           <p className="text-gray-600 mt-2">
-            Create your account to start contributing
+            Buat akun Anda untuk mulai berkontribusi
           </p>
         </div>
 
@@ -104,34 +104,34 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
           {/* Personal Information */}
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">
-              Personal Information
+              Informasi Pribadi
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Input
-                label="First Name"
-                placeholder="Enter your first name"
+                label="Nama Depan"
+                placeholder="Masukkan nama depan Anda"
                 fullWidth
                 error={errors.firstName?.message}
                 {...register("firstName", {
-                  required: "First name is required",
+                  required: "Nama depan harus diisi",
                   minLength: {
                     value: 2,
-                    message: "First name must be at least 2 characters",
+                    message: "Nama depan minimal 2 karakter",
                   },
                 })}
               />
 
               <Input
-                label="Last Name"
-                placeholder="Enter your last name"
+                label="Nama Belakang"
+                placeholder="Masukkan nama belakang Anda"
                 fullWidth
                 error={errors.lastName?.message}
                 {...register("lastName", {
-                  required: "Last name is required",
+                  required: "Nama belakang harus diisi",
                   minLength: {
                     value: 2,
-                    message: "Last name must be at least 2 characters",
+                    message: "Nama belakang minimal 2 karakter",
                   },
                 })}
               />
@@ -140,16 +140,16 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="relative">
                 <Input
-                  label="Email Address"
+                  label="Alamat Email"
                   type="email"
-                  placeholder="Enter your email"
+                  placeholder="Masukkan email Anda"
                   fullWidth
                   error={errors.email?.message}
                   {...register("email", {
-                    required: "Email is required",
+                    required: "Email harus diisi",
                     pattern: {
                       value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                      message: "Invalid email address",
+                      message: "Alamat email tidak valid",
                     },
                   })}
                 />
@@ -158,20 +158,20 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
 
               <div className="relative">
                 <Input
-                  label="Username"
-                  placeholder="Choose a username"
+                  label="Nama Pengguna"
+                  placeholder="Pilih nama pengguna"
                   fullWidth
                   error={errors.username?.message}
                   {...register("username", {
-                    required: "Username is required",
+                    required: "Nama pengguna harus diisi",
                     minLength: {
                       value: 3,
-                      message: "Username must be at least 3 characters",
+                      message: "Nama pengguna minimal 3 karakter",
                     },
                     pattern: {
                       value: /^[a-zA-Z0-9_]+$/,
                       message:
-                        "Username can only contain letters, numbers, and underscores",
+                        "Nama pengguna hanya boleh berisi huruf, angka, dan garis bawah",
                     },
                   })}
                 />
@@ -183,13 +183,13 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
           {/* Professional Information */}
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">
-              Professional Information (Optional)
+              Informasi Profesional (Opsional)
             </h3>
 
             <div className="relative">
               <Input
-                label="Institution/Organization"
-                placeholder="University, research center, etc."
+                label="Institusi/Organisasi"
+                placeholder="Universitas, pusat penelitian, dll."
                 fullWidth
                 error={errors.institution?.message}
                 {...register("institution")}
@@ -199,15 +199,15 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
 
             <div className="relative">
               <Textarea
-                label="Bio/Expertise"
-                placeholder="Tell us about your background and expertise in ornithology..."
+                label="Bio/Keahlian"
+                placeholder="Ceritakan tentang latar belakang dan keahlian Anda dalam ornitologi..."
                 fullWidth
                 rows={3}
                 error={errors.bio?.message}
                 {...register("bio", {
                   maxLength: {
                     value: 500,
-                    message: "Bio must not exceed 500 characters",
+                    message: "Bio tidak boleh lebih dari 500 karakter",
                   },
                 })}
               />
@@ -218,34 +218,34 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
           {/* Security */}
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-gray-900 border-b pb-2">
-              Security
+              Keamanan
             </h3>
 
             <div className="relative">
               <Input
-                label="Password"
+                label="Kata Sandi"
                 type={showPassword ? "text" : "password"}
-                placeholder="Create a strong password"
+                placeholder="Buat kata sandi yang kuat"
                 fullWidth
                 error={errors.password?.message}
                 {...register("password", {
-                  required: "Password is required",
+                  required: "Kata sandi harus diisi",
                   minLength: {
                     value: 8,
-                    message: "Password must be at least 8 characters",
+                    message: "Kata sandi minimal 8 karakter",
                   },
                   validate: {
                     hasUpperCase: (value) =>
                       /[A-Z]/.test(value) ||
-                      "Password must contain an uppercase letter",
+                      "Kata sandi harus mengandung huruf besar",
                     hasLowerCase: (value) =>
                       /[a-z]/.test(value) ||
-                      "Password must contain a lowercase letter",
+                      "Kata sandi harus mengandung huruf kecil",
                     hasNumber: (value) =>
-                      /\d/.test(value) || "Password must contain a number",
+                      /\d/.test(value) || "Kata sandi harus mengandung angka",
                     hasSpecialChar: (value) =>
                       /[!@#$%^&*]/.test(value) ||
-                      "Password must contain a special character",
+                      "Kata sandi harus mengandung karakter khusus",
                   },
                 })}
               />
@@ -266,7 +266,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
             {password && (
               <div className="bg-base-200 rounded-lg p-4">
                 <h4 className="text-sm font-medium text-gray-700 mb-2">
-                  Password Requirements:
+                  Persyaratan Kata Sandi:
                 </h4>
                 <ul className="space-y-1">
                   {passwordRequirements.map((req, index) => (
@@ -289,15 +289,15 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
 
             <div className="relative">
               <Input
-                label="Confirm Password"
+                label="Konfirmasi Kata Sandi"
                 type={showConfirmPassword ? "text" : "password"}
-                placeholder="Confirm your password"
+                placeholder="Konfirmasi kata sandi Anda"
                 fullWidth
                 error={errors.confirmPassword?.message}
                 {...register("confirmPassword", {
-                  required: "Please confirm your password",
+                  required: "Silakan konfirmasi kata sandi Anda",
                   validate: (value) =>
-                    value === password || "Passwords do not match",
+                    value === password || "Kata sandi tidak cocok",
                 })}
               />
               <button
@@ -360,7 +360,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
             disabled={!isValid}
           >
             <UserPlus className="w-4 h-4 mr-2" />
-            Create Account
+            Buat Akun
           </Button>
         </form>
 
@@ -368,12 +368,12 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
         {onLoginClick && (
           <div className="text-center mt-6 pt-6 border-t">
             <p className="text-gray-600">
-              Already have an account?{" "}
+              Sudah punya akun?{" "}
               <button
                 onClick={onLoginClick}
                 className="text-primary hover:text-primary-focus font-medium"
               >
-                Sign In
+                Masuk
               </button>
             </p>
           </div>

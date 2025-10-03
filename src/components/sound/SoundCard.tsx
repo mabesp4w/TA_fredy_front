@@ -132,7 +132,12 @@ export const SoundCard: React.FC<SoundCardProps> = ({
         )}
 
         {/* Audio Player */}
-        <div className="mt-3">
+        <div className="mt-3 relative">
+          {/* Play Indicator */}
+          <div className="absolute -top-2 left-2 bg-green-500 text-white px-2 py-1 rounded-md text-xs opacity-90 z-10">
+            🔊 Klik untuk memutar
+          </div>
+          
           <AudioPlayer
             src={sound.sound_file}
             title={compact ? undefined : `Recording from ${sound.location}`}

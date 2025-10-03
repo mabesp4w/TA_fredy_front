@@ -48,13 +48,13 @@ const ContainerPredict = () => {
             value={uploadProgress}
             max="100"
           ></progress>
-          <p className="text-center mt-2">Uploading... {uploadProgress}%</p>
+          <p className="text-center mt-2">Mengunggah... {uploadProgress}%</p>
         </div>
       )}
       {!predictData?.bird_data && (
         <div className="flex flex-col gap-2">
           <span className="text-red-500">
-            Hasil prediksi tidak ditemukan di database
+            Hasil identifikasi tidak ditemukan di database
           </span>
         </div>
       )}

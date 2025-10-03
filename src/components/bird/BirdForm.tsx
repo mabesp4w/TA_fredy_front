@@ -152,7 +152,7 @@ export const BirdForm: React.FC<BirdFormProps> = ({
     <Modal
       isOpen={isOpen}
       onClose={handleModalClose}
-      title={isEditing ? "Edit Bird" : "Create New Bird"}
+      title={isEditing ? "Edit Burung" : "Tambah Burung Baru"}
       size="md"
       closeOnBackdrop={!loading}
     >
@@ -160,7 +160,7 @@ export const BirdForm: React.FC<BirdFormProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Select
             label="Nama Burung"
-            placeholder="Select a jenis burung"
+            placeholder="Pilih jenis burung"
             options={jenisBurungOptions}
             fullWidth
             error={errors.bird_nm?.message}
@@ -171,7 +171,7 @@ export const BirdForm: React.FC<BirdFormProps> = ({
 
           <Input
             label="Nama Ilmiah"
-            placeholder="Enter scientific name"
+            placeholder="Masukkan nama ilmiah"
             fullWidth
             error={errors.scientific_nm?.message}
             {...register("scientific_nm", {
@@ -182,41 +182,41 @@ export const BirdForm: React.FC<BirdFormProps> = ({
         </div>
 
         <Select
-          label="Spesies"
-          placeholder="Select a spesies"
+          label="Keluarga"
+          placeholder="Pilih keluarga"
           options={familyOptions}
           fullWidth
           error={errors.family?.message}
           {...register("family", {
-            required: "Spesies selection is required",
+            required: "Keluarga harus dipilih",
           })}
         />
 
         <Textarea
-          label="Description"
-          placeholder="Enter bird description (optional)"
+          label="Deskripsi"
+          placeholder="Masukkan deskripsi burung (opsional)"
           fullWidth
           rows={3}
           error={errors.description?.message}
           {...register("description", {
             maxLength: {
               value: 1000,
-              message: "Description must not exceed 1000 characters",
+              message: "Deskripsi tidak boleh lebih dari 1000 karakter",
             },
           })}
         />
 
         <Textarea
           label="Habitat"
-          placeholder="Describe the bird's habitat"
+          placeholder="Deskripsikan habitat burung"
           fullWidth
           rows={3}
           error={errors.habitat?.message}
           {...register("habitat", {
-            required: "Habitat description is required",
+            required: "Deskripsi habitat harus diisi",
             minLength: {
               value: 10,
-              message: "Habitat description must be at least 10 characters",
+              message: "Deskripsi habitat minimal 10 karakter",
             },
           })}
         />
@@ -228,7 +228,7 @@ export const BirdForm: React.FC<BirdFormProps> = ({
             onClick={handleModalClose}
             disabled={loading}
           >
-            Cancel
+            Batal
           </Button>
           <Button
             type="submit"
@@ -236,7 +236,7 @@ export const BirdForm: React.FC<BirdFormProps> = ({
             loading={loading}
             disabled={!isValid}
           >
-            {isEditing ? "Update Bird" : "Create Bird"}
+            {isEditing ? "Perbarui Burung" : "Tambah Burung"}
           </Button>
         </div>
       </form>

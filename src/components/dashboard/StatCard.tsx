@@ -63,11 +63,11 @@ export const StatCard: React.FC<StatCardProps> = ({
         <div className={`text-3xl ${color}`}>{icon || "📊"}</div>
       </div>
 
-      <div className="stat-title text-gray-600 text-sm font-medium">
+      <div className="stat-title text-gray-600 dark:text-gray-400 text-sm font-medium">
         {title}
       </div>
 
-      <div className="stat-value text-2xl font-bold text-gray-900">
+      <div className="stat-value text-2xl font-bold text-gray-900 dark:text-gray-100">
         {value.toLocaleString()}
       </div>
 
@@ -81,7 +81,7 @@ export const StatCard: React.FC<StatCardProps> = ({
         >
           {getTrendIcon()}
           <span className="text-sm font-medium">{formatChange(change)}</span>
-          <span className="text-xs text-gray-500">vs last month</span>
+          <span className="text-xs text-gray-500">vs bulan lalu</span>
         </div>
       )}
     </div>

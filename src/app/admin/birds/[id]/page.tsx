@@ -31,7 +31,7 @@ export default function BirdDetailPage() {
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="flex justify-center">
-          <Loading size="lg" text="Loading bird information..." />
+          <Loading size="lg" text="Memuat informasi burung..." />
         </div>
       </div>
     );
@@ -41,14 +41,14 @@ export default function BirdDetailPage() {
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">
-            Bird Not Found
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+            Burung Tidak Ditemukan
           </h1>
-          <p className="text-gray-600 mb-4">
-            The requested bird could not be found.
+          <p className="text-gray-600 dark:text-gray-400 mb-4">
+            Burung yang diminta tidak dapat ditemukan.
           </p>
           <Button variant="primary" onClick={() => router.push("/birds")}>
-            Back to Birds
+            Kembali ke Burung
           </Button>
         </div>
       </div>
@@ -57,7 +57,7 @@ export default function BirdDetailPage() {
 
   // Breadcrumb items
   const breadcrumbItems = [
-    { label: "Birds", href: "/birds" },
+    { label: "Burung", href: "/birds" },
     { label: currentBird.bird_nm, active: true },
   ];
 
@@ -65,42 +65,42 @@ export default function BirdDetailPage() {
   const tabs = [
     {
       id: "overview",
-      label: "Overview",
+      label: "Ringkasan",
       icon: Info,
       content: (
         <div className="space-y-6">
           {/* Bird Information */}
           <div className="bg-base-100 rounded-lg shadow-md p-6">
-            <h2 className="text-xl font-semibold mb-4">Bird Information</h2>
+            <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">Informasi Burung</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="text-sm font-medium text-gray-600">
-                  Common Name
+                <label className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                  Nama Umum
                 </label>
-                <p className="text-gray-900 font-medium">
+                <p className="text-gray-900 dark:text-gray-100 font-medium">
                   {currentBird.bird_nm}
                 </p>
               </div>
               <div>
-                <label className="text-sm font-medium text-gray-600">
-                  Scientific Name
+                <label className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                  Nama Ilmiah
                 </label>
-                <p className="text-gray-900 font-medium italic">
+                <p className="text-gray-900 dark:text-gray-100 font-medium italic">
                   {currentBird.scientific_nm}
                 </p>
               </div>
               <div className="md:col-span-2">
-                <label className="text-sm font-medium text-gray-600">
+                <label className="text-sm font-medium text-gray-600 dark:text-gray-400">
                   Habitat
                 </label>
-                <p className="text-gray-900">{currentBird.habitat}</p>
+                <p className="text-gray-900 dark:text-gray-100">{currentBird.habitat}</p>
               </div>
               {currentBird.description && (
                 <div className="md:col-span-2">
-                  <label className="text-sm font-medium text-gray-600">
-                    Description
+                  <label className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                    Deskripsi
                   </label>
-                  <p className="text-gray-900">{currentBird.description}</p>
+                  <p className="text-gray-900 dark:text-gray-100">{currentBird.description}</p>
                 </div>
               )}
             </div>
@@ -110,18 +110,18 @@ export default function BirdDetailPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="bg-base-100 rounded-lg shadow-md p-4 text-center">
               <Camera className="w-8 h-8 text-primary mx-auto mb-2" />
-              <div className="text-2xl font-bold text-gray-900">-</div>
-              <div className="text-sm text-gray-600">Images</div>
+              <div className="text-2xl font-bold text-gray-900 dark:text-gray-100">-</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Gambar</div>
             </div>
             <div className="bg-base-100 rounded-lg shadow-md p-4 text-center">
               <Volume2 className="w-8 h-8 text-secondary mx-auto mb-2" />
-              <div className="text-2xl font-bold text-gray-900">-</div>
-              <div className="text-sm text-gray-600">Sounds</div>
+              <div className="text-2xl font-bold text-gray-900 dark:text-gray-100">-</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Suara</div>
             </div>
             <div className="bg-base-100 rounded-lg shadow-md p-4 text-center">
               <Bird className="w-8 h-8 text-accent mx-auto mb-2" />
-              <div className="text-2xl font-bold text-gray-900">Active</div>
-              <div className="text-sm text-gray-600">Status</div>
+              <div className="text-2xl font-bold text-gray-900 dark:text-gray-100">Aktif</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Status</div>
             </div>
           </div>
         </div>
@@ -129,14 +129,14 @@ export default function BirdDetailPage() {
     },
     {
       id: "images",
-      label: "Images",
+      label: "Gambar",
       icon: Camera,
       badge: "-",
       content: <ImageList birdId={birdId} showBirdFilter={false} />,
     },
     {
       id: "sounds",
-      label: "Sounds",
+      label: "Suara",
       icon: Volume2,
       badge: "-",
       content: <SoundList birdId={birdId} showBirdFilter={false} />,
@@ -154,22 +154,22 @@ export default function BirdDetailPage() {
       <div className="bg-base-100 rounded-lg shadow-md p-6 mb-6">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div className="flex-1">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
               {currentBird.bird_nm}
             </h1>
-            <p className="text-xl italic text-gray-600 mb-2">
+            <p className="text-xl italic text-gray-600 dark:text-gray-400 mb-2">
               {currentBird.scientific_nm}
             </p>
             <div className="flex items-center space-x-4 text-sm text-gray-500">
               <span>ID: {currentBird.id.slice(0, 8)}...</span>
-              <span>Spesies: {currentBird.family}</span>
+              <span>Keluarga: {currentBird.family}</span>
             </div>
           </div>
 
           <div className="flex items-center space-x-3">
             <Button variant="outline" size="sm">
               <Share2 className="w-4 h-4 mr-2" />
-              Share
+              Bagikan
             </Button>
             <Button variant="primary" size="sm">
               <Edit className="w-4 h-4 mr-2" />

@@ -255,7 +255,7 @@ export const SoundList: React.FC<SoundListProps> = ({
             onClick={() => setShowFilters(!showFilters)}
           >
             <Filter className="w-4 h-4 mr-2" />
-            Filter
+            Saring
           </Button>
 
           <Button
@@ -298,7 +298,7 @@ export const SoundList: React.FC<SoundListProps> = ({
 
           <div className="flex justify-end mt-4">
             <Button variant="ghost" size="sm" onClick={clearFilters}>
-              Clear All Filters
+              Hapus Semua Saring
             </Button>
           </div>
         </div>
@@ -373,9 +373,9 @@ export const SoundList: React.FC<SoundListProps> = ({
         isOpen={isDeleteConfirmOpen}
         onClose={() => setIsDeleteConfirmOpen(false)}
         onConfirm={handleDeleteConfirm}
-        title="Delete Sound"
-        message={`Are you sure you want to delete this sound recording? This action cannot be undone and will permanently remove the audio file.`}
-        confirmText="Delete"
+        title="Hapus Suara"
+        message={`Apakah Anda yakin ingin menghapus rekaman suara ini? Tindakan ini tidak dapat dibatalkan dan akan menghapus file audio secara permanen.`}
+        confirmText="Hapus"
         variant="error"
         loading={loading}
       />

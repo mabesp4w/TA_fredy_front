@@ -58,7 +58,7 @@ export const FamilyCard: React.FC<FamilyCardProps> = ({
             variant="ghost"
             onClick={() => onViewBirds(family)}
             className="tooltip"
-            data-tip="View Birds"
+            data-tip="Lihat Burung"
           >
             <Bird className="w-4 h-4" />
           </Button>
@@ -68,7 +68,7 @@ export const FamilyCard: React.FC<FamilyCardProps> = ({
             variant="ghost"
             onClick={() => onView(family)}
             className="tooltip"
-            data-tip="View Details"
+            data-tip="Lihat Detail"
           >
             <Eye className="w-4 h-4" />
           </Button>
@@ -80,7 +80,7 @@ export const FamilyCard: React.FC<FamilyCardProps> = ({
                 variant="ghost"
                 onClick={() => onEdit(family)}
                 className="tooltip"
-                data-tip="Edit Family"
+                data-tip="Edit Keluarga"
               >
                 <Edit className="w-4 h-4" />
               </Button>
@@ -90,7 +90,7 @@ export const FamilyCard: React.FC<FamilyCardProps> = ({
                 variant="ghost"
                 onClick={() => onDelete(family)}
                 className="tooltip text-error hover:bg-error hover:text-white"
-                data-tip="Delete Family"
+                data-tip="Hapus Keluarga"
               >
                 <Trash2 className="w-4 h-4" />
               </Button>

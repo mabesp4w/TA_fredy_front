@@ -80,40 +80,40 @@ export const FamilyForm: React.FC<FamilyFormProps> = ({
     <Modal
       isOpen={isOpen}
       onClose={handleModalClose}
-      title={isEditing ? "Ubah Spesies" : "Tambah Spesies Baru"}
+      title={isEditing ? "Edit Keluarga" : "Tambah Keluarga Baru"}
       size="md"
       closeOnBackdrop={!loading}
     >
       <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-4">
         <Input
-          label="Family Name"
-          placeholder="Enter family name"
+          label="Nama Keluarga"
+          placeholder="Masukkan nama keluarga"
           fullWidth
           error={errors.family_nm?.message}
           {...register("family_nm", {
-            required: "Family name is required",
+            required: "Nama keluarga harus diisi",
             minLength: {
               value: 2,
-              message: "Family name must be at least 2 characters",
+              message: "Nama keluarga minimal 2 karakter",
             },
             maxLength: {
               value: 100,
-              message: "Family name must not exceed 100 characters",
+              message: "Nama keluarga tidak boleh lebih dari 100 karakter",
             },
           })}
         />
 
         <Textarea
-          label="Description"
-          placeholder="Enter family description"
+          label="Deskripsi"
+          placeholder="Masukkan deskripsi keluarga"
           fullWidth
           rows={4}
           error={errors.description?.message}
           {...register("description", {
-            required: "Description is required",
+            required: "Deskripsi harus diisi",
             minLength: {
               value: 10,
-              message: "Description must be at least 10 characters",
+              message: "Deskripsi minimal 10 karakter",
             },
           })}
         />
@@ -125,7 +125,7 @@ export const FamilyForm: React.FC<FamilyFormProps> = ({
             onClick={handleModalClose}
             disabled={loading}
           >
-            Cancel
+            Batal
           </Button>
           <Button
             type="submit"
@@ -133,7 +133,7 @@ export const FamilyForm: React.FC<FamilyFormProps> = ({
             loading={loading}
             disabled={!isValid}
           >
-            {isEditing ? "Ubah Spesies" : "Tambah Spesies"}
+            {isEditing ? "Perbarui Keluarga" : "Tambah Keluarga"}
           </Button>
         </div>
       </form>

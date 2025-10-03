@@ -49,7 +49,7 @@ export const DashboardCharts: React.FC<DashboardChartsProps> = ({ stats }) => {
 
   // Data for content distribution pie chart
   const contentData = [
-    { name: "Spesies", value: stats.totalFamilies, color: "#10B981" },
+    { name: "Keluarga", value: stats.totalFamilies, color: "#10B981" },
     { name: "Burung", value: stats.totalBirds, color: "#3B82F6" },
     { name: "Gambar", value: stats.totalImages, color: "#8B5CF6" },
     { name: "Suara", value: stats.totalSounds, color: "#F59E0B" },
@@ -87,7 +87,7 @@ export const DashboardCharts: React.FC<DashboardChartsProps> = ({ stats }) => {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       {/* Content Distribution */}
       <div className="bg-base-100 rounded-lg shadow-md p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
           Distribusi Konten
         </h3>
         <div className="h-64">
@@ -118,7 +118,7 @@ export const DashboardCharts: React.FC<DashboardChartsProps> = ({ stats }) => {
                 className="w-3 h-3 rounded-full"
                 style={{ backgroundColor: entry.color }}
               ></div>
-              <span className="text-sm text-gray-600">{entry.name}</span>
+              <span className="text-sm text-gray-600 dark:text-gray-400">{entry.name}</span>
             </div>
           ))}
         </div>
@@ -126,7 +126,7 @@ export const DashboardCharts: React.FC<DashboardChartsProps> = ({ stats }) => {
 
       {/* Monthly Growth Trend */}
       <div className="bg-base-100 rounded-lg shadow-md p-6">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
           Trend Pertumbuhan (6 Bulan)
         </h3>
         <div className="h-64">
@@ -141,28 +141,28 @@ export const DashboardCharts: React.FC<DashboardChartsProps> = ({ stats }) => {
                 dataKey="families"
                 stroke="#10B981"
                 strokeWidth={2}
-                name="Families"
+                name="Keluarga"
               />
               <Line
                 type="monotone"
                 dataKey="birds"
                 stroke="#3B82F6"
                 strokeWidth={2}
-                name="Birds"
+                name="Burung"
               />
               <Line
                 type="monotone"
                 dataKey="images"
                 stroke="#8B5CF6"
                 strokeWidth={2}
-                name="Images"
+                name="Gambar"
               />
               <Line
                 type="monotone"
                 dataKey="sounds"
                 stroke="#F59E0B"
                 strokeWidth={2}
-                name="Sounds"
+                name="Suara"
               />
             </LineChart>
           </ResponsiveContainer>

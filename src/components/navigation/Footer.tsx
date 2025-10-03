@@ -117,19 +117,19 @@ export const Footer: React.FC = () => {
             <Link href="/" className="flex items-center space-x-2 mb-4">
               <Bird className="w-8 h-8 text-primary" />
               <div>
-                <div className="text-xl font-bold text-gray-900">BirdDB</div>
-                <div className="text-sm text-gray-600">Database System</div>
+                <div className="text-xl font-bold text-gray-900 dark:text-gray-100">BirdDB</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">Database System</div>
               </div>
             </Link>
 
-            <p className="text-sm text-gray-600 mb-4">
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
               {/* terjemahkan ke bahasa indonesia */}
               Database spesies burung yang komprehensif dengan gambar, suara,
               dan data ilmiah untuk peneliti, ornitologis, dan penggemar alam.
             </p>
 
             {/* Contact Info */}
-            <div className="space-y-2 text-sm text-gray-600">
+            <div className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
               <div className="flex items-center">
                 <Mail className="w-4 h-4 mr-2" />
                 <span>contact@birddb.org</span>
@@ -148,7 +148,7 @@ export const Footer: React.FC = () => {
           {/* Footer Links */}
           {footerSections.map((section) => (
             <div key={section.title} className="lg:col-span-1">
-              <h3 className="font-semibold text-gray-900 mb-4">
+              <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-4">
                 {section.title}
               </h3>
               <ul className="space-y-2">
@@ -156,7 +156,7 @@ export const Footer: React.FC = () => {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm text-gray-600 hover:text-primary transition-colors"
+                      className="text-sm text-gray-600 dark:text-gray-400 hover:text-primary transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -168,10 +168,10 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-gray-300 mt-8 pt-8">
+        <div className="border-t border-gray-300 dark:border-gray-700 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             {/* Copyright */}
-            <div className="flex items-center space-x-1 text-sm text-gray-600">
+            <div className="flex items-center space-x-1 text-sm text-gray-600 dark:text-gray-400">
               <span>© 2024 WWF. Made with</span>
               <Heart className="w-4 h-4 text-red-500" />
               <span>Fredy Ramandey</span>
@@ -185,7 +185,7 @@ export const Footer: React.FC = () => {
                   <a
                     key={social.label}
                     href={social.href}
-                    className="text-gray-600 hover:text-primary transition-colors"
+                    className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors"
                     aria-label={social.label}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -200,19 +200,19 @@ export const Footer: React.FC = () => {
             <div className="flex items-center space-x-6 text-sm">
               <Link
                 href="/privacy"
-                className="text-gray-600 hover:text-primary transition-colors"
+                className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors"
               >
                 Privacy Policy
               </Link>
               <Link
                 href="/terms"
-                className="text-gray-600 hover:text-primary transition-colors"
+                className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors"
               >
                 Terms of Service
               </Link>
               <Link
                 href="/cookies"
-                className="text-gray-600 hover:text-primary transition-colors"
+                className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors"
               >
                 Cookie Policy
               </Link>

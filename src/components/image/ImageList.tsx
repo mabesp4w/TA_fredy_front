@@ -177,7 +177,7 @@ export const ImageList: React.FC<ImageListProps> = ({
             loading={uploading}
           >
             <Plus className="w-4 h-4 mr-2" />
-            Upload Images
+            Unggah Gambar
           </Button>
         )}
       </div>
@@ -323,9 +323,9 @@ export const ImageList: React.FC<ImageListProps> = ({
         isOpen={isDeleteConfirmOpen}
         onClose={() => setIsDeleteConfirmOpen(false)}
         onConfirm={handleDeleteConfirm}
-        title="Delete Image"
-        message="Are you sure you want to delete this image? This action cannot be undone."
-        confirmText="Delete"
+        title="Hapus Gambar"
+        message="Apakah Anda yakin ingin menghapus gambar ini? Tindakan ini tidak dapat dibatalkan."
+        confirmText="Hapus"
         variant="error"
         loading={loading}
       />

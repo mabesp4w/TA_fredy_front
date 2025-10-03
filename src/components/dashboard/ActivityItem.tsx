@@ -75,26 +75,26 @@ export const ActivityItem: React.FC<ActivityItemProps> = ({
   const getActionText = () => {
     switch (action) {
       case "created":
-        return "created";
+        return "dibuat";
       case "updated":
-        return "updated";
+        return "diperbarui";
       case "deleted":
-        return "deleted";
+        return "dihapus";
       default:
-        return "modified";
+        return "diubah";
     }
   };
 
   const getTypeLabel = () => {
     switch (type) {
       case "family":
-        return "Family";
+        return "Keluarga";
       case "bird":
-        return "Bird";
+        return "Burung";
       case "image":
-        return "Image";
+        return "Gambar";
       case "sound":
-        return "Sound";
+        return "Suara";
       default:
         return "Item";
     }
@@ -113,7 +113,7 @@ export const ActivityItem: React.FC<ActivityItemProps> = ({
       {/* Content */}
       <div className="flex-1 min-w-0">
         <div className="flex items-center space-x-2 mb-1">
-          <span className="font-medium text-gray-900 truncate">{title}</span>
+          <span className="font-medium text-gray-900 dark:text-gray-100 truncate">{title}</span>
           <div className="flex items-center space-x-1">
             {getActionIcon()}
             <span className={`text-xs font-medium ${getActionColor()}`}>
@@ -123,7 +123,7 @@ export const ActivityItem: React.FC<ActivityItemProps> = ({
         </div>
 
         {description && (
-          <p className="text-sm text-gray-600 mb-1 line-clamp-2">
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-1 line-clamp-2">
             {description}
           </p>
         )}
@@ -133,9 +133,9 @@ export const ActivityItem: React.FC<ActivityItemProps> = ({
             <span className="bg-gray-100 px-2 py-1 rounded-full text-xs font-medium">
               {getTypeLabel()}
             </span>
-            {user && <span>by {user}</span>}
+            {user && <span>oleh {user}</span>}
           </div>
-          <span title={moment(timestamp).format("MMMM DD, YYYY [at] HH:mm")}>
+          <span title={moment(timestamp).format("DD MMMM YYYY [pukul] HH:mm")}>
             {moment(timestamp).fromNow()}
           </span>
         </div>

@@ -12,7 +12,7 @@ interface SearchInputProps {
 }
 
 const SearchInput: React.FC<SearchInputProps> = ({
-  placeholder = "Search...",
+  placeholder = "Cari...",
   onSearch,
   debounceMs = 500,
   className = "",

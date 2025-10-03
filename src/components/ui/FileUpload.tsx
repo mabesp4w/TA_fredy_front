@@ -33,7 +33,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
   maxSize = 5,
   disabled = false,
   value = [],
-  label = "Upload Images",
+  label = "Unggah Gambar",
   error,
   className = "",
 }) => {
@@ -78,19 +78,19 @@ export const FileUpload: React.FC<FileUploadProps> = ({
     for (const file of fileArray) {
       // Check file type
       if (!file.type.startsWith("image/")) {
-        toast.error(`${file.name} is not a valid image file`);
+        toast.error(`${file.name} bukan file gambar yang valid`);
         continue;
       }
 
       // Check file size
       if (file.size > maxSize * 1024 * 1024) {
-        toast.error(`${file.name} is too large. Maximum size is ${maxSize}MB`);
+        toast.error(`${file.name} terlalu besar. Ukuran maksimum adalah ${maxSize}MB`);
         continue;
       }
 
       // Check total files limit
       if (validFiles.length + previews.length >= maxFiles) {
-        toast.error(`Maximum ${maxFiles} files allowed`);
+        toast.error(`Maksimum ${maxFiles} file diperbolehkan`);
         break;
       }
 
@@ -108,7 +108,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
         });
       } catch (error) {
         console.error("Error processing file:", file.name, error);
-        toast.error(`Failed to process ${file.name}`);
+        toast.error(`Gagal memproses ${file.name}`);
       }
     }
 
@@ -222,17 +222,17 @@ export const FileUpload: React.FC<FileUploadProps> = ({
         {isProcessing ? (
           <div className="flex flex-col items-center">
             <div className="loading loading-spinner loading-lg text-primary mb-2"></div>
-            <p className="text-sm text-gray-600">Processing images...</p>
+            <p className="text-sm text-gray-600">Memproses gambar...</p>
           </div>
         ) : (
           <div className="flex flex-col items-center">
             <Upload className="w-12 h-12 text-gray-400 mb-4" />
             <p className="text-lg font-medium text-gray-900 mb-2">
-              Drag & drop images here, or click to select
+              Seret & lepas gambar di sini, atau klik untuk memilih
             </p>
             <p className="text-sm text-gray-600">
-              {multiple ? `Up to ${maxFiles} files` : "1 file"} • Max {maxSize}
-              MB each • JPEG, PNG, WebP
+              {multiple ? `Hingga ${maxFiles} file` : "1 file"} • Maks {maxSize}
+              MB per file • JPEG, PNG, WebP
             </p>
           </div>
         )}
@@ -251,10 +251,10 @@ export const FileUpload: React.FC<FileUploadProps> = ({
         <div className="mt-4">
           <div className="flex justify-between items-center mb-3">
             <span className="text-sm font-medium text-gray-700">
-              Selected Images ({previews.length})
+              Gambar Terpilih ({previews.length})
             </span>
             <Button variant="ghost" size="sm" onClick={clearAll}>
-              Clear All
+              Hapus Semua
             </Button>
           </div>
 

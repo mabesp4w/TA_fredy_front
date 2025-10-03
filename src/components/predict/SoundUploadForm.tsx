@@ -83,13 +83,13 @@ export const SoundUploadForm: React.FC<SoundUploadFormProps> = ({
       !allowedTypes.includes(file.type) &&
       !file.name.match(/\.(mp3|wav|ogg|m4a)$/i)
     ) {
-      return "Please select a valid audio file (MP3, WAV, OGG, M4A)";
+      return "Silakan pilih file audio yang valid (MP3, WAV, OGG, M4A)";
     }
 
     // Check file size (max 50MB)
     const maxSize = 50 * 1024 * 1024;
     if (file.size > maxSize) {
-      return "File size must be less than 50MB";
+      return "Ukuran file harus kurang dari 50MB";
     }
 
     return null;
@@ -129,14 +129,14 @@ export const SoundUploadForm: React.FC<SoundUploadFormProps> = ({
 
         audio.onerror = () => {
           URL.revokeObjectURL(objectUrl);
-          reject(new Error("Invalid audio file"));
+          reject(new Error("File audio tidak valid"));
         };
 
         audio.src = objectUrl;
       });
     } catch (error) {
       setFileError(
-        "Failed to process audio file. Please try a different file."
+        "Gagal memproses file audio. Silakan coba file lain."
       );
       console.error("Audio processing error:", error);
     } finally {
@@ -166,7 +166,7 @@ export const SoundUploadForm: React.FC<SoundUploadFormProps> = ({
 
   const handleFormSubmit = async () => {
     if (!selectedFile) {
-      setFileError("Please select an audio file");
+      setFileError("Silakan pilih file audio");
       return;
     }
 
@@ -197,7 +197,7 @@ export const SoundUploadForm: React.FC<SoundUploadFormProps> = ({
       {/* File Upload Section */}
       <div>
         <label className="label">
-          <span className="label-text">Audio File</span>
+          <span className="label-text">File Audio</span>
           <span className="label-text-alt text-error">*</span>
         </label>
 
@@ -220,19 +220,19 @@ export const SoundUploadForm: React.FC<SoundUploadFormProps> = ({
                 <>
                   <div className="loading loading-spinner loading-lg text-primary mb-4"></div>
                   <p className="text-lg font-medium text-gray-900 mb-2">
-                    Processing audio file...
+                    Memproses file audio...
                   </p>
                 </>
               ) : (
                 <>
                   <Upload className="w-12 h-12 text-gray-400 mb-4" />
                   <p className="text-lg font-medium text-gray-900 mb-2">
-                    Click to select audio file
+                    Klik untuk memilih file audio
                   </p>
                 </>
               )}
               <p className="text-sm text-gray-600">
-                MP3, WAV, OGG, M4A files up to 50MB
+                File MP3, WAV, OGG, M4A hingga 50MB
               </p>
             </label>
           </div>
@@ -249,9 +249,9 @@ export const SoundUploadForm: React.FC<SoundUploadFormProps> = ({
                   </p>
                   {audioInfo && (
                     <div className="text-sm text-gray-600 space-y-1">
-                      <div>Duration: {formatDuration(audioInfo.duration)}</div>
-                      <div>Size: {audioInfo.size}</div>
-                      <div>Type: {audioInfo.type}</div>
+                      <div>Durasi: {formatDuration(audioInfo.duration)}</div>
+                      <div>Ukuran: {audioInfo.size}</div>
+                      <div>Tipe: {audioInfo.type}</div>
                     </div>
                   )}
                 </div>
@@ -263,7 +263,7 @@ export const SoundUploadForm: React.FC<SoundUploadFormProps> = ({
                 onClick={removeFile}
                 disabled={loading}
               >
-                Remove
+                Hapus
               </Button>
             </div>
           </div>
@@ -280,18 +280,18 @@ export const SoundUploadForm: React.FC<SoundUploadFormProps> = ({
       {/* Upload Summary */}
       {watchedBird && selectedFile && (
         <div className="bg-base-200 rounded-lg p-4">
-          <h4 className="font-medium text-gray-900 mb-2">Upload Summary</h4>
+          <h4 className="font-medium text-gray-900 mb-2">Ringkasan Unggahan</h4>
           <div className="text-sm text-gray-600 space-y-1">
             <div>
-              <span className="font-medium">Bird:</span>{" "}
-              {birds.find((b) => b.id === watchedBird)?.bird_nm || "Unknown"}
+              <span className="font-medium">Burung:</span>{" "}
+              {birds.find((b) => b.id === watchedBird)?.bird_nm || "Tidak Diketahui"}
             </div>
             <div>
               <span className="font-medium">File:</span> {selectedFile.name}
             </div>
             {audioInfo && (
               <div>
-                <span className="font-medium">Duration:</span>{" "}
+                <span className="font-medium">Durasi:</span>{" "}
                 {formatDuration(audioInfo.duration)}
               </div>
             )}
@@ -307,7 +307,7 @@ export const SoundUploadForm: React.FC<SoundUploadFormProps> = ({
           loading={loading}
           disabled={!canSubmit}
         >
-          Deteksi Suara
+          Identifikasi Suara
         </Button>
       </div>
     </form>

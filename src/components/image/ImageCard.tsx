@@ -87,6 +87,11 @@ export const ImageCard: React.FC<ImageCardProps> = ({
               width={500}
               height={500}
             />
+            
+            {/* Click Indicator */}
+            <div className="absolute top-2 left-2 bg-black bg-opacity-50 text-white px-2 py-1 rounded-md text-xs opacity-0 group-hover:opacity-100 transition-opacity">
+              Klik untuk melihat
+            </div>
           </>
         )}
 

@@ -45,19 +45,19 @@ const navItems: NavItem[] = [
     name: "Dashboard",
     href: "/admin/dashboard",
     icon: Home,
-    description: "Overview & Analisis",
+    description: "Ringkasan & Analisis",
   },
   {
-    name: "Spesies",
+    name: "Keluarga",
     href: "/admin/families",
     icon: TreePine,
-    description: "Spesies burung",
+    description: "Keluarga burung",
   },
   {
     name: "Burung",
     href: "/admin/birds",
     icon: Bird,
-    description: "Spesies burung",
+    description: "Data burung",
   },
   {
     name: "Gambar",
@@ -69,13 +69,13 @@ const navItems: NavItem[] = [
     name: "Suara",
     href: "/admin/sounds",
     icon: Volume2,
-    description: "Audio library",
+    description: "Pustaka audio",
   },
   {
-    name: "Deteksi",
+    name: "Identifikasi",
     href: "/admin/predict",
     icon: Mic,
-    description: "Deteksi suara",
+    description: "Identifikasi suara",
   },
 ];
 
@@ -84,25 +84,25 @@ const userNavItems: NavItem[] = [
     name: "Dashboard",
     href: "/",
     icon: Home,
-    description: "Overview & Analisis",
+    description: "Ringkasan & Analisis",
   },
   {
-    name: "Deteksi",
+    name: "Identifikasi",
     href: "/predict",
     icon: Mic,
-    description: "Deteksi suara",
+    description: "Identifikasi suara",
   },
   {
-    name: "Spesies",
+    name: "Keluarga",
     href: "/families",
     icon: TreePine,
-    description: "Spesies burung",
+    description: "Keluarga burung",
   },
   {
     name: "Burung",
     href: "/birds",
     icon: Bird,
-    description: "Spesies burung",
+    description: "Data burung",
   },
   {
     name: "Gambar",
@@ -114,7 +114,7 @@ const userNavItems: NavItem[] = [
     name: "Suara",
     href: "/sounds",
     icon: Volume2,
-    description: "Audio library",
+    description: "Pustaka audio",
   },
 ];
 
@@ -174,11 +174,11 @@ export const Navigation: React.FC = () => {
                 <div className="absolute -top-1 -right-1 w-3 h-3 bg-success rounded-full animate-pulse"></div>
               </div>
               <div>
-                <span className="text-xl font-bold text-gray-900">
+                <span className="text-xl font-bold text-gray-900 dark:text-gray-100">
                   Kicauan Burung
                 </span>
-                <div className="text-xs text-gray-500 -mt-1">
-                  Klasifikasi Burung berdasarkan kicauan di kampung Sawesuma
+                <div className="text-xs text-gray-500 dark:text-gray-400 -mt-1">
+                  Identifikasi Burung berdasarkan kicauan di kampung Sawesuma
                 </div>
               </div>
             </Link>
@@ -199,7 +199,7 @@ export const Navigation: React.FC = () => {
                           className={`flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                             active
                               ? "bg-primary text-primary-content"
-                              : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                              : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700"
                           }`}
                         >
                           <IconComponent className="w-4 h-4 mr-2" />
@@ -214,7 +214,7 @@ export const Navigation: React.FC = () => {
 
                         <ul className="dropdown-content z-[1] menu p-2 shadow-lg bg-base-100 rounded-box w-64 border">
                           <li className="menu-title px-3 py-2">
-                            <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                            <span className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                               {item.description}
                             </span>
                           </li>
@@ -222,12 +222,12 @@ export const Navigation: React.FC = () => {
                             <li key={child.name}>
                               <Link
                                 href={child.href}
-                                className="flex flex-col items-start p-3 hover:bg-gray-50 rounded-lg"
+                                className="flex flex-col items-start p-3 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg"
                               >
-                                <span className="font-medium text-gray-900">
+                                <span className="font-medium text-gray-900 dark:text-gray-100">
                                   {child.name}
                                 </span>
-                                <span className="text-xs text-gray-500">
+                                <span className="text-xs text-gray-500 dark:text-gray-400">
                                   {child.description}
                                 </span>
                               </Link>
@@ -239,10 +239,10 @@ export const Navigation: React.FC = () => {
                       // Regular Link
                       <Link
                         href={item.href}
-                        className={`flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                          active
-                            ? "bg-primary text-primary-content"
-                            : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                          className={`flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                            active
+                              ? "bg-primary text-primary-content"
+                              : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700"
                         }`}
                       >
                         <IconComponent className="w-4 h-4 mr-2" />
@@ -434,7 +434,7 @@ export const Navigation: React.FC = () => {
                                 key={child.name}
                                 href={child.href}
                                 onClick={closeMobileMenu}
-                                className="block px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md"
+                                className="block px-3 py-2 text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-md"
                               >
                                 {child.name}
                               </Link>
@@ -445,13 +445,13 @@ export const Navigation: React.FC = () => {
                     ) : (
                       // Regular Link
                       <Link
-                        href={item.href}
-                        onClick={closeMobileMenu}
-                        className={`flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                          active
-                            ? "bg-primary text-primary-content"
-                            : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
-                        }`}
+                          href={item.href}
+                          onClick={closeMobileMenu}
+                          className={`flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                            active
+                              ? "bg-primary text-primary-content"
+                              : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700"
+                          }`}
                       >
                         <IconComponent className="w-4 h-4 mr-3" />
                         <span>{item.name}</span>

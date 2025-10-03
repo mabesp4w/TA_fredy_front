@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Klasifikasi Suara Burung",
+  title: "Identifikasi Suara Burung",
   description: "Created by Fredy",
 };
 

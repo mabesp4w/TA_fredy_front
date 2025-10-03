@@ -84,16 +84,16 @@ export const LoginForm: React.FC<LoginFormProps> = ({
           {/* Email Field */}
           <div className="relative">
             <Input
-              label="Email Address"
+              label="Alamat Email"
               type="email"
-              placeholder="Enter your email"
+              placeholder="Masukkan email Anda"
               fullWidth
               error={errors.email?.message}
               {...register("username", {
-                required: "Email is required",
+                required: "Email harus diisi",
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: "Invalid email address",
+                  message: "Alamat email tidak valid",
                 },
               })}
             />
@@ -103,16 +103,16 @@ export const LoginForm: React.FC<LoginFormProps> = ({
           {/* Password Field */}
           <div className="relative">
             <Input
-              label="Password"
+              label="Kata Sandi"
               type={showPassword ? "text" : "password"}
-              placeholder="Enter your password"
+              placeholder="Masukkan kata sandi Anda"
               fullWidth
               error={errors.password?.message}
               {...register("password", {
-                required: "Password is required",
+                required: "Kata sandi harus diisi",
                 minLength: {
                   value: 6,
-                  message: "Password must be at least 6 characters",
+                  message: "Kata sandi minimal 6 karakter",
                 },
               })}
             />
@@ -163,7 +163,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
             disabled={!isValid}
           >
             <LogIn className="w-4 h-4 mr-2" />
-            Sign In
+            Masuk
           </Button>
         </form>
 

@@ -58,7 +58,7 @@ export const useDashboardStore = create<DashboardState>((set, get) => ({
         get().fetchSystemStatus(),
       ]);
     } catch (error: any) {
-      const errorMessage = error.message || "Failed to fetch dashboard data";
+      const errorMessage = error.message || "Gagal memuat data dashboard";
       set({ error: errorMessage, loading: false });
       toast.error(errorMessage);
     }
@@ -71,7 +71,7 @@ export const useDashboardStore = create<DashboardState>((set, get) => ({
       // Generate quick stats based on API response
       const quickStats: QuickStats[] = [
         {
-          label: "Bird Families",
+          label: "Keluarga Burung",
           value: stats.totalFamilies,
           change:
             stats.totalFamilies > 0
@@ -82,7 +82,7 @@ export const useDashboardStore = create<DashboardState>((set, get) => ({
           color: "text-green-600",
         },
         {
-          label: "Bird Species",
+          label: "Spesies Burung",
           value: stats.totalBirds,
           change:
             stats.totalBirds > 0
@@ -93,7 +93,7 @@ export const useDashboardStore = create<DashboardState>((set, get) => ({
           color: "text-blue-600",
         },
         {
-          label: "Images",
+          label: "Gambar",
           value: stats.totalImages,
           change:
             stats.totalImages > 0
@@ -104,7 +104,7 @@ export const useDashboardStore = create<DashboardState>((set, get) => ({
           color: "text-purple-600",
         },
         {
-          label: "Sound Recordings",
+          label: "Rekaman Suara",
           value: stats.totalSounds,
           change:
             stats.totalSounds > 0
@@ -118,7 +118,7 @@ export const useDashboardStore = create<DashboardState>((set, get) => ({
 
       set({ stats, quickStats, loading: false });
     } catch (error: any) {
-      throw new Error(`Failed to fetch statistics: ${error.message}`);
+      throw new Error(`Gagal memuat statistik: ${error.message}`);
     }
   },
 
@@ -127,7 +127,7 @@ export const useDashboardStore = create<DashboardState>((set, get) => ({
       const activities = await apiClient.getRecentActivities();
       set({ recentActivities: activities });
     } catch (error: any) {
-      throw new Error(`Failed to fetch recent activities: ${error.message}`);
+      throw new Error(`Gagal memuat aktivitas terbaru: ${error.message}`);
     }
   },
 
@@ -136,7 +136,7 @@ export const useDashboardStore = create<DashboardState>((set, get) => ({
       const monthlyGrowth = await apiClient.getMonthlyGrowth();
       set({ monthlyGrowth });
     } catch (error: any) {
-      throw new Error(`Failed to fetch monthly growth: ${error.message}`);
+      throw new Error(`Gagal memuat pertumbuhan bulanan: ${error.message}`);
     }
   },
 
@@ -145,13 +145,13 @@ export const useDashboardStore = create<DashboardState>((set, get) => ({
       const systemStatus = await apiClient.getSystemStatus();
       set({ systemStatus });
     } catch (error: any) {
-      throw new Error(`Failed to fetch system status: ${error.message}`);
+      throw new Error(`Gagal memuat status sistem: ${error.message}`);
     }
   },
 
   refreshDashboard: async () => {
     await get().fetchDashboardData();
-    toast.success("Dashboard refreshed");
+    toast.success("Dashboard disegarkan");
   },
 
   clearError: () => {
@@ -166,7 +166,7 @@ export const useDashboardStore = create<DashboardState>((set, get) => ({
       return results;
     } catch (error: any) {
       set({ loading: false });
-      toast.error(`Search failed: ${error.message}`);
+      toast.error(`Pencarian gagal: ${error.message}`);
       throw error;
     }
   },

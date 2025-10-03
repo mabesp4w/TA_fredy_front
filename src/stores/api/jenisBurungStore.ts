@@ -40,7 +40,7 @@ export const useJenisBurungStore = create<JenisBurungState>((set) => ({
       });
     } catch (error: any) {
       const errorMessage =
-        error.response?.data?.message || "Failed to fetch jenis burung";
+        error.response?.data?.message || "Gagal memuat jenis burung";
       set({ error: errorMessage, loading: false });
       toast.error(errorMessage);
     }

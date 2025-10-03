@@ -65,7 +65,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
     };
 
     const handleError = () => {
-      setError("Failed to load audio file");
+      setError("Gagal memuat file audio");
       setIsLoading(false);
     };
 
@@ -216,7 +216,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
             onClick={() => skipTime(-10)}
             disabled={isLoading}
             className="tooltip"
-            data-tip="Skip -10s"
+            data-tip="Mundur 10 detik"
           >
             <SkipBack className="w-4 h-4" />
           </Button>
@@ -246,7 +246,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
             onClick={() => skipTime(10)}
             disabled={isLoading}
             className="tooltip"
-            data-tip="Skip +10s"
+            data-tip="Maju 10 detik"
           >
             <SkipForward className="w-4 h-4" />
           </Button>
@@ -259,7 +259,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
           onClick={resetAudio}
           disabled={isLoading}
           className="tooltip"
-          data-tip="Reset"
+          data-tip="Atur Ulang"
         >
           <RotateCcw className="w-4 h-4" />
         </Button>
@@ -297,7 +297,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
               size="sm"
               onClick={toggleMute}
               className="tooltip"
-              data-tip={isMuted ? "Unmute" : "Mute"}
+              data-tip={isMuted ? "Nyalakan Suara" : "Matikan Suara"}
             >
               {isMuted ? (
                 <VolumeX className="w-4 h-4" />
@@ -325,7 +325,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
             size="sm"
             onClick={onDownload}
             className="tooltip"
-            data-tip="Download"
+            data-tip="Unduh"
           >
             <Download className="w-4 h-4" />
           </Button>
