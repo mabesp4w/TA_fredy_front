@@ -5,7 +5,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Identifikasi Suara Burung",
-  description: "Created by Fredy",
+  description: "Dibuat oleh Fredy",
 };
 
 export default function RootLayout({
@@ -14,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="id">
       <body className={`font-quicksand`}>{children}</body>
     </html>
   );

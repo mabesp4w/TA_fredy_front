@@ -37,6 +37,10 @@ const ContainerPredict = () => {
     return <SoundUploadForm onSubmit={onSubmit} loading={loading} />;
   }
 
+  // Filter hasil prediksi di bawah 80%
+  const confidenceThreshold = 0.8; // 80%
+  const showResults = predictData.confidence >= confidenceThreshold;
+
   return (
     <div className="space-y-6">
       {/* Form */}
@@ -51,14 +55,21 @@ const ContainerPredict = () => {
           <p className="text-center mt-2">Mengunggah... {uploadProgress}%</p>
         </div>
       )}
-      {!predictData?.bird_data && (
+      {!showResults && (
+        <div className="flex flex-col gap-2">
+          <span className="text-red-500">
+            Hasil identifikasi tidak ditemukan
+          </span>
+        </div>
+      )}
+      {!predictData?.bird_data && showResults && (
         <div className="flex flex-col gap-2">
           <span className="text-red-500">
             Hasil identifikasi tidak ditemukan di database
           </span>
         </div>
       )}
-      {predictData?.bird_data && (
+      {predictData?.bird_data && showResults && (
         <div className="flex flex-col gap-2">
           <span className="text-gray-500">
             {predictData?.scientific_nm}{" "}

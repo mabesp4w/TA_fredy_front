@@ -85,7 +85,7 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
             <UserPlus className="w-8 h-8 text-primary" />
           </div>
           <h2 className="text-2xl font-bold text-gray-900">
-            Join Bird Database
+            Bergabung dengan Database Burung
           </h2>
           <p className="text-gray-600 mt-2">
             Buat akun Anda untuk mulai berkontribusi
@@ -321,23 +321,23 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
                 type="checkbox"
                 className="checkbox checkbox-primary"
                 {...register("agreeToTerms", {
-                  required: "You must agree to the terms and conditions",
+                  required: "Anda harus menyetujui syarat dan ketentuan",
                 })}
               />
               <div className="label-text">
-                I agree to the{" "}
+                Saya menyetujui{" "}
                 <a
                   href="/terms"
                   className="text-primary hover:text-primary-focus"
                 >
-                  Terms of Service
+                  Syarat Layanan
                 </a>{" "}
-                and{" "}
+                dan{" "}
                 <a
                   href="/privacy"
                   className="text-primary hover:text-primary-focus"
                 >
-                  Privacy Policy
+                  Kebijakan Privasi
                 </a>
               </div>
             </label>

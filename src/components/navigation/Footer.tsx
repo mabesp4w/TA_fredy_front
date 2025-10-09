@@ -29,72 +29,72 @@ export const Footer: React.FC = () => {
 
   const footerSections: FooterSection[] = [
     {
-      title: "Quick Links",
+      title: "Tautan Cepat",
       links: [
         {
-          label: "Browse Families",
+          label: "Jelajahi Keluarga",
           href: isAuthenticated ? "/admin/families" : "/families",
         },
         {
-          label: "Browse Birds",
+          label: "Jelajahi Burung",
           href: isAuthenticated ? "/admin/birds" : "/birds",
         },
         {
-          label: "Image Gallery",
+          label: "Galeri Gambar",
           href: isAuthenticated ? "/admin/images" : "/images",
         },
         {
-          label: "Sound Library",
+          label: "Pustaka Suara",
           href: isAuthenticated ? "/admin/sounds" : "/sounds",
         },
         {
-          label: "Advanced Search",
+          label: "Pencarian Lanjutan",
           href: isAuthenticated ? "/admin/search" : "/search",
         },
       ],
     },
     {
-      title: "Tools",
+      title: "Alat",
       links: [
         {
-          label: "Images",
+          label: "Gambar",
           href: isAuthenticated
             ? "/admin/images?action=upload"
             : "/images?action=upload",
         },
         {
-          label: "Sounds",
+          label: "Suara",
           href: isAuthenticated
             ? "/admin/sounds?action=upload"
             : "/sounds?action=upload",
         },
-        // { label: "Bulk Operations", href: "/bulk" },
-        // { label: "Data Export", href: "/export" },
-        // { label: "API Documentation", href: "/docs/api" },
+        // { label: "Operasi Massal", href: "/bulk" },
+        // { label: "Ekspor Data", href: "/export" },
+        // { label: "Dokumentasi API", href: "/docs/api" },
       ],
     },
 
     {
-      title: "Support",
+      title: "Dukungan",
       links: [
         {
-          label: "Help Center",
+          label: "Pusat Bantuan",
           href: isAuthenticated ? "/admin/help" : "/help",
         },
         {
-          label: "Contact Us",
+          label: "Hubungi Kami",
           href: isAuthenticated ? "/admin/contact" : "/contact",
         },
         {
-          label: "Report Issues",
+          label: "Laporkan Masalah",
           href: isAuthenticated ? "/admin/issues" : "/issues",
         },
         {
-          label: "Feature Requests",
+          label: "Permintaan Fitur",
           href: isAuthenticated ? "/admin/features" : "/features",
         },
         {
-          label: "Community",
+          label: "Komunitas",
           href: isAuthenticated ? "/admin/community" : "/community",
         },
       ],
@@ -117,8 +117,8 @@ export const Footer: React.FC = () => {
             <Link href="/" className="flex items-center space-x-2 mb-4">
               <Bird className="w-8 h-8 text-primary" />
               <div>
-                <div className="text-xl font-bold text-gray-900 dark:text-gray-100">BirdDB</div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Database System</div>
+                <div className="text-xl font-bold text-gray-900 dark:text-gray-100">BurungDB</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">Sistem Database</div>
               </div>
             </Link>
 
@@ -140,7 +140,7 @@ export const Footer: React.FC = () => {
               </div>
               <div className="flex items-center">
                 <MapPin className="w-4 h-4 mr-2" />
-                <span>Wildlife Research Center</span>
+                <span>Pusat Penelitian Satwa Liar</span>
               </div>
             </div>
           </div>
@@ -172,7 +172,7 @@ export const Footer: React.FC = () => {
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             {/* Copyright */}
             <div className="flex items-center space-x-1 text-sm text-gray-600 dark:text-gray-400">
-              <span>© 2024 WWF. Made with</span>
+              <span>© 2024 WWF. Dibuat dengan</span>
               <Heart className="w-4 h-4 text-red-500" />
               <span>Fredy Ramandey</span>
             </div>
@@ -202,19 +202,19 @@ export const Footer: React.FC = () => {
                 href="/privacy"
                 className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors"
               >
-                Privacy Policy
+                Kebijakan Privasi
               </Link>
               <Link
                 href="/terms"
                 className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors"
               >
-                Terms of Service
+                Syarat Layanan
               </Link>
               <Link
                 href="/cookies"
                 className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors"
               >
-                Cookie Policy
+                Kebijakan Cookie
               </Link>
             </div>
           </div>

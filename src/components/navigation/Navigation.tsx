@@ -327,13 +327,13 @@ export const Navigation: React.FC = () => {
                     <li>
                       <a>
                         <Settings className="w-4 h-4" />
-                        Settings
+                        Pengaturan
                       </a>
                     </li>
                     <li>
                       <a>
                         <HelpCircle className="w-4 h-4" />
-                        Help & Support
+                        Bantuan & Dukungan
                       </a>
                     </li>
                     <div className="divider my-1"></div>
@@ -343,7 +343,7 @@ export const Navigation: React.FC = () => {
                         className="text-error"
                       >
                         <LogOut className="w-4 h-4" />
-                        Sign Out
+                        Keluar
                       </button>
                     </li>
                   </ul>
@@ -383,7 +383,7 @@ export const Navigation: React.FC = () => {
                   <div className="input-group">
                     <input
                       type="text"
-                      placeholder="Search..."
+                      placeholder="Cari..."
                       className="input input-bordered input-sm w-full"
                     />
                     <button className="btn btn-square btn-sm">
@@ -476,13 +476,13 @@ export const Navigation: React.FC = () => {
                     >
                       <Button variant="outline" size="sm" fullWidth>
                         <Plus className="w-3 h-3 mr-1" />
-                        Add Family
+                        Tambah Keluarga
                       </Button>
                     </Link>
                     <Link href="/birds?action=create" onClick={closeMobileMenu}>
                       <Button variant="outline" size="sm" fullWidth>
                         <Plus className="w-3 h-3 mr-1" />
-                        Add Bird
+                        Tambah Burung
                       </Button>
                     </Link>
                     <Link
@@ -500,7 +500,7 @@ export const Navigation: React.FC = () => {
                     >
                       <Button variant="outline" size="sm" fullWidth>
                         <Volume2 className="w-3 h-3 mr-1" />
-                        Record
+                        Rekam
                       </Button>
                     </Link>
                   </div>

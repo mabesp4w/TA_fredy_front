@@ -175,9 +175,9 @@ export const GlobalSearch: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Search</h1>
+          <h1 className="text-2xl font-bold text-gray-900">Pencarian</h1>
           <p className="text-gray-600">
-            Find families, birds, images, and sounds
+            Cari keluarga, burung, gambar, dan suara
           </p>
         </div>
       </div>
@@ -187,14 +187,14 @@ export const GlobalSearch: React.FC = () => {
         <form onSubmit={handleSearch} className="space-y-4">
           <div className="flex gap-3">
             <Input
-              placeholder="Search for families, birds, images, or sounds..."
+              placeholder="Cari keluarga, burung, gambar, atau suara..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               className="flex-1"
             />
             <Button type="submit" variant="primary" loading={isLoading}>
               <Search className="w-4 h-4 mr-2" />
-              Search
+              Cari
             </Button>
             <Button
               type="button"

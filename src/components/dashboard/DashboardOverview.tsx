@@ -11,6 +11,7 @@ import { QuickActions } from "./QuickActions";
 import { DashboardCharts } from "./DashboardCharts";
 import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/stores/auth/authStore";
+import Image from "next/image";
 
 export const DashboardOverview: React.FC = () => {
   const router = useRouter();
@@ -98,7 +99,25 @@ export const DashboardOverview: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Dashboard</h1>
+          <div className="flex items-center justify-center gap-6">
+            <Image
+              src="/Logo_WWF.png"
+              alt="Logo WWF"
+              width={100}
+              height={100}
+              className="object-contain"
+            />
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 capitalize">
+              dashboard
+            </h1>
+            <Image
+              src="/logo_inger.png"
+              alt="Logo Inger"
+              width={350}
+              height={200}
+              className="object-contain"
+            />
+          </div>
           <p className="text-gray-600 dark:text-gray-400">
             Identifikasi Burung berdasarkan kicauan
           </p>
@@ -188,7 +207,9 @@ export const DashboardOverview: React.FC = () => {
                 size="sm"
                 onClick={() => setShowAllActivities(!showAllActivities)}
               >
-                {showAllActivities ? "Tampilkan Lebih Sedikit" : "Tampilkan Semua"}
+                {showAllActivities
+                  ? "Tampilkan Lebih Sedikit"
+                  : "Tampilkan Semua"}
               </Button>
             </div>
 
@@ -207,7 +228,9 @@ export const DashboardOverview: React.FC = () => {
             ) : recentActivities.length === 0 ? (
               <div className="text-center py-8">
                 <Activity className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-                <p className="text-gray-600 dark:text-gray-400">Tidak ada aktivitas terbaru</p>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Tidak ada aktivitas terbaru
+                </p>
               </div>
             ) : (
               <div className="space-y-1">
@@ -252,9 +275,9 @@ export const DashboardOverview: React.FC = () => {
               Selamat datang di Database Burung! 🦅
             </h3>
             <p className="text-gray-700 dark:text-gray-300 mb-4">
-              Mulailah dengan menambahkan keluarga burung pertama atau mengunggah
-              beberapa data burung. Gunakan aksi cepat di atas untuk memulai
-              membangun database Anda.
+              Mulailah dengan menambahkan keluarga burung pertama atau
+              mengunggah beberapa data burung. Gunakan aksi cepat di atas untuk
+              memulai membangun database Anda.
             </p>
             <div className="flex flex-wrap gap-2">
               <Button
