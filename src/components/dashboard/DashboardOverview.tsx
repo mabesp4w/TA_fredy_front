@@ -97,27 +97,28 @@ export const DashboardOverview: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
+      <div className="flex items-center justify-between gap-6">
+        <Image
+          src="/Logo_WWF.png"
+          alt="Logo WWF"
+          width={100}
+          height={100}
+          className="object-contain"
+        />
+
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 capitalize">
+          dashboard
+        </h1>
+        <Image
+          src="/logo_inger.png"
+          alt="Logo Inger"
+          width={150}
+          height={200}
+          className="object-contain"
+        />
+      </div>
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <div className="flex items-center justify-center gap-6">
-            <Image
-              src="/Logo_WWF.png"
-              alt="Logo WWF"
-              width={100}
-              height={100}
-              className="object-contain"
-            />
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 capitalize">
-              dashboard
-            </h1>
-            <Image
-              src="/logo_inger.png"
-              alt="Logo Inger"
-              width={350}
-              height={200}
-              className="object-contain"
-            />
-          </div>
           <p className="text-gray-600 dark:text-gray-400">
             Identifikasi Burung berdasarkan kicauan
           </p>
