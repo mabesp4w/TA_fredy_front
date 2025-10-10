@@ -59,25 +59,21 @@ export const BirdList: React.FC<BirdListProps> = ({
   const [isDetailOpen, setIsDetailOpen] = useState(false);
   const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false);
   const [selectedBird, setSelectedBird] = useState<Bird | null>(null);
-  
+
   // Images lightbox states
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [shouldOpenLightbox, setShouldOpenLightbox] = useState(false);
-  
+
   // Sounds modal states
   const [isSoundsModalOpen, setIsSoundsModalOpen] = useState(false);
   const [selectedSound, setSelectedSound] = useState<Sound | null>(null);
   const [isSoundDetailOpen, setIsSoundDetailOpen] = useState(false);
-  const [isDeleteSoundConfirmOpen, setIsDeleteSoundConfirmOpen] = useState(false);
+  const [isDeleteSoundConfirmOpen, setIsDeleteSoundConfirmOpen] =
+    useState(false);
 
   // Image and Sound stores
-  const {
-    images,
-    loading: imagesLoading,
-    fetchImages,
-    deleteImage,
-  } = useImageStore();
+  const { images, loading: imagesLoading, fetchImages } = useImageStore();
 
   const {
     sounds,
@@ -328,7 +324,10 @@ export const BirdList: React.FC<BirdListProps> = ({
           {showFamilyFilter && !familyId && (
             <Select
               placeholder="Semua Keluarga"
-              options={[{ value: "", label: "Semua Keluarga" }, ...familyOptions]}
+              options={[
+                { value: "", label: "Semua Keluarga" },
+                ...familyOptions,
+              ]}
               value={selectedFamily}
               onChange={(e) => handleFamilyFilter(e.target.value)}
               className="min-w-[150px]"
