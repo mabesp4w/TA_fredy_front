@@ -3,7 +3,7 @@
 import { create } from "zustand";
 import { toast } from "react-hot-toast";
 import { Bird, PaginationMeta } from "@/types";
-import { ml } from "@/services/baseURL";
+import { api } from "@/services/baseURL";
 
 interface PredictState {
   predictData: {
@@ -38,7 +38,7 @@ export const usePredictStore = create<PredictState>((set) => ({
     try {
       const formData = new FormData();
       formData.append("audio_file", audio_file);
-      const response = await ml.post("prediction/", formData, {
+      const response = await api.post("prediction/", formData, {
         onUploadProgress: (progressEvent) => {
           if (progressEvent.total) {
             const percentCompleted = Math.round(
