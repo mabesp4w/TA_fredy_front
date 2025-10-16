@@ -52,15 +52,18 @@ const config: Config = {
   plugins: [daisyui],
   daisyui: {
     themes: [
+      "light",
+      "dark",
       {
         light: {
           primary: "#3b82f6",
           secondary: "#6b7280",
           accent: "#f59e0b",
-          neutral: "#374151",
+          neutral: "#1f2937",
           "base-100": "#ffffff",
           "base-200": "#f9fafb",
           "base-300": "#f3f4f6",
+          "base-content": "#111827",
           info: "#06b6d4",
           success: "#10b981",
           warning: "#f59e0b",
@@ -76,6 +79,7 @@ const config: Config = {
           "base-100": "#111827",
           "base-200": "#1f2937",
           "base-300": "#374151",
+          "base-content": "#f9fafb",
           info: "#0891b2",
           success: "#059669",
           warning: "#d97706",
@@ -89,7 +93,7 @@ const config: Config = {
     utils: true,
     rtl: false,
     prefix: "",
-    logs: true,
+    logs: false,
   },
 };
 export default config;

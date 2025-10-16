@@ -8,8 +8,15 @@ import { usePredictStore } from "@/stores/api/predictStore";
 import { BirdCard } from "./BirdCard";
 
 const ContainerPredict = () => {
-  const { loading, predict, predictData, clearPredictData, uploadProgress } =
-    usePredictStore();
+  const {
+    loading,
+    predict,
+    predictData,
+    clearPredictData,
+    uploadProgress,
+    isPreloading,
+    preloadData,
+  } = usePredictStore();
 
   const onSubmit = async (submitData: PredictData) => {
     await predict(submitData.audio_file);
@@ -28,10 +35,13 @@ const ContainerPredict = () => {
   };
 
   useEffect(() => {
+    // Mulai preload saat komponen dimuat
+    preloadData();
+
     return () => {
       clearPredictData();
     };
-  }, [clearPredictData]);
+  }, [clearPredictData, preloadData]);
 
   if (!predictData.confidence) {
     return <SoundUploadForm onSubmit={onSubmit} loading={loading} />;
@@ -43,6 +53,16 @@ const ContainerPredict = () => {
 
   return (
     <div className="space-y-6">
+      {/* Preload indicator */}
+      {isPreloading && (
+        <div className="fixed top-4 right-4 z-50">
+          <div className="bg-blue-500 text-white px-3 py-2 rounded-lg shadow-lg flex items-center gap-2 text-sm">
+            <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+            <span>Mempersiapkan sistem...</span>
+          </div>
+        </div>
+      )}
+
       {/* Form */}
       <SoundUploadForm onSubmit={onSubmit} loading={loading} />
       {loading && (

@@ -16,10 +16,14 @@ interface PredictState {
   loading: boolean;
   error: string | null;
   uploadProgress: number;
+  // Preload states
+  isPreloading: boolean;
+  preloadComplete: boolean;
   // Actions
   predict: (audio_file: File) => Promise<void>;
   clearPredictData: () => void;
   clearError: () => void;
+  preloadData: () => Promise<void>;
 }
 
 export const usePredictStore = create<PredictState>((set) => ({
@@ -33,6 +37,9 @@ export const usePredictStore = create<PredictState>((set) => ({
   loading: false,
   error: null,
   uploadProgress: 0,
+  // Preload states
+  isPreloading: false,
+  preloadComplete: false,
   predict: async (audio_file: File) => {
     set({ loading: true, error: null, uploadProgress: 0 });
     try {
@@ -74,5 +81,35 @@ export const usePredictStore = create<PredictState>((set) => ({
   },
   clearError: () => {
     set({ error: null });
+  },
+  preloadData: async () => {
+    // Jika sudah preload atau sedang preload, skip
+    const state = usePredictStore.getState();
+    if (state.preloadComplete || state.isPreloading) {
+      return;
+    }
+
+    set({ isPreloading: true });
+
+    try {
+      // Preload dengan melakukan request kecil untuk memastikan koneksi API siap
+      // Kita bisa melakukan health check atau preload komponen yang diperlukan
+      await api.get("birds/?limit=1");
+
+      // Simulasi waktu preload untuk demo (bisa dihapus jika tidak diperlukan)
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      set({
+        isPreloading: false,
+        preloadComplete: true,
+      });
+    } catch (error) {
+      // Jika preload gagal, jangan block aplikasi
+      console.warn("Preload failed:", error);
+      set({
+        isPreloading: false,
+        preloadComplete: false,
+      });
+    }
   },
 }));

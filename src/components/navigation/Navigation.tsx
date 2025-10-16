@@ -23,6 +23,7 @@ import {
   Mic,
 } from "lucide-react";
 import { Button } from "../ui/Button";
+import { ThemeToggle } from "../ui/ThemeToggle";
 import { useAuthStore } from "@/stores/auth/authStore";
 
 interface NavItem {
@@ -239,10 +240,10 @@ export const Navigation: React.FC = () => {
                       // Regular Link
                       <Link
                         href={item.href}
-                          className={`flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                            active
-                              ? "bg-primary text-primary-content"
-                              : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700"
+                        className={`flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                          active
+                            ? "bg-primary text-primary-content"
+                            : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700"
                         }`}
                       >
                         <IconComponent className="w-4 h-4 mr-2" />
@@ -261,6 +262,9 @@ export const Navigation: React.FC = () => {
 
             {/* Right Side Actions */}
             <div className="flex items-center space-x-3">
+              {/* Theme Toggle */}
+              <ThemeToggle />
+
               {/* Search Button */}
               {isAuthenticated && (
                 <Link href="/admin/search" className="hidden md:block">
@@ -445,13 +449,13 @@ export const Navigation: React.FC = () => {
                     ) : (
                       // Regular Link
                       <Link
-                          href={item.href}
-                          onClick={closeMobileMenu}
-                          className={`flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                            active
-                              ? "bg-primary text-primary-content"
-                              : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700"
-                          }`}
+                        href={item.href}
+                        onClick={closeMobileMenu}
+                        className={`flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                          active
+                            ? "bg-primary text-primary-content"
+                            : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700"
+                        }`}
                       >
                         <IconComponent className="w-4 h-4 mr-3" />
                         <span>{item.name}</span>
