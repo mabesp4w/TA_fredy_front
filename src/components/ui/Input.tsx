@@ -76,7 +76,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           <label className="label">
             <span
               className={`label-text-alt ${
-                error ? "text-error" : "text-gray-500"
+                error ? "text-error" : "text-gray-500 dark:text-gray-400"
               }`}
             >
               {error || helperText}

@@ -84,7 +84,9 @@ export const FileUpload: React.FC<FileUploadProps> = ({
 
       // Check file size
       if (file.size > maxSize * 1024 * 1024) {
-        toast.error(`${file.name} terlalu besar. Ukuran maksimum adalah ${maxSize}MB`);
+        toast.error(
+          `${file.name} terlalu besar. Ukuran maksimum adalah ${maxSize}MB`
+        );
         continue;
       }
 
@@ -222,15 +224,17 @@ export const FileUpload: React.FC<FileUploadProps> = ({
         {isProcessing ? (
           <div className="flex flex-col items-center">
             <div className="loading loading-spinner loading-lg text-primary mb-2"></div>
-            <p className="text-sm text-gray-600">Memproses gambar...</p>
+            <p className="text-sm text-gray-600 dark:text-gray-300">
+              Memproses gambar...
+            </p>
           </div>
         ) : (
           <div className="flex flex-col items-center">
-            <Upload className="w-12 h-12 text-gray-400 mb-4" />
-            <p className="text-lg font-medium text-gray-900 mb-2">
+            <Upload className="w-12 h-12 text-gray-400 dark:text-gray-500 mb-4" />
+            <p className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">
               Seret & lepas gambar di sini, atau klik untuk memilih
             </p>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600 dark:text-gray-300">
               {multiple ? `Hingga ${maxFiles} file` : "1 file"} • Maks {maxSize}
               MB per file • JPEG, PNG, WebP
             </p>
@@ -250,7 +254,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
       {previews.length > 0 && (
         <div className="mt-4">
           <div className="flex justify-between items-center mb-3">
-            <span className="text-sm font-medium text-gray-700">
+            <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
               Gambar Terpilih ({previews.length})
             </span>
             <Button variant="ghost" size="sm" onClick={clearAll}>
@@ -282,10 +286,10 @@ export const FileUpload: React.FC<FileUploadProps> = ({
 
                 {/* File info */}
                 <div className="mt-1">
-                  <p className="text-xs text-gray-600 truncate">
+                  <p className="text-xs text-gray-600 dark:text-gray-300 truncate">
                     {preview.file.name}
                   </p>
-                  <p className="text-xs text-gray-400">
+                  <p className="text-xs text-gray-400 dark:text-gray-500">
                     {(preview.file.size / 1024 / 1024).toFixed(1)}MB
                   </p>
                 </div>

@@ -40,7 +40,9 @@ export const Loading: React.FC<LoadingProps> = ({
   const content = (
     <div className="flex flex-col items-center justify-center space-y-4">
       <span className={loadingClasses}></span>
-      {text && <p className="text-sm text-gray-600">{text}</p>}
+      {text && (
+        <p className="text-sm text-gray-600 dark:text-gray-300">{text}</p>
+      )}
     </div>
   );
 

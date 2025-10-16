@@ -286,10 +286,10 @@ export const BirdList: React.FC<BirdListProps> = ({
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
             {familyId ? "Burung Keluarga" : "Burung"}
           </h1>
-          <p className="text-gray-600">
+          <p className="text-gray-600 dark:text-gray-300">
             {familyId ? "Burung dalam keluarga ini" : "Kelola data burung"}
           </p>
         </div>
@@ -361,10 +361,10 @@ export const BirdList: React.FC<BirdListProps> = ({
       ) : birds.length === 0 ? (
         <div className="text-center py-12">
           <div className="text-6xl mb-4">🐦</div>
-          <h3 className="text-lg font-semibold text-gray-900 mb-2">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
             Tidak ada burung ditemukan
           </h3>
-          <p className="text-gray-600 mb-4">
+          <p className="text-gray-600 dark:text-gray-300 mb-4">
             {searchTerm || selectedFamily
               ? "Tidak ada burung yang sesuai dengan pencarian Anda."
               : "Mulai dengan menambahkan burung pertama."}
@@ -460,7 +460,9 @@ export const BirdList: React.FC<BirdListProps> = ({
           ) : sounds.length === 0 ? (
             <div className="text-center py-8">
               <div className="text-4xl mb-2">🎵</div>
-              <p className="text-gray-600">Tidak ada suara untuk burung ini</p>
+              <p className="text-gray-600 dark:text-gray-300">
+                Tidak ada suara untuk burung ini
+              </p>
             </div>
           ) : (
             <div className="grid grid-cols-1 gap-4 max-h-[60vh] overflow-y-auto p-2">

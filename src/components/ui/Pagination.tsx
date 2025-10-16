@@ -46,7 +46,7 @@ export const Pagination: React.FC<PaginationProps> = ({
   return (
     <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
       {/* Info text */}
-      <div className="text-sm text-gray-600">
+      <div className="text-sm text-gray-600 dark:text-gray-300">
         Menampilkan {from} sampai {to} dari {total} hasil
       </div>
 

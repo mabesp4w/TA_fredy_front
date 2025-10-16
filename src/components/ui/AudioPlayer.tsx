@@ -198,7 +198,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
 
       {showTitle && title && (
         <div
-          className={`font-medium text-gray-900 truncate ${
+          className={`font-medium text-gray-900 dark:text-gray-100 truncate ${
             compact ? "text-sm mb-2" : "mb-3"
           }`}
         >
@@ -283,7 +283,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
           </div>
 
           {/* Time Display */}
-          <div className="flex justify-between text-xs text-gray-500 mt-1">
+          <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1">
             <span>{formatTime(currentTime)}</span>
             <span>{formatTime(duration)}</span>
           </div>

@@ -55,8 +55,12 @@ export const LoginForm: React.FC<LoginFormProps> = ({
           <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
             <LogIn className="w-8 h-8 text-primary" />
           </div>
-          <h2 className="text-2xl font-bold text-gray-900">Selamat Datang</h2>
-          <p className="text-gray-600 mt-2">Login ke akun Anda</p>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+            Selamat Datang
+          </h2>
+          <p className="text-gray-600 dark:text-gray-300 mt-2">
+            Login ke akun Anda
+          </p>
         </div>
 
         {/* Error Message */}
@@ -69,7 +73,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
         {/* Demo Credentials */}
         {/* <div className="bg-info/10 border border-info/20 rounded-lg p-4 mb-6">
           <h4 className="font-medium text-info mb-2">Demo Credentials:</h4>
-          <div className="text-sm text-gray-700 space-y-1">
+          <div className="text-sm text-gray-700 dark:text-gray-300 space-y-1">
             <div>
               <strong>Email:</strong> admin@birddb.org
             </div>
@@ -97,7 +101,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
                 },
               })}
             />
-            <Mail className="absolute right-3 top-9 w-4 h-4 text-gray-400 mt-4" />
+            <Mail className="absolute right-3 top-9 w-4 h-4 text-gray-400 dark:text-gray-500 mt-4" />
           </div>
 
           {/* Password Field */}
@@ -120,7 +124,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="text-gray-400 hover:text-gray-600"
+                className="text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300"
               >
                 {showPassword ? (
                   <EyeOff className="w-4 h-4 mt-4" />
@@ -170,7 +174,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
         {/* Register Link */}
         {/* {onRegisterClick && (
           <div className="text-center mt-6 pt-6 border-t">
-            <p className="text-gray-600">
+            <p className="text-gray-600 dark:text-gray-300">
               Don&apos;t have an account?{" "}
               <button
                 onClick={onRegisterClick}

@@ -55,7 +55,7 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
       <div className="text-center">
         <div className="text-6xl mb-4">{currentVariant.icon}</div>
         <h3 className="text-lg font-bold mb-2">{title}</h3>
-        <p className="text-gray-600 mb-6">{message}</p>
+        <p className="text-gray-600 dark:text-gray-300 mb-6">{message}</p>
 
         <div className="flex justify-center space-x-3">
           <Button variant="ghost" onClick={onClose} disabled={loading}>

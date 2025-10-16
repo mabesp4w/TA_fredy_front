@@ -181,7 +181,7 @@ export const Navigation: React.FC = () => {
                           tabIndex={0}
                           className={`flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                             active
-                              ? "bg-primary text-primary-content"
+                              ? "bg-primary"
                               : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700"
                           }`}
                         >
@@ -195,7 +195,7 @@ export const Navigation: React.FC = () => {
                           <ChevronDown className="w-3 h-3 ml-1" />
                         </button>
 
-                        <ul className="dropdown-content z-[1] menu p-2 shadow-lg bg-base-100 rounded-box w-64 border">
+                        <ul className="dropdown-content z-[1] menu p-2 shadow-lg bg-base-100 dark:bg-base-100 rounded-box w-64 border dark:border-gray-700">
                           <li className="menu-title px-3 py-2">
                             <span className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                               {item.description}
@@ -224,7 +224,7 @@ export const Navigation: React.FC = () => {
                         href={item.href}
                         className={`flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                           active
-                            ? "bg-primary text-primary-content"
+                            ? "bg-primary"
                             : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700"
                         }`}
                       >
@@ -263,7 +263,7 @@ export const Navigation: React.FC = () => {
                     <Plus className="w-4 h-4 mr-1" />
                     Tambah
                   </Button>
-                  <ul className="dropdown-content z-[1] menu p-2 shadow-lg bg-base-100 rounded-box w-52 border">
+                  <ul className="dropdown-content z-[1] menu p-2 shadow-lg bg-base-100 dark:bg-base-100 rounded-box w-52 border dark:border-gray-700">
                     <li>
                       <Link href="/admin/families?action=create">
                         Tambah Spesies
@@ -296,11 +296,11 @@ export const Navigation: React.FC = () => {
                     className="btn btn-ghost btn-circle avatar"
                     onClick={() => setShowUserMenu(!showUserMenu)}
                   >
-                    <div className="w-8 h-8 rounded-full bg-primary text-primary-content flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
                       <User className="w-4 h-4" />
                     </div>
                   </button>
-                  <ul className="dropdown-content z-[1] menu p-2 shadow-lg bg-base-100 rounded-box w-52 border">
+                  <ul className="dropdown-content z-[1] menu p-2 shadow-lg bg-base-100 dark:bg-base-100 rounded-box w-52 border dark:border-gray-700">
                     <li className="menu-title">
                       <span>Profil</span>
                     </li>
@@ -393,8 +393,8 @@ export const Navigation: React.FC = () => {
                           onClick={() => handleDropdownToggle(item.name)}
                           className={`w-full flex items-center justify-between px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                             active
-                              ? "bg-primary text-primary-content"
-                              : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                              ? "bg-primary"
+                              : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700"
                           }`}
                         >
                           <div className="flex items-center">
@@ -435,7 +435,7 @@ export const Navigation: React.FC = () => {
                         onClick={closeMobileMenu}
                         className={`flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                           active
-                            ? "bg-primary text-primary-content"
+                            ? "bg-primary"
                             : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700"
                         }`}
                       >

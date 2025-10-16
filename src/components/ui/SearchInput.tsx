@@ -48,12 +48,12 @@ const SearchInput: React.FC<SearchInputProps> = ({
               <button
                 type="button"
                 onClick={handleClear}
-                className="text-gray-400 hover:text-gray-600"
+                className="text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300"
               >
                 <X size={16} />
               </button>
             ) : (
-              <Search size={16} className="text-gray-400" />
+              <Search size={16} className="text-gray-400 dark:text-gray-500" />
             )}
           </div>
         </div>

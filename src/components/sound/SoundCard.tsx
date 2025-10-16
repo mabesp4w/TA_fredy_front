@@ -75,12 +75,12 @@ export const SoundCard: React.FC<SoundCardProps> = ({
 
             {/* Recording Info */}
             <div className="space-y-1">
-              <div className="flex items-center text-sm text-gray-600">
+              <div className="flex items-center text-sm text-gray-600 dark:text-gray-300">
                 <MapPin className="w-4 h-4 mr-2" />
                 <span className="truncate">{sound.location}</span>
               </div>
 
-              <div className="flex items-center text-sm text-gray-600">
+              <div className="flex items-center text-sm text-gray-600 dark:text-gray-300">
                 <Clock className="w-4 h-4 mr-2" />
                 <span>Uploaded {moment(sound.created_at).fromNow()}</span>
               </div>
@@ -125,7 +125,7 @@ export const SoundCard: React.FC<SoundCardProps> = ({
         {/* Description */}
         {sound.description && (
           <div className="mb-3">
-            <p className="text-sm text-gray-700 line-clamp-2">
+            <p className="text-sm text-gray-700 dark:text-gray-200 line-clamp-2">
               {sound.description}
             </p>
           </div>
@@ -137,7 +137,7 @@ export const SoundCard: React.FC<SoundCardProps> = ({
           <div className="absolute -top-2 left-2 bg-green-500 text-white px-2 py-1 rounded-md text-xs opacity-90 z-10">
             🔊 Klik untuk memutar
           </div>
-          
+
           <AudioPlayer
             src={sound.sound_file}
             title={compact ? undefined : `Recording from ${sound.location}`}
@@ -150,7 +150,7 @@ export const SoundCard: React.FC<SoundCardProps> = ({
 
         {/* Metadata Footer */}
         <div className="mt-3 pt-3 border-t border-gray-200">
-          <div className="grid grid-cols-2 gap-2 text-xs text-gray-500">
+          <div className="grid grid-cols-2 gap-2 text-xs text-gray-500 dark:text-gray-400">
             <div>
               <span className="font-medium">ID:</span>
               <span className="ml-1 font-mono">{sound.id.slice(0, 8)}...</span>
@@ -164,16 +164,16 @@ export const SoundCard: React.FC<SoundCardProps> = ({
           </div>
 
           {!compact && (
-            <div className="mt-2 text-xs text-gray-500">
+            <div className="mt-2 text-xs text-gray-500 dark:text-gray-400">
               <div>
                 <span className="font-medium">Created:</span>
-                <span className="ml-1">
+                <span className="ml-1 dark:text-gray-300">
                   {moment(sound.created_at).format("MMM DD, YYYY [at] HH:mm")}
                 </span>
               </div>
               <div>
                 <span className="font-medium">Updated:</span>
-                <span className="ml-1">
+                <span className="ml-1 dark:text-gray-300">
                   {moment(sound.updated_at).format("MMM DD, YYYY [at] HH:mm")}
                 </span>
               </div>

@@ -36,7 +36,7 @@ export const BirdCard: React.FC<BirdCardProps> = ({
             <h2 className="card-title text-lg font-bold text-primary">
               {bird.bird_nm}
             </h2>
-            <p className="text-sm italic text-gray-600 mb-2">
+            <p className="text-sm italic text-gray-600 dark:text-gray-300 mb-2">
               {bird.scientific_nm}
             </p>
 
@@ -47,12 +47,12 @@ export const BirdCard: React.FC<BirdCardProps> = ({
             )}
 
             {bird.description && (
-              <p className="text-gray-600 text-sm mb-2 line-clamp-2">
+              <p className="text-gray-600 dark:text-gray-300 text-sm mb-2 line-clamp-2">
                 {bird.description}
               </p>
             )}
 
-            <div className="flex items-center text-sm text-gray-500 mb-2">
+            <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-2">
               <TreePine className="w-4 h-4 mr-1" />
               <span className="truncate">{bird.habitat}</span>
             </div>
