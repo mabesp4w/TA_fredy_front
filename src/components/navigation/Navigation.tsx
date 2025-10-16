@@ -94,28 +94,10 @@ const userNavItems: NavItem[] = [
     description: "Identifikasi suara",
   },
   {
-    name: "Keluarga",
-    href: "/families",
-    icon: TreePine,
-    description: "Keluarga burung",
-  },
-  {
     name: "Burung",
     href: "/birds",
     icon: Bird,
     description: "Data burung",
-  },
-  {
-    name: "Gambar",
-    href: "/images",
-    icon: Camera,
-    description: "Galeri gambar",
-  },
-  {
-    name: "Suara",
-    href: "/sounds",
-    icon: Volume2,
-    description: "Pustaka audio",
   },
 ];
 
