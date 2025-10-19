@@ -24,6 +24,7 @@ interface FamilyState {
     page?: number;
     search?: string;
     ordering?: string;
+    per_page?: number;
   }) => Promise<void>;
   fetchFamilyById: (id: string) => Promise<void>;
   createFamily: (data: CreateFamilyData) => Promise<Family | null>;

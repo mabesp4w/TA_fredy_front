@@ -63,8 +63,12 @@ export const BirdForm: React.FC<BirdFormProps> = ({
   const selectedBirdId = watch("bird_nm");
 
   useEffect(() => {
-    if (isOpen && families.length === 0) {
-      fetchFamilies();
+    console.log(isOpen);
+    if (isOpen) {
+      fetchFamilies({
+        per_page: 100,
+        ordering: "family_nm",
+      });
     }
     if (isOpen && jenisBurung.length === 0) {
       fetchJenisBurung();

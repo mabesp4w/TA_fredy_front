@@ -1,7 +1,6 @@
 /** @format */
 
 import React, { useEffect } from "react";
-import moment from "moment";
 import { TreePine } from "lucide-react";
 import { Modal } from "../ui/Modal";
 import { useFamilyStore } from "@/stores/crud/familyStore";
@@ -88,49 +87,6 @@ export const BirdDetail: React.FC<BirdDetailProps> = ({
             Habitat
           </h3>
           <p className="text-gray-900 whitespace-pre-wrap">{bird.habitat}</p>
-        </div>
-
-        {/* Metadata */}
-        <div className="bg-base-200 rounded-lg p-4">
-          <h3 className="font-semibold text-lg mb-3">Metadata</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="text-sm font-medium text-gray-600">
-                ID Burung
-              </label>
-              <p className="text-gray-900 font-mono text-sm">{bird.id}</p>
-            </div>
-            <div>
-              <label className="text-sm font-medium text-gray-600">
-                ID Keluarga
-              </label>
-              <p className="text-gray-900 font-mono text-sm">{bird.family}</p>
-            </div>
-            <div>
-              <label className="text-sm font-medium text-gray-600">
-                Dibuat Pada
-              </label>
-              <p className="text-gray-900">
-                {moment(bird.created_at).format("DD MMMM YYYY [pukul] HH:mm")}
-              </p>
-            </div>
-            <div>
-              <label className="text-sm font-medium text-gray-600">
-                Diperbarui Pada
-              </label>
-              <p className="text-gray-900">
-                {moment(bird.updated_at).format("DD MMMM YYYY [pukul] HH:mm")}
-              </p>
-            </div>
-            <div>
-              <label className="text-sm font-medium text-gray-600">
-                Terakhir Diubah
-              </label>
-              <p className="text-gray-900">
-                {moment(bird.updated_at).fromNow()}
-              </p>
-            </div>
-          </div>
         </div>
 
         {/* Stats placeholder */}
