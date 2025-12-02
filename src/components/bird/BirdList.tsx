@@ -22,6 +22,8 @@ import { SoundDetail } from "../sound/SoundDetail";
 import { ConfirmDialog } from "../ui/ConfirmDialog";
 import { useAuthStore } from "@/stores/auth/authStore";
 import { imageApi } from "@/services/crudService";
+import { ExportButton } from "../ui/ExportButton";
+import { ExportService } from "@/services/exportService";
 
 interface BirdListProps {
   familyId?: string; // For filtering by specific family
@@ -371,7 +373,7 @@ export const BirdList: React.FC<BirdListProps> = ({
           </Button>
         </div>
 
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 items-center">
           {showFamilyFilter && !familyId && (
             <Select
               placeholder="Semua Keluarga"
@@ -397,6 +399,25 @@ export const BirdList: React.FC<BirdListProps> = ({
             <option value="scientific_nm">Ilmiah A-Z</option>
             <option value="-scientific_nm">Ilmiah Z-A</option>
           </select>
+
+          <ExportButton
+            onExportPDF={() =>
+              ExportService.exportBirdsToPDF({
+                family: familyId || selectedFamily || undefined,
+                search: searchTerm || undefined,
+                ordering: ordering || undefined,
+              })
+            }
+            onExportExcel={() =>
+              ExportService.exportBirdsToExcel({
+                family: familyId || selectedFamily || undefined,
+                search: searchTerm || undefined,
+                ordering: ordering || undefined,
+              })
+            }
+            variant="outline"
+            size="sm"
+          />
 
           <Button variant="ghost" onClick={handleRefresh} loading={loading}>
             <RefreshCw className="w-4 h-4" />

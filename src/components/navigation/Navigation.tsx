@@ -181,7 +181,7 @@ export const Navigation: React.FC = () => {
                           tabIndex={0}
                           className={`flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                             active
-                          ? "bg-primary"
+                              ? "bg-primary"
                               : "text-base-content/70 hover:text-base-content hover:bg-base-200"
                           }`}
                         >
@@ -260,8 +260,10 @@ export const Navigation: React.FC = () => {
               {isAuthenticated && (
                 <div className="dropdown dropdown-end hidden md:block">
                   <Button tabIndex={0} variant="primary" size="sm">
-                    <Plus className="w-4 h-4 mr-1" />
-                    Tambah
+                    <span className="flex items-center">
+                      <Plus className="w-4 h-4 mr-1" />
+                      Tambah
+                    </span>
                   </Button>
                   <ul className="dropdown-content z-[1] menu p-2 shadow-lg bg-base-100 dark:bg-base-100 rounded-box w-52 border dark:border-gray-700">
                     <li>
@@ -393,7 +395,7 @@ export const Navigation: React.FC = () => {
                           onClick={() => handleDropdownToggle(item.name)}
                           className={`w-full flex items-center justify-between px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                             active
-                            ? "bg-primary"
+                              ? "bg-primary"
                               : "text-base-content/70 hover:text-base-content hover:bg-base-200"
                           }`}
                         >

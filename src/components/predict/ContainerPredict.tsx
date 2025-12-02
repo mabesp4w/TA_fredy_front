@@ -10,10 +10,12 @@ import { BirdDetail } from "../bird/BirdDetail";
 import { ImageLightbox } from "../image/ImageLightbox";
 import { Modal } from "../ui/Modal";
 import { Loading } from "../ui/Loading";
+import { Button } from "../ui/Button";
 import { SoundCard } from "../sound/SoundCard";
 import { SoundDetail } from "../sound/SoundDetail";
 import { useImageStore } from "@/stores/crud/imageStore";
 import { useSoundStore } from "@/stores/crud/soundStore";
+import { Printer } from "lucide-react";
 
 const ContainerPredict = () => {
   const {
@@ -107,6 +109,168 @@ const ContainerPredict = () => {
     // No-op: delete functionality not available in predict page
   };
 
+  // Handle print prediction result
+  const handlePrint = () => {
+    // Create a print-friendly version of the prediction card
+    const printWindow = window.open("", "_blank");
+    if (!printWindow) return;
+
+    const bird = predictData.bird_data;
+    const confidence = predictData.confidence;
+    const confidencePercent = (confidence * 100).toFixed(0);
+    const confidenceColor =
+      confidence >= 0.8 ? "green" : confidence >= 0.5 ? "orange" : "red";
+
+    const printContent = `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>Hasil Prediksi - ${bird.bird_nm}</title>
+          <style>
+            @media print {
+              @page {
+                margin: 1cm;
+                size: A4;
+              }
+              body {
+                font-family: Arial, sans-serif;
+                color: #000;
+                background: #fff;
+              }
+              .no-print {
+                display: none;
+              }
+            }
+            body {
+              font-family: Arial, sans-serif;
+              padding: 20px;
+              max-width: 800px;
+              margin: 0 auto;
+            }
+            .print-header {
+              text-align: center;
+              margin-bottom: 30px;
+              border-bottom: 2px solid #333;
+              padding-bottom: 15px;
+            }
+            .print-header h1 {
+              margin: 0;
+              font-size: 24px;
+              color: #333;
+            }
+            .print-header .subtitle {
+              margin-top: 5px;
+              font-size: 14px;
+              color: #666;
+            }
+            .card {
+              border: 2px solid #333;
+              border-radius: 8px;
+              padding: 20px;
+              margin: 20px 0;
+              background: #fff;
+            }
+            .confidence-badge {
+              display: inline-block;
+              padding: 5px 15px;
+              border-radius: 20px;
+              font-weight: bold;
+              margin-bottom: 15px;
+              background-color: ${confidenceColor};
+              color: white;
+            }
+            .bird-name {
+              font-size: 28px;
+              font-weight: bold;
+              color: #2563eb;
+              margin: 10px 0;
+            }
+            .scientific-name {
+              font-size: 18px;
+              font-style: italic;
+              color: #666;
+              margin-bottom: 15px;
+            }
+            .info-section {
+              margin: 15px 0;
+            }
+            .info-label {
+              font-weight: bold;
+              color: #333;
+              margin-bottom: 5px;
+            }
+            .info-value {
+              color: #555;
+              line-height: 1.6;
+            }
+            .print-footer {
+              margin-top: 30px;
+              padding-top: 15px;
+              border-top: 1px solid #ccc;
+              text-align: center;
+              font-size: 12px;
+              color: #666;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="print-header">
+            <h1>Hasil Identifikasi Burung</h1>
+            <div class="subtitle">Dicetak pada ${new Date().toLocaleString("id-ID")}</div>
+          </div>
+          
+          <div class="card">
+            <div class="confidence-badge">
+              Tingkat Keyakinan: ${confidencePercent}%
+            </div>
+            
+            <div class="bird-name">${bird.bird_nm}</div>
+            <div class="scientific-name">${bird.scientific_nm}</div>
+            
+            ${bird.description ? `
+              <div class="info-section">
+                <div class="info-label">Deskripsi:</div>
+                <div class="info-value">${bird.description}</div>
+              </div>
+            ` : ""}
+            
+            ${bird.habitat ? `
+              <div class="info-section">
+                <div class="info-label">Habitat:</div>
+                <div class="info-value">${bird.habitat}</div>
+              </div>
+            ` : ""}
+            
+            <div class="info-section">
+              <div class="info-label">Tanggal Identifikasi:</div>
+              <div class="info-value">${new Date().toLocaleString("id-ID", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+              })}</div>
+            </div>
+          </div>
+          
+          <div class="print-footer">
+            <p>Dicetak dari Sistem Identifikasi Burung</p>
+          </div>
+        </body>
+      </html>
+    `;
+
+    printWindow.document.write(printContent);
+    printWindow.document.close();
+    
+    // Wait for content to load, then print
+    setTimeout(() => {
+      printWindow.print();
+      // Close window after printing (optional)
+      // printWindow.close();
+    }, 250);
+  };
+
   useEffect(() => {
     // Mulai preload saat komponen dimuat
     preloadData();
@@ -164,17 +328,30 @@ const ContainerPredict = () => {
       )}
       {predictData?.bird_data && showResults && (
         <div className="flex flex-col gap-2">
-          <span className="text-gray-500">
-            {predictData?.scientific_nm}{" "}
-            {(predictData?.confidence * 100).toFixed(0)}%
-          </span>
-          <BirdCard
-            bird={predictData.bird_data}
-            onView={onView}
-            onViewImages={onViewImages}
-            onViewSounds={onViewSounds}
-            confidence={predictData.confidence}
-          />
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-gray-500">
+              {predictData?.scientific_nm}{" "}
+              {(predictData?.confidence * 100).toFixed(0)}%
+            </span>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handlePrint}
+              className="flex items-center gap-2"
+            >
+              <Printer className="w-4 h-4" />
+              Print
+            </Button>
+          </div>
+          <div id="prediction-card">
+            <BirdCard
+              bird={predictData.bird_data}
+              onView={onView}
+              onViewImages={onViewImages}
+              onViewSounds={onViewSounds}
+              confidence={predictData.confidence}
+            />
+          </div>
         </div>
       )}
 

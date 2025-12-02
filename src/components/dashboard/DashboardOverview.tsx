@@ -12,6 +12,8 @@ import { DashboardCharts } from "./DashboardCharts";
 import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/stores/auth/authStore";
 import Image from "next/image";
+import { ExportButton } from "../ui/ExportButton";
+import { ExportService } from "@/services/exportService";
 
 export const DashboardOverview: React.FC = () => {
   const router = useRouter();
@@ -125,6 +127,12 @@ export const DashboardOverview: React.FC = () => {
         </div>
 
         <div className="flex items-center space-x-3">
+          <ExportButton
+            onExportPDF={() => ExportService.exportDashboardToPDF()}
+            onExportExcel={() => ExportService.exportDashboardToExcel()}
+            variant="outline"
+            size="sm"
+          />
           <Button
             variant="ghost"
             size="sm"
