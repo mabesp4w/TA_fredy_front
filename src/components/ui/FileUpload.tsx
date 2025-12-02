@@ -231,7 +231,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
         ) : (
           <div className="flex flex-col items-center">
             <Upload className="w-12 h-12 text-gray-400 dark:text-gray-500 mb-4" />
-            <p className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">
+            <p className="text-lg font-medium text-base-content mb-2">
               Seret & lepas gambar di sini, atau klik untuk memilih
             </p>
             <p className="text-sm text-gray-600 dark:text-gray-300">

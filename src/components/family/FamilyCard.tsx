@@ -33,14 +33,14 @@ export const FamilyCard: React.FC<FamilyCardProps> = ({
             <h2 className="card-title text-lg font-bold text-primary">
               {family.family_nm}
             </h2>
-            <p className="text-gray-600 text-sm mt-2 line-clamp-3">
+            <p className="text-base-content/70 text-sm mt-2 line-clamp-3">
               {family.description}
             </p>
           </div>
         </div>
 
         <div className="mt-4">
-          <div className="text-xs text-gray-500 space-y-1">
+          <div className="text-xs text-base-content/60 space-y-1">
             <div>
               <span className="font-medium">Dibuat Pada:</span>{" "}
               {moment(family.created_at).format("MMM DD, YYYY")}

@@ -21,6 +21,7 @@ import { SoundCard } from "../sound/SoundCard";
 import { SoundDetail } from "../sound/SoundDetail";
 import { ConfirmDialog } from "../ui/ConfirmDialog";
 import { useAuthStore } from "@/stores/auth/authStore";
+import { imageApi } from "@/services/crudService";
 
 interface BirdListProps {
   familyId?: string; // For filtering by specific family
@@ -82,12 +83,17 @@ export const BirdList: React.FC<BirdListProps> = ({
     deleteSound,
   } = useSoundStore();
 
-  // Fetch families for dropdown
+  // Thumbnail images for each bird (first image per bird)
+  const [birdThumbnails, setBirdThumbnails] = useState<Record<string, string>>(
+    {}
+  );
+
+  // Fetch families once so family names are always available (for cards & filters)
   useEffect(() => {
-    if (showFamilyFilter && families.length === 0) {
-      fetchFamilies();
+    if (families.length === 0) {
+      fetchFamilies({ per_page: 1000, ordering: "family_nm" });
     }
-  }, [showFamilyFilter, families.length, fetchFamilies]);
+  }, [families.length, fetchFamilies]);
 
   // Fetch birds on component mount and when filters change
   useEffect(() => {
@@ -98,6 +104,51 @@ export const BirdList: React.FC<BirdListProps> = ({
       family: familyId || selectedFamily || undefined,
     });
   }, [currentPage, searchTerm, ordering, selectedFamily, familyId, fetchBirds]);
+
+  // After birds are loaded, fetch a thumbnail image for each bird (if not already loaded)
+  useEffect(() => {
+    if (!birds.length) return;
+
+    const fetchThumbnails = async () => {
+      // Determine which birds still need thumbnails
+      const birdsWithoutThumb = birds.filter((bird) => !birdThumbnails[bird.id]);
+      if (!birdsWithoutThumb.length) return;
+
+      try {
+        const results = await Promise.all(
+          birdsWithoutThumb.map(async (bird) => {
+            try {
+              const response = await imageApi.getAll({ bird: bird.id, page: 1 });
+              const firstImage = response.data[0];
+              return {
+                birdId: bird.id,
+                url: firstImage?.path_img ?? "",
+              };
+            } catch {
+              return {
+                birdId: bird.id,
+                url: "",
+              };
+            }
+          })
+        );
+
+        setBirdThumbnails((prev) => {
+          const updated = { ...prev };
+          for (const item of results) {
+            if (item.url && !updated[item.birdId]) {
+              updated[item.birdId] = item.url;
+            }
+          }
+          return updated;
+        });
+      } catch (error) {
+        console.error("Failed to fetch bird thumbnails:", error);
+      }
+    };
+
+    fetchThumbnails();
+  }, [birds, birdThumbnails]);
 
   // Update selected family when familyId prop changes
   useEffect(() => {
@@ -286,7 +337,7 @@ export const BirdList: React.FC<BirdListProps> = ({
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+          <h1 className="text-2xl font-bold text-base-content">
             {familyId ? "Burung Keluarga" : "Burung"}
           </h1>
           <p className="text-gray-600 dark:text-gray-300">
@@ -361,7 +412,7 @@ export const BirdList: React.FC<BirdListProps> = ({
       ) : birds.length === 0 ? (
         <div className="text-center py-12">
           <div className="text-6xl mb-4">🐦</div>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
+          <h3 className="text-lg font-semibold text-base-content mb-2">
             Tidak ada burung ditemukan
           </h3>
           <p className="text-gray-600 dark:text-gray-300 mb-4">
@@ -384,6 +435,7 @@ export const BirdList: React.FC<BirdListProps> = ({
               <BirdCard
                 key={bird.id}
                 bird={bird}
+                imageUrl={birdThumbnails[bird.id]}
                 familyName={getFamilyName(bird.family)}
                 onView={handleView}
                 onEdit={handleEdit}

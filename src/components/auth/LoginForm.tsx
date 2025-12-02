@@ -55,7 +55,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
           <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
             <LogIn className="w-8 h-8 text-primary" />
           </div>
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+          <h2 className="text-2xl font-bold text-base-content">
             Selamat Datang
           </h2>
           <p className="text-gray-600 dark:text-gray-300 mt-2">

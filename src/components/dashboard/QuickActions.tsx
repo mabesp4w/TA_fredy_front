@@ -89,7 +89,7 @@ export const QuickActions: React.FC<QuickActionsProps> = ({ onAction }) => {
   return (
     <div className="bg-base-100 rounded-lg shadow-md p-6">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Aksi Cepat</h3>
+        <h3 className="text-lg font-semibold text-base-content">Aksi Cepat</h3>
         <Button variant="ghost" size="sm">
           <Settings className="w-4 h-4" />
         </Button>
@@ -111,7 +111,7 @@ export const QuickActions: React.FC<QuickActionsProps> = ({ onAction }) => {
                 <IconComponent className="w-6 h-6 text-white" />
               </div>
 
-              <h4 className="font-medium text-gray-900 dark:text-gray-100 text-sm mb-1 text-center">
+              <h4 className="font-medium text-base-content text-sm mb-1 text-center">
                 {action.label}
               </h4>
 

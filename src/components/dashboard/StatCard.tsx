@@ -67,7 +67,7 @@ export const StatCard: React.FC<StatCardProps> = ({
         {title}
       </div>
 
-      <div className="stat-value text-2xl font-bold text-gray-900 dark:text-gray-100">
+      <div className="stat-value text-2xl font-bold text-base-content">
         {value.toLocaleString()}
       </div>
 

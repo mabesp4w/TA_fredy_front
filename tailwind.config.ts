@@ -11,20 +11,6 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      colors: {
-        primary: {
-          50: "#eff6ff",
-          100: "#dbeafe",
-          200: "#bfdbfe",
-          300: "#93c5fd",
-          400: "#60a5fa",
-          500: "#3b82f6",
-          600: "#2563eb",
-          700: "#1d4ed8",
-          800: "#1e40af",
-          900: "#1e3a8a",
-        },
-      },
       fontFamily: {
         sans: ["Inter", "ui-sans-serif", "system-ui"],
       },
@@ -61,9 +47,9 @@ const config: Config = {
           accent: "#f59e0b",
           neutral: "#1f2937",
           "base-100": "#ffffff",
-          "base-200": "#f9fafb",
-          "base-300": "#f3f4f6",
-          "base-content": "#111827",
+          "base-200": "#ffffff",
+          "base-300": "#ffffff",
+          "base-content": "#000000",
           info: "#06b6d4",
           success: "#10b981",
           warning: "#f59e0b",

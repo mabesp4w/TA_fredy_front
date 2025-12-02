@@ -41,7 +41,7 @@ export default function BirdDetailPage() {
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+          <h1 className="text-2xl font-bold text-base-content mb-4">
             Burung Tidak Ditemukan
           </h1>
           <p className="text-gray-600 dark:text-gray-400 mb-4">
@@ -71,13 +71,13 @@ export default function BirdDetailPage() {
         <div className="space-y-6">
           {/* Bird Information */}
           <div className="bg-base-100 rounded-lg shadow-md p-6">
-            <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">Informasi Burung</h2>
+            <h2 className="text-xl font-semibold mb-4 text-base-content">Informasi Burung</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="text-sm font-medium text-gray-600 dark:text-gray-400">
                   Nama Umum
                 </label>
-                <p className="text-gray-900 dark:text-gray-100 font-medium">
+                <p className="text-base-content font-medium">
                   {currentBird.bird_nm}
                 </p>
               </div>
@@ -85,7 +85,7 @@ export default function BirdDetailPage() {
                 <label className="text-sm font-medium text-gray-600 dark:text-gray-400">
                   Nama Ilmiah
                 </label>
-                <p className="text-gray-900 dark:text-gray-100 font-medium italic">
+                <p className="text-base-content font-medium italic">
                   {currentBird.scientific_nm}
                 </p>
               </div>
@@ -93,14 +93,14 @@ export default function BirdDetailPage() {
                 <label className="text-sm font-medium text-gray-600 dark:text-gray-400">
                   Habitat
                 </label>
-                <p className="text-gray-900 dark:text-gray-100">{currentBird.habitat}</p>
+                <p className="text-base-content">{currentBird.habitat}</p>
               </div>
               {currentBird.description && (
                 <div className="md:col-span-2">
                   <label className="text-sm font-medium text-gray-600 dark:text-gray-400">
                     Deskripsi
                   </label>
-                  <p className="text-gray-900 dark:text-gray-100">{currentBird.description}</p>
+                  <p className="text-base-content">{currentBird.description}</p>
                 </div>
               )}
             </div>
@@ -110,19 +110,19 @@ export default function BirdDetailPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="bg-base-100 rounded-lg shadow-md p-4 text-center">
               <Camera className="w-8 h-8 text-primary mx-auto mb-2" />
-              <div className="text-2xl font-bold text-gray-900 dark:text-gray-100">📸</div>
+              <div className="text-2xl font-bold text-base-content">📸</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">Gambar</div>
               <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">Klik gambar untuk melihat</div>
             </div>
             <div className="bg-base-100 rounded-lg shadow-md p-4 text-center">
               <Volume2 className="w-8 h-8 text-secondary mx-auto mb-2" />
-              <div className="text-2xl font-bold text-gray-900 dark:text-gray-100">🎵</div>
+              <div className="text-2xl font-bold text-base-content">🎵</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">Suara</div>
               <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">Klik tombol play untuk mendengar</div>
             </div>
             <div className="bg-base-100 rounded-lg shadow-md p-4 text-center">
               <Bird className="w-8 h-8 text-accent mx-auto mb-2" />
-              <div className="text-2xl font-bold text-gray-900 dark:text-gray-100">Aktif</div>
+              <div className="text-2xl font-bold text-base-content">Aktif</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">Status</div>
             </div>
           </div>
@@ -156,7 +156,7 @@ export default function BirdDetailPage() {
       <div className="bg-base-100 rounded-lg shadow-md p-6 mb-6">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div className="flex-1">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+            <h1 className="text-3xl font-bold text-base-content mb-2">
               {currentBird.bird_nm}
             </h1>
             <p className="text-xl italic text-gray-600 dark:text-gray-400 mb-2">

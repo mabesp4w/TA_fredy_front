@@ -93,7 +93,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
                 key={item.id}
                 href={item.href}
                 className={`flex flex-col items-center justify-center space-y-1 transition-colors relative ${
-                  active ? "text-primary" : "text-gray-500 hover:text-gray-700"
+                  active ? "text-primary" : "text-base-content/70 hover:text-base-content"
                 }`}
               >
                 {/* Active Indicator */}

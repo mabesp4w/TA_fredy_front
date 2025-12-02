@@ -106,7 +106,7 @@ export const DashboardOverview: React.FC = () => {
           className="object-contain"
         />
 
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 capitalize">
+        <h1 className="text-3xl font-bold text-base-content capitalize">
           dashboard
         </h1>
         <Image
@@ -199,7 +199,7 @@ export const DashboardOverview: React.FC = () => {
         <div className="lg:col-span-2">
           <div className="bg-base-100 rounded-lg shadow-md p-6">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 flex items-center">
+              <h3 className="text-lg font-semibold text-base-content flex items-center">
                 <Activity className="w-5 h-5 mr-2" />
                 Aktivitas Terbaru
               </h3>
@@ -255,7 +255,7 @@ export const DashboardOverview: React.FC = () => {
       {/* Charts Section */}
       <div>
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 flex items-center">
+          <h2 className="text-2xl font-bold text-base-content flex items-center">
             <TrendingUp className="w-6 h-6 mr-2" />
             Analisis
           </h2>

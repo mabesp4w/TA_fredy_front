@@ -60,10 +60,10 @@ export const ImageCard: React.FC<ImageCardProps> = ({
   return (
     <div className="card bg-base-100 shadow-md hover:shadow-lg transition-all duration-200 group">
       {/* Image Container */}
-      <figure className="relative aspect-square bg-gray-100">
+      <figure className="relative aspect-square bg-base-200">
         {hasError ? (
-          <div className="w-full h-full flex items-center justify-center bg-gray-200">
-            <div className="text-center text-gray-500">
+          <div className="w-full h-full flex items-center justify-center bg-base-300">
+            <div className="text-center text-base-content/70">
               <div className="text-4xl mb-2">🖼️</div>
               <p className="text-sm">Gambar tidak tersedia</p>
             </div>
@@ -71,7 +71,7 @@ export const ImageCard: React.FC<ImageCardProps> = ({
         ) : (
           <>
             {isLoading && (
-              <div className="absolute inset-0 flex items-center justify-center bg-gray-200">
+              <div className="absolute inset-0 flex items-center justify-center bg-base-300">
                 <div className="loading loading-spinner loading-md"></div>
               </div>
             )}
@@ -102,7 +102,7 @@ export const ImageCard: React.FC<ImageCardProps> = ({
               size="sm"
               variant="ghost"
               onClick={() => onView(image)}
-              className="bg-white/90 hover:bg-white text-gray-900"
+              className="bg-base-100/90 hover:bg-base-100 text-base-content"
             >
               <Eye className="w-4 h-4" />
             </Button>
@@ -111,7 +111,7 @@ export const ImageCard: React.FC<ImageCardProps> = ({
                 size="sm"
                 variant="ghost"
                 onClick={handleDownload}
-                className="bg-white/90 hover:bg-white text-gray-900"
+                className="bg-base-100/90 hover:bg-base-100 text-base-content"
               >
                 <Download className="w-4 h-4" />
               </Button>
@@ -140,15 +140,15 @@ export const ImageCard: React.FC<ImageCardProps> = ({
 
         {/* Metadata */}
         <div className="space-y-1">
-          <div className="text-xs text-gray-500">
+          <div className="text-xs text-base-content/60">
             <span className="font-medium">ID:</span>{" "}
             <span className="font-mono">{image.id.slice(0, 8)}...</span>
           </div>
-          <div className="text-xs text-gray-500">
+          <div className="text-xs text-base-content/60">
             <span className="font-medium">Uploaded:</span>{" "}
             {moment(image.created_at).format("MMM DD, YYYY")}
           </div>
-          <div className="text-xs text-gray-500">
+          <div className="text-xs text-base-content/60">
             <span className="font-medium">Waktu:</span>{" "}
             {moment(image.created_at).fromNow()}
           </div>

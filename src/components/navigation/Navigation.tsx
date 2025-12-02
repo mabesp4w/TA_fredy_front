@@ -157,10 +157,10 @@ export const Navigation: React.FC = () => {
                 <div className="absolute -top-1 -right-1 w-3 h-3 bg-success rounded-full animate-pulse"></div>
               </div>
               <div>
-                <span className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                <span className="text-xl font-bold text-base-content">
                   Kicauan Burung
                 </span>
-                <div className="text-xs text-gray-500 dark:text-gray-400 -mt-1">
+                <div className="text-xs text-base-content/70 -mt-1">
                   Identifikasi Burung berdasarkan kicauan di kampung Sawesuma
                 </div>
               </div>
@@ -181,8 +181,8 @@ export const Navigation: React.FC = () => {
                           tabIndex={0}
                           className={`flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                             active
-                              ? "bg-primary"
-                              : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700"
+                          ? "bg-primary"
+                              : "text-base-content/70 hover:text-base-content hover:bg-base-200"
                           }`}
                         >
                           <IconComponent className="w-4 h-4 mr-2" />
@@ -197,7 +197,7 @@ export const Navigation: React.FC = () => {
 
                         <ul className="dropdown-content z-[1] menu p-2 shadow-lg bg-base-100 dark:bg-base-100 rounded-box w-64 border dark:border-gray-700">
                           <li className="menu-title px-3 py-2">
-                            <span className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                            <span className="text-xs font-semibold text-base-content/70 uppercase tracking-wider">
                               {item.description}
                             </span>
                           </li>
@@ -207,10 +207,10 @@ export const Navigation: React.FC = () => {
                                 href={child.href}
                                 className="flex flex-col items-start p-3 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg"
                               >
-                                <span className="font-medium text-gray-900 dark:text-gray-100">
+                                <span className="font-medium text-base-content">
                                   {child.name}
                                 </span>
-                                <span className="text-xs text-gray-500 dark:text-gray-400">
+                                <span className="text-xs text-base-content/70">
                                   {child.description}
                                 </span>
                               </Link>
@@ -225,7 +225,7 @@ export const Navigation: React.FC = () => {
                         className={`flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                           active
                             ? "bg-primary"
-                            : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700"
+                            : "text-base-content/70 hover:text-base-content hover:bg-base-200"
                         }`}
                       >
                         <IconComponent className="w-4 h-4 mr-2" />
@@ -393,8 +393,8 @@ export const Navigation: React.FC = () => {
                           onClick={() => handleDropdownToggle(item.name)}
                           className={`w-full flex items-center justify-between px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                             active
-                              ? "bg-primary"
-                              : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700"
+                            ? "bg-primary"
+                              : "text-base-content/70 hover:text-base-content hover:bg-base-200"
                           }`}
                         >
                           <div className="flex items-center">
@@ -420,7 +420,7 @@ export const Navigation: React.FC = () => {
                                 key={child.name}
                                 href={child.href}
                                 onClick={closeMobileMenu}
-                                className="block px-3 py-2 text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-md"
+                                className="block px-3 py-2 text-sm text-base-content/70 hover:text-base-content hover:bg-base-200 rounded-md"
                               >
                                 {child.name}
                               </Link>
@@ -436,7 +436,7 @@ export const Navigation: React.FC = () => {
                         className={`flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                           active
                             ? "bg-primary"
-                            : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700"
+                            : "text-base-content/70 hover:text-base-content hover:bg-base-200"
                         }`}
                       >
                         <IconComponent className="w-4 h-4 mr-3" />

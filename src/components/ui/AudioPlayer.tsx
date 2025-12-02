@@ -198,7 +198,7 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({
 
       {showTitle && title && (
         <div
-          className={`font-medium text-gray-900 dark:text-gray-100 truncate ${
+          className={`font-medium text-base-content truncate ${
             compact ? "text-sm mb-2" : "mb-3"
           }`}
         >

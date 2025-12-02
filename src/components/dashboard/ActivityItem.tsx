@@ -113,7 +113,7 @@ export const ActivityItem: React.FC<ActivityItemProps> = ({
       {/* Content */}
       <div className="flex-1 min-w-0">
         <div className="flex items-center space-x-2 mb-1">
-          <span className="font-medium text-gray-900 dark:text-gray-100 truncate">{title}</span>
+          <span className="font-medium text-base-content truncate">{title}</span>
           <div className="flex items-center space-x-1">
             {getActionIcon()}
             <span className={`text-xs font-medium ${getActionColor()}`}>

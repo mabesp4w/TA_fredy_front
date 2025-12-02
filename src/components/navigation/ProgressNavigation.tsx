@@ -51,7 +51,7 @@ export const ProgressNavigation: React.FC<ProgressNavigationProps> = ({
       case "error":
         return `${baseClasses} bg-error border-error text-white`;
       default:
-        return `${baseClasses} bg-white border-gray-300 text-gray-500`;
+        return `${baseClasses} bg-base-100 border-base-300 text-base-content/70`;
     }
   };
 
@@ -66,7 +66,7 @@ export const ProgressNavigation: React.FC<ProgressNavigationProps> = ({
       case "error":
         return `${baseClasses} text-error`;
       default:
-        return `${baseClasses} text-gray-500`;
+        return `${baseClasses} text-base-content/70`;
     }
   };
 
@@ -130,13 +130,13 @@ export const ProgressNavigation: React.FC<ProgressNavigationProps> = ({
                 <div className="flex items-center">
                   <span className="font-medium">{step.label}</span>
                   {step.optional && (
-                    <span className="ml-2 text-xs text-gray-400">
+                    <span className="ml-2 text-xs text-base-content/60">
                       (Optional)
                     </span>
                   )}
                 </div>
                 {showDescriptions && step.description && (
-                  <div className="text-sm text-gray-500 mt-1">
+                  <div className="text-sm text-base-content/70 mt-1">
                     {step.description}
                   </div>
                 )}
@@ -175,11 +175,11 @@ export const ProgressNavigation: React.FC<ProgressNavigationProps> = ({
               <div className="flex items-center justify-center">
                 <span className="text-sm font-medium">{step.label}</span>
                 {step.optional && (
-                  <span className="ml-1 text-xs text-gray-400">(Optional)</span>
+                  <span className="ml-1 text-xs text-base-content/60">(Optional)</span>
                 )}
               </div>
               {showDescriptions && step.description && (
-                <div className="text-xs text-gray-500 mt-1">
+                <div className="text-xs text-base-content/70 mt-1">
                   {step.description}
                 </div>
               )}

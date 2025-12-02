@@ -41,13 +41,13 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
           return (
             <li key={index} className="flex items-center">
               {index > 0 && (
-                <Separator className="w-4 h-4 mx-2 text-gray-400" />
+                <Separator className="w-4 h-4 mx-2 text-base-content/60" />
               )}
 
               {item.href && !isLast ? (
                 <Link
                   href={item.href}
-                  className="flex items-center text-gray-600 hover:text-primary transition-colors"
+                  className="flex items-center text-base-content/70 hover:text-primary transition-colors"
                 >
                   {IconComponent && <IconComponent className="w-4 h-4 mr-1" />}
                   <span>{item.label}</span>
@@ -55,7 +55,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
               ) : (
                 <span
                   className={`flex items-center ${
-                    isLast ? "text-gray-900 font-medium" : "text-gray-600"
+                    isLast ? "text-base-content font-medium" : "text-base-content/70"
                   }`}
                   aria-current={isLast ? "page" : undefined}
                 >

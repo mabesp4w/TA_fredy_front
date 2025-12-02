@@ -213,7 +213,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 ? "bg-primary text-primary-content"
                 : active
                 ? "bg-primary/10 text-primary"
-                : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                : "text-base-content/70 hover:bg-base-200 hover:text-base-content"
             } ${level > 0 ? "ml-4" : ""}`}
           >
             <IconComponent
@@ -225,7 +225,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               <>
                 <span className="flex-1">{item.label}</span>
                 {item.badge && (
-                  <span className="ml-2 px-2 py-1 text-xs font-medium bg-gray-200 text-gray-700 rounded-full">
+                  <span className="ml-2 px-2 py-1 text-xs font-medium bg-base-200 text-base-content rounded-full">
                     {item.badge}
                   </span>
                 )}
@@ -240,7 +240,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             className={`flex items-center w-full px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
               active
                 ? "bg-primary/10 text-primary"
-                : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                : "text-base-content/70 hover:bg-base-200 hover:text-base-content"
             } ${level > 0 ? "ml-4" : ""}`}
           >
             <IconComponent
@@ -252,7 +252,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               <>
                 <span className="flex-1">{item.label}</span>
                 {item.badge && (
-                  <span className="ml-2 px-2 py-1 text-xs font-medium bg-gray-200 text-gray-700 rounded-full">
+                  <span className="ml-2 px-2 py-1 text-xs font-medium bg-base-200 text-base-content rounded-full">
                     {item.badge}
                   </span>
                 )}
@@ -290,7 +290,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           {!isCollapsed && (
             <div className="flex items-center space-x-2">
               <Bird className="w-6 h-6 text-primary" />
-              <span className="font-semibold text-gray-900">BirdDB Admin</span>
+              <span className="font-semibold text-base-content">BirdDB Admin</span>
             </div>
           )}
 
@@ -316,7 +316,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         {/* Footer */}
         <div className="p-4 border-t">
           {!isCollapsed ? (
-            <div className="text-xs text-gray-500">
+            <div className="text-xs text-base-content/70">
               <div>Bird Database v2.0</div>
               <div>© 2024 BirdDB Team</div>
             </div>

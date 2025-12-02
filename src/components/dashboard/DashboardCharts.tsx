@@ -87,7 +87,7 @@ export const DashboardCharts: React.FC<DashboardChartsProps> = ({ stats }) => {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       {/* Content Distribution */}
       <div className="bg-base-100 rounded-lg shadow-md p-6">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
+        <h3 className="text-lg font-semibold text-base-content mb-4">
           Distribusi Konten
         </h3>
         <div className="h-64">
@@ -126,7 +126,7 @@ export const DashboardCharts: React.FC<DashboardChartsProps> = ({ stats }) => {
 
       {/* Monthly Growth Trend */}
       <div className="bg-base-100 rounded-lg shadow-md p-6">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
+        <h3 className="text-lg font-semibold text-base-content mb-4">
           Trend Pertumbuhan (6 Bulan)
         </h3>
         <div className="h-64">
