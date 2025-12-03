@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useState } from "react";
-import { Download, FileText, FileSpreadsheet, Loader2 } from "lucide-react";
+import { FileText, FileSpreadsheet, Loader2 } from "lucide-react";
 import { Button } from "./Button";
 
 interface ExportButtonProps {

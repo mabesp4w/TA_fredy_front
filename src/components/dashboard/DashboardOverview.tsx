@@ -97,7 +97,10 @@ export const DashboardOverview: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between gap-6">
+      <div 
+        className="flex items-center justify-between gap-6"
+        data-aos="fade-down"
+      >
         <Image
           src="/Logo_WWF.png"
           alt="Logo WWF"
@@ -117,7 +120,11 @@ export const DashboardOverview: React.FC = () => {
           className="object-contain"
         />
       </div>
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div 
+        className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
+        data-aos="fade-up"
+        data-aos-delay="100"
+      >
         <div>
           <p className="text-gray-600 dark:text-gray-400">
             Identifikasi Burung berdasarkan kicauan
@@ -139,7 +146,11 @@ export const DashboardOverview: React.FC = () => {
       </div>
 
       {/* Global Search */}
-      <div className="bg-base-100 rounded-lg shadow-md p-6">
+      <div 
+        className="bg-base-100 rounded-lg shadow-md p-6"
+        data-aos="fade-up"
+        data-aos-delay="200"
+      >
         <form onSubmit={handleSearch} className="flex gap-3">
           <Input
             placeholder="Cari keluarga, burung, gambar, atau suara..."
@@ -167,36 +178,57 @@ export const DashboardOverview: React.FC = () => {
           ))}
         </div>
       ) : (
-        <div className="stats stats-vertical sm:stats-horizontal shadow-md bg-base-100  w-full overflow-hidden ">
+        <div 
+          className="stats stats-vertical sm:stats-horizontal shadow-md bg-base-100  w-full overflow-hidden"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
           {quickStats.map((stat, index) => {
             const statType = ["families", "birds", "images", "sounds"][index];
             return (
-              <StatCard
+              <div
                 key={stat.label}
-                title={stat.label}
-                value={stat.value}
-                change={stat.change}
-                trend={stat.trend}
-                icon={stat.icon}
-                color={stat.color}
-                onClick={() => handleStatCardClick(statType)}
-              />
+                data-aos="zoom-in"
+                data-aos-delay={300 + index * 100}
+              >
+                <StatCard
+                  title={stat.label}
+                  value={stat.value}
+                  change={stat.change}
+                  trend={stat.trend}
+                  icon={stat.icon}
+                  color={stat.color}
+                  onClick={() => handleStatCardClick(statType)}
+                />
+              </div>
             );
           })}
         </div>
       )}
 
       {/* Main Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div 
+        className="grid grid-cols-1 lg:grid-cols-3 gap-6"
+        data-aos="fade-up"
+        data-aos-delay="400"
+      >
         {/* Quick Actions */}
         {isAuthenticated && (
-          <div className="lg:col-span-1">
+          <div 
+            className="lg:col-span-1"
+            data-aos="fade-right"
+            data-aos-delay="500"
+          >
             <QuickActions />
           </div>
         )}
 
         {/* Recent Activities */}
-        <div className="lg:col-span-2">
+        <div 
+          className="lg:col-span-2"
+          data-aos="fade-left"
+          data-aos-delay="600"
+        >
           <div className="bg-base-100 rounded-lg shadow-md p-6">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold text-base-content flex items-center">

@@ -148,7 +148,10 @@ export const FamilyList: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div 
+        className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
+        data-aos="fade-down"
+      >
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Keluarga</h1>
           <p className="text-gray-600">Kelola keluarga burung</p>
@@ -166,7 +169,11 @@ export const FamilyList: React.FC = () => {
       </div>
 
       {/* Search and filters */}
-      <div className="flex flex-col sm:flex-row gap-4">
+      <div 
+        className="flex flex-col sm:flex-row gap-4"
+        data-aos="fade-up"
+        data-aos-delay="100"
+      >
         <div className="flex-1 flex gap-2">
           <Input
             placeholder="Cari keluarga..."
@@ -204,7 +211,10 @@ export const FamilyList: React.FC = () => {
           <Loading size="lg" text="Memuat data keluarga..." />
         </div>
       ) : families.length === 0 ? (
-        <div className="text-center py-12">
+        <div 
+          className="text-center py-12"
+          data-aos="fade-up"
+        >
           <div className="text-6xl mb-4">🦅</div>
           <h3 className="text-lg font-semibold text-gray-900 mb-2">
             Tidak ada keluarga ditemukan
@@ -225,15 +235,20 @@ export const FamilyList: React.FC = () => {
         <>
           {/* Family grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {families.map((family) => (
-              <FamilyCard
+            {families.map((family, index) => (
+              <div
                 key={family.id}
-                family={family}
-                onView={handleView}
-                onEdit={handleEdit}
-                onDelete={handleDelete}
-                onViewBirds={handleViewBirds}
-              />
+                data-aos="fade-up"
+                data-aos-delay={index * 100}
+              >
+                <FamilyCard
+                  family={family}
+                  onView={handleView}
+                  onEdit={handleEdit}
+                  onDelete={handleDelete}
+                  onViewBirds={handleViewBirds}
+                />
+              </div>
             ))}
           </div>
 

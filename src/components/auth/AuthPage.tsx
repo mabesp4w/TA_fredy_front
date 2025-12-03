@@ -55,7 +55,10 @@ export const AuthPage: React.FC<AuthPageProps> = ({
       <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
 
       {/* Header */}
-      <header className="relative z-10 bg-base-100 shadow-sm">
+      <header 
+        className="relative z-10 bg-base-100 shadow-sm"
+        data-aos="fade-down"
+      >
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
@@ -83,13 +86,21 @@ export const AuthPage: React.FC<AuthPageProps> = ({
 
       {/* Main Content */}
       <main className="relative z-10 container mx-auto px-4 py-12">
-        <div className="flex items-center justify-center min-h-[calc(100vh-200px)]">
+        <div 
+          className="flex items-center justify-center min-h-[calc(100vh-200px)]"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
           {renderContent()}
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="relative z-10 bg-base-100 border-t mt-auto">
+      <footer 
+        className="relative z-10 bg-base-100 border-t mt-auto"
+        data-aos="fade-up"
+        data-aos-delay="300"
+      >
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
             <div className="text-sm text-gray-600 flex items-center space-x-2">

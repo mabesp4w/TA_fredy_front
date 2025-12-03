@@ -3,6 +3,7 @@
 import React from "react";
 import { Layout } from "@/components/layout/Layout";
 import { Toaster } from "react-hot-toast";
+import { AOSProvider } from "@/components/layout/AOSProvider";
 
 type Props = {
   children: React.ReactNode;
@@ -10,7 +11,7 @@ type Props = {
 
 const layout = ({ children }: Props) => {
   return (
-    <>
+    <AOSProvider>
       <Layout>{children}</Layout>
       {/* Toast Notifications */}
       <Toaster
@@ -37,7 +38,7 @@ const layout = ({ children }: Props) => {
           },
         }}
       />
-    </>
+    </AOSProvider>
   );
 };
 

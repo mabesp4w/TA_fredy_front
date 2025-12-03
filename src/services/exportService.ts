@@ -7,8 +7,7 @@ import { url_api } from "./baseURL";
  */
 async function downloadFile(
   url: string,
-  filename: string,
-  contentType: string
+  filename: string
 ): Promise<void> {
   try {
     const response = await fetch(url, {
@@ -59,7 +58,7 @@ export class ExportService {
       }`;
 
       const filename = `birds_export_${new Date().toISOString().split("T")[0]}.pdf`;
-      await downloadFile(url, filename, "application/pdf");
+      await downloadFile(url, filename);
     } catch (error) {
       console.error("Error exporting to PDF:", error);
       throw error;
@@ -86,11 +85,7 @@ export class ExportService {
       }`;
 
       const filename = `birds_export_${new Date().toISOString().split("T")[0]}.xlsx`;
-      await downloadFile(
-        url,
-        filename,
-        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-      );
+      await downloadFile(url, filename);
     } catch (error) {
       console.error("Error exporting to Excel:", error);
       throw error;
@@ -104,7 +99,7 @@ export class ExportService {
     try {
       const url = `${url_api}/dashboard/export-pdf/`;
       const filename = `dashboard_report_${new Date().toISOString().split("T")[0]}.pdf`;
-      await downloadFile(url, filename, "application/pdf");
+      await downloadFile(url, filename);
     } catch (error) {
       console.error("Error exporting dashboard to PDF:", error);
       throw error;
@@ -118,11 +113,7 @@ export class ExportService {
     try {
       const url = `${url_api}/dashboard/export-excel/`;
       const filename = `dashboard_report_${new Date().toISOString().split("T")[0]}.xlsx`;
-      await downloadFile(
-        url,
-        filename,
-        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-      );
+      await downloadFile(url, filename);
     } catch (error) {
       console.error("Error exporting dashboard to Excel:", error);
       throw error;

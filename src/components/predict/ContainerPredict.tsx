@@ -112,11 +112,13 @@ const ContainerPredict = () => {
   // Handle print prediction result
   const handlePrint = () => {
     // Create a print-friendly version of the prediction card
+    if (!predictData.bird_data) return;
+    
     const printWindow = window.open("", "_blank");
     if (!printWindow) return;
 
     const bird = predictData.bird_data;
-    const confidence = predictData.confidence;
+    const confidence = predictData.confidence || 0;
     const confidencePercent = (confidence * 100).toFixed(0);
     const confidenceColor =
       confidence >= 0.8 ? "green" : confidence >= 0.5 ? "orange" : "red";
@@ -281,7 +283,11 @@ const ContainerPredict = () => {
   }, [clearPredictData, preloadData]);
 
   if (!predictData.confidence) {
-    return <SoundUploadForm onSubmit={onSubmit} loading={loading} />;
+    return (
+      <div data-aos="fade-up">
+        <SoundUploadForm onSubmit={onSubmit} loading={loading} />
+      </div>
+    );
   }
 
   // Filter hasil prediksi di bawah 80%
@@ -292,7 +298,10 @@ const ContainerPredict = () => {
     <div className="space-y-6">
       {/* Preload indicator */}
       {isPreloading && (
-        <div className="fixed top-4 right-4 z-50">
+        <div 
+          className="fixed top-4 right-4 z-50"
+          data-aos="fade-down"
+        >
           <div className="bg-blue-500 text-white px-3 py-2 rounded-lg shadow-lg flex items-center gap-2 text-sm">
             <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
             <span>Mempersiapkan sistem...</span>
@@ -301,9 +310,15 @@ const ContainerPredict = () => {
       )}
 
       {/* Form */}
-      <SoundUploadForm onSubmit={onSubmit} loading={loading} />
+      <div data-aos="fade-up">
+        <SoundUploadForm onSubmit={onSubmit} loading={loading} />
+      </div>
       {loading && (
-        <div className="mt-4">
+        <div 
+          className="mt-4"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
           <progress
             className="progress progress-primary w-full"
             value={uploadProgress}
@@ -327,7 +342,11 @@ const ContainerPredict = () => {
         </div>
       )}
       {predictData?.bird_data && showResults && (
-        <div className="flex flex-col gap-2">
+        <div 
+          className="flex flex-col gap-2"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
           <div className="flex items-center justify-between mb-2">
             <span className="text-gray-500">
               {predictData?.scientific_nm}{" "}
@@ -344,13 +363,15 @@ const ContainerPredict = () => {
             </Button>
           </div>
           <div id="prediction-card">
-            <BirdCard
-              bird={predictData.bird_data}
-              onView={onView}
-              onViewImages={onViewImages}
-              onViewSounds={onViewSounds}
-              confidence={predictData.confidence}
-            />
+            <div data-aos="zoom-in" data-aos-delay="300">
+              <BirdCard
+                bird={predictData.bird_data}
+                onView={onView}
+                onViewImages={onViewImages}
+                onViewSounds={onViewSounds}
+                confidence={predictData.confidence}
+              />
+            </div>
           </div>
         </div>
       )}

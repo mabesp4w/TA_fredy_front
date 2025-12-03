@@ -337,7 +337,10 @@ export const BirdList: React.FC<BirdListProps> = ({
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div 
+        className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
+        data-aos="fade-down"
+      >
         <div>
           <h1 className="text-2xl font-bold text-base-content">
             {familyId ? "Burung Keluarga" : "Burung"}
@@ -359,7 +362,11 @@ export const BirdList: React.FC<BirdListProps> = ({
       </div>
 
       {/* Search and filters */}
-      <div className="flex flex-col lg:flex-row gap-4">
+      <div 
+        className="flex flex-col lg:flex-row gap-4"
+        data-aos="fade-up"
+        data-aos-delay="100"
+      >
         <div className="flex-1 flex gap-2">
           <Input
             placeholder="Cari burung..."
@@ -431,7 +438,10 @@ export const BirdList: React.FC<BirdListProps> = ({
           <Loading size="lg" text="Memuat data burung..." />
         </div>
       ) : birds.length === 0 ? (
-        <div className="text-center py-12">
+        <div 
+          className="text-center py-12"
+          data-aos="fade-up"
+        >
           <div className="text-6xl mb-4">🐦</div>
           <h3 className="text-lg font-semibold text-base-content mb-2">
             Tidak ada burung ditemukan
@@ -452,18 +462,23 @@ export const BirdList: React.FC<BirdListProps> = ({
         <>
           {/* Bird grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {birds.map((bird) => (
-              <BirdCard
+            {birds.map((bird, index) => (
+              <div
                 key={bird.id}
-                bird={bird}
-                imageUrl={birdThumbnails[bird.id]}
-                familyName={getFamilyName(bird.family)}
-                onView={handleView}
-                onEdit={handleEdit}
-                onDelete={handleDelete}
-                onViewImages={handleViewImages}
-                onViewSounds={handleViewSounds}
-              />
+                data-aos="fade-up"
+                data-aos-delay={index * 100}
+              >
+                <BirdCard
+                  bird={bird}
+                  imageUrl={birdThumbnails[bird.id]}
+                  familyName={getFamilyName(bird.family)}
+                  onView={handleView}
+                  onEdit={handleEdit}
+                  onDelete={handleDelete}
+                  onViewImages={handleViewImages}
+                  onViewSounds={handleViewSounds}
+                />
+              </div>
             ))}
           </div>
 
