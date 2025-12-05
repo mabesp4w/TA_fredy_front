@@ -242,12 +242,12 @@ export const FamilyList: React.FC = () => {
                 data-aos-delay={index * 100}
               >
                 <FamilyCard
-                  family={family}
-                  onView={handleView}
-                  onEdit={handleEdit}
-                  onDelete={handleDelete}
-                  onViewBirds={handleViewBirds}
-                />
+                family={family}
+                onView={handleView}
+                onEdit={handleEdit}
+                onDelete={handleDelete}
+                onViewBirds={handleViewBirds}
+              />
               </div>
             ))}
           </div>

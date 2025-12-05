@@ -469,15 +469,15 @@ export const BirdList: React.FC<BirdListProps> = ({
                 data-aos-delay={index * 100}
               >
                 <BirdCard
-                  bird={bird}
-                  imageUrl={birdThumbnails[bird.id]}
-                  familyName={getFamilyName(bird.family)}
-                  onView={handleView}
-                  onEdit={handleEdit}
-                  onDelete={handleDelete}
-                  onViewImages={handleViewImages}
-                  onViewSounds={handleViewSounds}
-                />
+                bird={bird}
+                imageUrl={birdThumbnails[bird.id]}
+                familyName={getFamilyName(bird.family)}
+                onView={handleView}
+                onEdit={handleEdit}
+                onDelete={handleDelete}
+                onViewImages={handleViewImages}
+                onViewSounds={handleViewSounds}
+              />
               </div>
             ))}
           </div>

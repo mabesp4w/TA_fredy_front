@@ -20,6 +20,7 @@ interface AuthStore extends AuthState {
   refreshToken: () => Promise<boolean>;
   updateProfile: (data: UpdateProfileData) => Promise<boolean>;
   changePassword: (data: ChangePasswordData) => Promise<boolean>;
+  forgotPassword: (email: string) => Promise<{ success: boolean; message?: string }>;
   checkAuth: () => Promise<void>;
   clearError: () => void;
   hasPermission: (permission: string) => boolean;
@@ -179,6 +180,22 @@ export const useAuthStore = create<AuthStore>()(
           set({ error: errorMessage, loading: false });
           toast.error(errorMessage);
           return false;
+        }
+      },
+
+      forgotPassword: async (email: string) => {
+        set({ loading: true, error: null });
+        try {
+          const response = await auth.post("/forgot-password/", { email });
+          const successMessage = response.data.detail || "Email berhasil dikirim. Silakan cek inbox email Anda.";
+          set({ loading: false, error: null });
+          toast.success(successMessage);
+          return { success: true, message: successMessage };
+        } catch (error: any) {
+          const errorMessage = error.response?.data?.detail || "Gagal mengirim email. Silakan coba lagi.";
+          set({ error: errorMessage, loading: false });
+          toast.error(errorMessage);
+          return { success: false, message: errorMessage };
         }
       },
 

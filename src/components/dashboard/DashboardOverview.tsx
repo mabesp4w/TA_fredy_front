@@ -192,14 +192,14 @@ export const DashboardOverview: React.FC = () => {
                 data-aos-delay={300 + index * 100}
               >
                 <StatCard
-                  title={stat.label}
-                  value={stat.value}
-                  change={stat.change}
-                  trend={stat.trend}
-                  icon={stat.icon}
-                  color={stat.color}
-                  onClick={() => handleStatCardClick(statType)}
-                />
+                title={stat.label}
+                value={stat.value}
+                change={stat.change}
+                trend={stat.trend}
+                icon={stat.icon}
+                color={stat.color}
+                onClick={() => handleStatCardClick(statType)}
+              />
               </div>
             );
           })}

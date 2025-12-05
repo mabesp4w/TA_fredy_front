@@ -311,7 +311,7 @@ const ContainerPredict = () => {
 
       {/* Form */}
       <div data-aos="fade-up">
-        <SoundUploadForm onSubmit={onSubmit} loading={loading} />
+      <SoundUploadForm onSubmit={onSubmit} loading={loading} />
       </div>
       {loading && (
         <div 
@@ -348,10 +348,10 @@ const ContainerPredict = () => {
           data-aos-delay="200"
         >
           <div className="flex items-center justify-between mb-2">
-            <span className="text-gray-500">
-              {predictData?.scientific_nm}{" "}
-              {(predictData?.confidence * 100).toFixed(0)}%
-            </span>
+          <span className="text-gray-500">
+            {predictData?.scientific_nm}{" "}
+            {(predictData?.confidence * 100).toFixed(0)}%
+          </span>
             <Button
               variant="outline"
               size="sm"
@@ -364,13 +364,13 @@ const ContainerPredict = () => {
           </div>
           <div id="prediction-card">
             <div data-aos="zoom-in" data-aos-delay="300">
-              <BirdCard
-                bird={predictData.bird_data}
-                onView={onView}
-                onViewImages={onViewImages}
-                onViewSounds={onViewSounds}
-                confidence={predictData.confidence}
-              />
+          <BirdCard
+            bird={predictData.bird_data}
+            onView={onView}
+            onViewImages={onViewImages}
+            onViewSounds={onViewSounds}
+            confidence={predictData.confidence}
+          />
             </div>
           </div>
         </div>

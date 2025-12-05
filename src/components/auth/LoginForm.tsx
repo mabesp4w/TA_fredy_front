@@ -18,7 +18,7 @@ interface LoginFormProps {
 export const LoginForm: React.FC<LoginFormProps> = ({
   onSuccess,
   // onRegisterClick,
-  // onForgotPasswordClick,
+  onForgotPasswordClick,
   className = "",
 }) => {
   const { login, loading, error, clearError } = useAuthStore();
@@ -136,26 +136,17 @@ export const LoginForm: React.FC<LoginFormProps> = ({
           </div>
 
           {/* Remember Me & Forgot Password */}
-          {/* <div className="flex items-center justify-between">
-            <label className="label cursor-pointer">
-              <input
-                type="checkbox"
-                className="checkbox checkbox-primary checkbox-sm"
-                {...register("rememberMe")}
-              />
-              <span className="label-text ml-2">Remember me</span>
-            </label>
-
+          <div className="flex items-center justify-end">
             {onForgotPasswordClick && (
               <button
                 type="button"
                 onClick={onForgotPasswordClick}
                 className="text-sm text-primary hover:text-primary-focus"
               >
-                Forgot password?
+                Lupa Password?
               </button>
             )}
-          </div> */}
+          </div>
 
           {/* Submit Button */}
           <Button

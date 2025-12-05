@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Bird, ArrowLeft, Heart } from "lucide-react";
 import { LoginForm } from "./LoginForm";
 import { RegisterForm } from "./RegisterForm";
+import { ForgotPasswordForm } from "./ForgotPasswordForm";
 import { Button } from "@/components/ui/Button";
 
 type AuthMode = "login" | "register" | "forgot-password";
@@ -36,6 +37,12 @@ export const AuthPage: React.FC<AuthPageProps> = ({
           <RegisterForm
             onSuccess={handleSuccess}
             onLoginClick={() => setMode("login")}
+          />
+        );
+      case "forgot-password":
+        return (
+          <ForgotPasswordForm
+            onBack={() => setMode("login")}
           />
         );
       default:
