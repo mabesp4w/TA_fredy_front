@@ -1,10 +1,9 @@
 /** @format */
 
 import React, { useEffect, useState } from "react";
-import { RefreshCw, TrendingUp, Activity, Search } from "lucide-react";
+import { RefreshCw, TrendingUp, Activity } from "lucide-react";
 import { useDashboardStore } from "@/stores/api/dashboardStore";
 import { Button } from "../ui/Button";
-import { Input } from "../ui/Input";
 import { StatCard } from "./StatCard";
 import { ActivityItem } from "./ActivityItem";
 import { QuickActions } from "./QuickActions";
@@ -24,12 +23,9 @@ export const DashboardOverview: React.FC = () => {
     fetchDashboardData,
     refreshDashboard,
     clearError,
-    searchData,
   } = useDashboardStore();
 
-  const [searchQuery, setSearchQuery] = useState("");
   const [showAllActivities, setShowAllActivities] = useState(false);
-  const [isSearching, setIsSearching] = useState(false);
 
   // store
   const { isAuthenticated } = useAuthStore();
@@ -38,43 +34,20 @@ export const DashboardOverview: React.FC = () => {
     fetchDashboardData();
   }, [fetchDashboardData]);
 
-  const handleSearch = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      setIsSearching(true);
-      try {
-        const results = await searchData(searchQuery);
-        // Navigate to search results page with results
-        if (isAuthenticated) {
-          router.push(
-            `/admin/search?q=${searchQuery}&results=${JSON.stringify(results)}`
-          );
-        } else {
-          router.push(
-            `/search?q=${searchQuery}&results=${JSON.stringify(results)}`
-          );
-        }
-      } catch (error) {
-        console.error("Search error:", error);
-      } finally {
-        setIsSearching(false);
-      }
-    }
-  };
-
   const handleStatCardClick = (type: string) => {
+    const basePath = isAuthenticated ? "/admin" : "";
     switch (type) {
       case "families":
-        router.push("/admin/families");
+        router.push(`${basePath}/families`);
         break;
       case "birds":
-        router.push("/admin/birds");
+        router.push(`${basePath}/birds`);
         break;
       case "images":
-        router.push("/admin/images");
+        router.push(`${basePath}/images`);
         break;
       case "sounds":
-        router.push("/admin/sounds");
+        router.push(`${basePath}/sounds`);
         break;
     }
   };
@@ -97,7 +70,7 @@ export const DashboardOverview: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div 
+      <div
         className="flex items-center justify-between gap-6"
         data-aos="fade-down"
       >
@@ -120,7 +93,7 @@ export const DashboardOverview: React.FC = () => {
           className="object-contain"
         />
       </div>
-      <div 
+      <div
         className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
         data-aos="fade-up"
         data-aos-delay="100"
@@ -145,26 +118,6 @@ export const DashboardOverview: React.FC = () => {
         </div>
       </div>
 
-      {/* Global Search */}
-      <div 
-        className="bg-base-100 rounded-lg shadow-md p-6"
-        data-aos="fade-up"
-        data-aos-delay="200"
-      >
-        <form onSubmit={handleSearch} className="flex gap-3">
-          <Input
-            placeholder="Cari keluarga, burung, gambar, atau suara..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="flex-1"
-          />
-          <Button type="submit" variant="primary" loading={isSearching}>
-            <Search className="w-4 h-4 mr-2" />
-            Cari
-          </Button>
-        </form>
-      </div>
-
       {/* Quick Stats */}
       {loading && !stats ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -178,7 +131,7 @@ export const DashboardOverview: React.FC = () => {
           ))}
         </div>
       ) : (
-        <div 
+        <div
           className="stats stats-vertical sm:stats-horizontal shadow-md bg-base-100  w-full overflow-hidden"
           data-aos="fade-up"
           data-aos-delay="300"
@@ -192,14 +145,14 @@ export const DashboardOverview: React.FC = () => {
                 data-aos-delay={300 + index * 100}
               >
                 <StatCard
-                title={stat.label}
-                value={stat.value}
-                change={stat.change}
-                trend={stat.trend}
-                icon={stat.icon}
-                color={stat.color}
-                onClick={() => handleStatCardClick(statType)}
-              />
+                  title={stat.label}
+                  value={stat.value}
+                  change={stat.change}
+                  trend={stat.trend}
+                  icon={stat.icon}
+                  color={stat.color}
+                  onClick={() => handleStatCardClick(statType)}
+                />
               </div>
             );
           })}
@@ -207,14 +160,14 @@ export const DashboardOverview: React.FC = () => {
       )}
 
       {/* Main Content Grid */}
-      <div 
+      <div
         className="grid grid-cols-1 lg:grid-cols-3 gap-6"
         data-aos="fade-up"
         data-aos-delay="400"
       >
         {/* Quick Actions */}
         {isAuthenticated && (
-          <div 
+          <div
             className="lg:col-span-1"
             data-aos="fade-right"
             data-aos-delay="500"
@@ -224,7 +177,7 @@ export const DashboardOverview: React.FC = () => {
         )}
 
         {/* Recent Activities */}
-        <div 
+        <div
           className="lg:col-span-2"
           data-aos="fade-left"
           data-aos-delay="600"
@@ -316,14 +269,18 @@ export const DashboardOverview: React.FC = () => {
               <Button
                 variant="primary"
                 size="sm"
-                onClick={() => router.push("/admin/families")}
+                onClick={() =>
+                  router.push(isAuthenticated ? "/admin/families" : "/families")
+                }
               >
                 Tambah Keluarga
               </Button>
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => router.push("/admin/birds")}
+                onClick={() =>
+                  router.push(isAuthenticated ? "/admin/birds" : "/birds")
+                }
               >
                 Tambah Burung
               </Button>

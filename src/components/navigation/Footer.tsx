@@ -32,6 +32,14 @@ export const Footer: React.FC = () => {
       title: "Tautan Cepat",
       links: [
         {
+          label: "Beranda",
+          href: "/",
+        },
+        {
+          label: "Identifikasi Burung",
+          href: isAuthenticated ? "/admin/predict" : "/predict",
+        },
+        {
           label: "Jelajahi Keluarga",
           href: isAuthenticated ? "/admin/families" : "/families",
         },
@@ -47,56 +55,6 @@ export const Footer: React.FC = () => {
           label: "Pustaka Suara",
           href: isAuthenticated ? "/admin/sounds" : "/sounds",
         },
-        {
-          label: "Pencarian Lanjutan",
-          href: isAuthenticated ? "/admin/search" : "/search",
-        },
-      ],
-    },
-    {
-      title: "Alat",
-      links: [
-        {
-          label: "Gambar",
-          href: isAuthenticated
-            ? "/admin/images?action=upload"
-            : "/images?action=upload",
-        },
-        {
-          label: "Suara",
-          href: isAuthenticated
-            ? "/admin/sounds?action=upload"
-            : "/sounds?action=upload",
-        },
-        // { label: "Operasi Massal", href: "/bulk" },
-        // { label: "Ekspor Data", href: "/export" },
-        // { label: "Dokumentasi API", href: "/docs/api" },
-      ],
-    },
-
-    {
-      title: "Dukungan",
-      links: [
-        {
-          label: "Pusat Bantuan",
-          href: isAuthenticated ? "/admin/help" : "/help",
-        },
-        {
-          label: "Hubungi Kami",
-          href: isAuthenticated ? "/admin/contact" : "/contact",
-        },
-        {
-          label: "Laporkan Masalah",
-          href: isAuthenticated ? "/admin/issues" : "/issues",
-        },
-        {
-          label: "Permintaan Fitur",
-          href: isAuthenticated ? "/admin/features" : "/features",
-        },
-        {
-          label: "Komunitas",
-          href: isAuthenticated ? "/admin/community" : "/community",
-        },
       ],
     },
   ];
@@ -111,7 +69,7 @@ export const Footer: React.FC = () => {
     <footer className="bg-base-200 border-t mt-auto">
       <div className="container mx-auto px-4 py-12">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center space-x-2 mb-4">
